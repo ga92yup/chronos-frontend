@@ -1,5 +1,6 @@
-# Chronos application
-Backend can be found [here](https://github.com/ga92yup/chronos-backend)
+# Frontend for Chronos
+
+Chronos-backend application can be found [here](https://github.com/ga92yup/chronos-backend)
 
 ## Prerequisites
 
