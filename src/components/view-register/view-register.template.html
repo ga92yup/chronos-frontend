@@ -1,25 +1,25 @@
 <div layout="column" layout-padding="">
     <span flex="20"></span>
-    <md-content class="login-form" layout="row" flex="35">
+    <md-content class="register-form" layout="row" flex="35">
         <span flex="35"></span>
         <md-card flex="30">
             <md-card-content>
-                <form name="LoginForm">
+                <form name="RegisterForm">
                     <md-input-container class="md-block">
-                        <label>Login</label>
-                        <input type="text" name="username" ng-model="$ctrl.login.username" placeholder="login" required=""/>
-                        <div ng-messages="LoginForm.username.$error" role="alert" multiple="">
+                        <label>Username</label>
+                        <input type="text" name="username" ng-model="$ctrl.register.username" placeholder="username" required=""/>
+                        <div ng-messages="RegisterForm.username.$er" role="alert" multiple="">
                             <div ng-message="required">Please enter your username.</div>
                         </div>
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Password</label>
-                        <input type="password" name="password" ng-model="$ctrl.login.password" placeholder="password" required="" md-maxlength="64"/>
-                        <div ng-messages="LoginForm.password.$error" role="alert" multiple="">
+                        <input type="password" name="password" ng-model="$ctrl.register.password" placeholder="password" required="" md-maxlength="32"/>
+                        <div ng-messages="RegisterForm.password.$error" role="alert" multiple="">
                             <div ng-message="required">Please enter your password.</div>
                         </div>
                     </md-input-container>
-                    <md-button ng-disabled="!LoginForm.$valid" ng-click="$ctrl.submit()" class="md-raised md-primary">&nbsp Login &nbsp</md-button>
+                    <md-button ng-disabled="!RegisterForm.$valid" ng-click="$ctrl.submit()" class="md-raised md-primary">&nbsp Register &nbsp</md-button>
                 </form>
             </md-card-content>
         </md-card>
@@ -28,4 +28,4 @@
     <span flex></span>
 </div>
 
-<p>TEST</p>
+
