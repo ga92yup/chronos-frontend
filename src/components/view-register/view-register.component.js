@@ -3,24 +3,24 @@
 
 import UserService from './../../services/user/user.service';
 
-import template from './view-login.template.html';
-import './view-login.style.css';
+import template from './view-register.template.html';
+import './view-register.style.css';
 
-class ViewLoginComponent {
+class ViewRegisterComponent {
     constructor(){
-        this.controller = ViewLoginComponentController;
+        this.controller = ViewRegisterComponentController;
         this.template = template;
 
     }
 
     static get name() {
-        return 'viewLogin';
+        return 'viewRegister';
     }
 
 
 }
 
-class ViewLoginComponentController{
+class ViewRegisterComponentController{
     constructor($state,UserService){
         this.$state = $state;
         this.UserService = UserService;
@@ -39,10 +39,6 @@ class ViewLoginComponentController{
         });
     }
 
-    register(){
-        this.$state.go('register',{});
-    }
-
     static get $inject(){
         return ['$state', UserService.name];
     }
@@ -50,4 +46,4 @@ class ViewLoginComponentController{
 }
 
 
-export default ViewLoginComponent;
+export default ViewRegisterComponent;
