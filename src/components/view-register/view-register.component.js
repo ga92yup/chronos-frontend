@@ -20,6 +20,8 @@ class ViewRegisterComponent {
 
 }
 
+
+//TODO Change this functionality
 class ViewRegisterComponentController{
     constructor($state,UserService){
         this.$state = $state;
