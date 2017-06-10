@@ -21,7 +21,6 @@ class ViewRegisterComponent {
 }
 
 
-//TODO Change this functionality
 class ViewRegisterComponentController{
     constructor($state,UserService){
         this.$state = $state;
@@ -29,14 +28,14 @@ class ViewRegisterComponentController{
     }
 
     $onInit() {
-        this.login = {};
+        this.register = {};
     }
 
     submit(){
-        let user = this.login.username;
-        let password = this.login.password;
+        let user = this.register.username;
+        let password = this.register.password;
 
-        this.UserService.signup(user,password).then(()=> {
+        this.UserService.register(user,password).then(()=> {
             this.$state.go('movies',{});
         });
     }

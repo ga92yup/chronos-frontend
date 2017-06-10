@@ -37,7 +37,8 @@ let app = angular.module('app', [
     ViewRegister.name
 ]);
 
-app.constant('API_URL', 'http://5aee6f28.ngrok.io/api');
+//app.constant('API_URL', 'http://5aee6f28.ngrok.io/api');
+app.constant('API_URL', 'http://localhost:3000/api');
 app.config(Routes);
 app.config(Middlewares);
 
