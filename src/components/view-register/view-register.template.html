@@ -3,18 +3,23 @@
     <md-content class="register-form" layout="row" flex="35">
         <span flex="35"></span>
         <md-card flex="30">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2><span>Register Form</span></h2>
+                </div>
+            </md-toolbar>
             <md-card-content>
                 <form name="RegisterForm">
-                    <md-input-container class="md-block">
+                    <md-input-container class="md-block" flex-gt-sm>
                         <label>Username</label>
-                        <input type="text" name="username" ng-model="$ctrl.register.username" placeholder="username" required=""/>
+                        <input type="text" name="username" ng-model="$ctrl.register.username" required=""/>
                         <div ng-messages="RegisterForm.username.$er" role="alert" multiple="">
                             <div ng-message="required">Please enter your username.</div>
                         </div>
                     </md-input-container>
-                    <md-input-container class="md-block">
+                    <md-input-container class="md-block" flex-gt-sm>
                         <label>Password</label>
-                        <input type="password" name="password" ng-model="$ctrl.register.password" placeholder="password" required="" md-maxlength="32"/>
+                        <input type="password" name="password" ng-model="$ctrl.register.password" required="" md-maxlength="32"/>
                         <div ng-messages="RegisterForm.password.$error" role="alert" multiple="">
                             <div ng-message="required">Please enter your password.</div>
                         </div>
