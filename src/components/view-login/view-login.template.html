@@ -12,16 +12,18 @@
                 <form name="LoginForm">
                     <md-input-container class="md-block" flex-gt-sm>
                         <label>Username</label>
-                        <input type="text" name="username" ng-model="$ctrl.login.username" required=""/>
+                        <input type="text" name="username" ng-model="$ctrl.login.username" required="" ng-minlength="4"/>
                         <div ng-messages="LoginForm.username.$error" role="alert" multiple="">
                             <div ng-message="required">Please enter your username.</div>
+                            <div ng-message="minlength">Your username must be at least 4 characters long.</div>
                         </div>
                     </md-input-container>
                     <md-input-container class="md-block" flex-gt-sm>
                         <label>Password</label>
-                        <input type="password" name="password" ng-model="$ctrl.login.password" required="" md-maxlength="32"/>
+                        <input type="password" name="password" ng-model="$ctrl.login.password" required="" ng-maxlength="32"/>
                         <div ng-messages="LoginForm.password.$error" role="alert" multiple="">
                             <div ng-message="required">Please enter your password.</div>
+                            <div ng-message="maxlength">Your password can be 32 characters maximum.</div>
                         </div>
                     </md-input-container>
                     <md-button ng-disabled="!LoginForm.$valid" ng-click="$ctrl.submit()" class="md-raised md-primary">&nbsp Login &nbsp</md-button>

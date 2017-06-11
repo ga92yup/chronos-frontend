@@ -7,6 +7,7 @@ import angularMaterial from 'angular-material';
 import 'angular-material/angular-material.css';
 
 import ngMdIcons from 'angular-material-icons';
+import ngMessages from 'angular-messages';
 
 import MoviesService from './services/movies/movies';
 import UserService from './services/user/user';
@@ -25,6 +26,7 @@ import ViewRegister from './components/view-register/view-register';
 let app = angular.module('app', [
     uiRouter,
     angularMaterial,
+    ngMessages,
     ngMdIcons,
     UserService.name,
     MoviesService.name,
