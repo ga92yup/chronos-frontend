@@ -34,8 +34,9 @@ class ViewRegisterComponentController{
     submit(){
         let user = this.register.username;
         let password = this.register.password;
+        let email = this.register.mail;
 
-        this.UserService.register(user,password).then(()=> {
+        this.UserService.register(user,password,email).then(()=> {
             this.$state.go('movies',{});
         });
     }
