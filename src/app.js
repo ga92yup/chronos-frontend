@@ -7,6 +7,7 @@ import angularMaterial from 'angular-material';
 import 'angular-material/angular-material.css';
 
 import ngMdIcons from 'angular-material-icons';
+import ngMessages from 'angular-messages';
 
 import MoviesService from './services/movies/movies';
 import UserService from './services/user/user';
@@ -20,10 +21,12 @@ import ViewMovie from './components/view-movie/view-movie';
 import ViewMovieEdit from './components/view-movie-edit/view-movie-edit';
 import ViewMovieCreate from './components/view-movie-create/view-movie-create';
 import ViewLogin from './components/view-login/view-login';
+import ViewRegister from './components/view-register/view-register';
 
 let app = angular.module('app', [
     uiRouter,
     angularMaterial,
+    ngMessages,
     ngMdIcons,
     UserService.name,
     MoviesService.name,
@@ -32,10 +35,12 @@ let app = angular.module('app', [
     ViewMovie.name,
     ViewMovieEdit.name,
     ViewMovieCreate.name,
-    ViewLogin.name
+    ViewLogin.name,
+    ViewRegister.name
 ]);
 
-app.constant('API_URL', 'http://5aee6f28.ngrok.io/api');
+//app.constant('API_URL', 'http://5aee6f28.ngrok.io/api');
+app.constant('API_URL', 'http://localhost:3000/api');
 app.config(Routes);
 app.config(Middlewares);
 

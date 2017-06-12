@@ -5,6 +5,7 @@ import MovieComponent from './../components/view-movie/view-movie.component';
 import MovieEditComponent from './../components/view-movie-edit/view-movie-edit.component';
 import MovieCreateComponent from './../components/view-movie-create/view-movie-create.component';
 import LoginComponent from './../components/view-login/view-login.component';
+import RegisterComponent from './../components/view-register/view-register.component';
 
 import MoviesService from './../services/movies/movies.service';
 
@@ -56,6 +57,10 @@ export default function config ($stateProvider, $urlRouterProvider){
         .state('login', {
             url: '/login',
             component: LoginComponent.name,
+        })
+        .state('register', {
+            url: '/register',
+            component: RegisterComponent.name,
         })
 
 

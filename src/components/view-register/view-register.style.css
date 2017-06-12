@@ -1,0 +1,6 @@
+.register-form md-card {
+    padding: 0 !important;
+}
+.register-form md-card md-card-title {
+    background-color: blue;
+}
