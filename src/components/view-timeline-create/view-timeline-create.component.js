@@ -6,18 +6,18 @@ import template from './view-timeline-create.template.html';
 import TimelinesService from './../../services/timelines/timelines.service';
 import UserService from './../../services/user/user.service';
 
-class ViewMovieCreateComponent {
+class ViewTimelineCreateComponent {
     constructor(){
         this.controller = ViewTimelineCreateComponentController;
         this.template = template;
     }
 
     static get name() {
-        return 'viewMovieCreate';
+        return 'viewTimelineCreate';
     }
 }
 
-class VieTimelineCreateComponentController{
+class ViewTimelineCreateComponentController{
     constructor($state, TimelineService,UserService){
         this.timeline = {};
         this.$state = $state;

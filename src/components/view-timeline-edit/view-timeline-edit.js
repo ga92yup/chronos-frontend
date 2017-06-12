@@ -2,7 +2,7 @@
 
 import angular from 'angular';
 
-import ViewTimelineEditComponent from './view-movie-edit.component';
+import ViewTimelineEditComponent from './view-timeline-edit.component';
 
 
 export default angular.module('ViewTimelineEdit', [])

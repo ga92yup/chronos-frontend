@@ -2,7 +2,7 @@
 
 import angular from 'angular';
 
-import TimelinesService from './timeline.service';
+import TimelinesService from './timelines.service';
 
 
 export default angular.module('TimelinesServiceDefinition', [])

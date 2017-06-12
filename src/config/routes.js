@@ -1,23 +1,23 @@
 'use strict';
 
-import MoviesComponent from './../components/view-movies/view-movies.component';
-import MovieComponent from './../components/view-movie/view-movie.component';
-import MovieEditComponent from './../components/view-movie-edit/view-movie-edit.component';
-import MovieCreateComponent from './../components/view-movie-create/view-movie-create.component';
+import TimelinesComponent from './../components/view-timelines/view-timelines.component';
+import TimelineComponent from './../components/view-timeline/view-timeline.component';
+import TimelineEditComponent from './../components/view-timeline-edit/view-timeline-edit.component';
+import TimelineCreateComponent from './../components/view-timeline-create/view-timeline-create.component';
 import LoginComponent from './../components/view-login/view-login.component';
 import RegisterComponent from './../components/view-register/view-register.component';
 
-import MoviesService from './../services/movies/movies.service';
+import TimelinesService from './../services/timelines/timelines.service';
 
 
-resolveMovie.$inject = ['$stateParams', MoviesService.name];
-function resolveMovie($stateParams,moviesService){
-    return moviesService.get($stateParams.movieId);
+resolveTimeline.$inject = ['$stateParams', TimelinesService.name];
+function resolveTimeline($stateParams,timelinesService){
+    return timelinesService.get($stateParams.timelineId);
 }
 
-resolveMovies.$inject = [MoviesService.name];
-function resolveMovies(moviesService){
-    return moviesService.list();
+resolveTimelines.$inject = [TimelinesService.name];
+function resolveTimelines(timelinesService){
+    return timelinesService.list();
 }
 
 
@@ -25,33 +25,33 @@ config.$inject = ['$stateProvider', '$urlRouterProvider'];
 export default function config ($stateProvider, $urlRouterProvider){
 
     // For any unmatched url, redirect to /home
-    $urlRouterProvider.otherwise("/movies");
+    $urlRouterProvider.otherwise("/timelines");
 
     $stateProvider
-        .state('movies', {
-            url: '/movies',
-            component: MoviesComponent.name,
+        .state('timelines', {
+            url: '/timelines',
+            component: TimelinesComponent.name,
             resolve: {
-                movies : resolveMovies
+                timelines : resolveTimelines
             }
         })
-        .state('movieAdd', {
-            url: '/movies/new',
-            component: MovieCreateComponent.name
+        .state('timelineAdd', {
+            url: '/timelines/new',
+            component: TimelineCreateComponent.name
         })
-        .state('movie', {
-            url: '/movies/:movieId',
-            component: MovieComponent.name,
+        .state('timeline', {
+            url: '/timelines/:timelineId',
+            component: TimelineComponent.name,
             resolve: {
-                movie : resolveMovie
+                timeline : resolveTimeline
             }
 
         })
-        .state('movieEdit', {
-            url: '/movies/:movieId/edit',
-            component: MovieEditComponent.name,
+        .state('timelineEdit', {
+            url: '/timelines/:timelineId/edit',
+            component: TimelineEditComponent.name,
             resolve: {
-                movie : resolveMovie
+                timeline : resolveTimeline
             }
         })
         .state('login', {
