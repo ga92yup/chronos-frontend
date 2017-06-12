@@ -16,7 +16,7 @@ import Routes from './config/routes';
 import Middlewares from './config/middlewares';
 
 import AppContent from './components/app-content/app-content';
-import ViewMovies from './components/view-movies/view-movies';
+import ViewMovies from './components/view-timelines/view-movies';
 import ViewMovie from './components/view-movie/view-movie';
 import ViewMovieEdit from './components/view-movie-edit/view-movie-edit';
 import ViewMovieCreate from './components/view-movie-create/view-movie-create';
