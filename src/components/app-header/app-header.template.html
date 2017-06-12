@@ -14,7 +14,7 @@
             Login
         </md-button>
         <span ng-show ="$ctrl.isAuthenticated()"><md-icon md-menu-align-target><ng-md-icon icon="account_circle" ></ng-md-icon></md-icon>
-            Hello, {{$ctrl.getCurrentUser()}}!
+            {{$ctrl.getCurrentUser()}}
         </span>
         <md-button ng-click="$ctrl.logout($event)" ng-show="$ctrl.isAuthenticated()">
             <md-icon md-menu-align-target><ng-md-icon icon="logout" ></ng-md-icon></md-icon>
