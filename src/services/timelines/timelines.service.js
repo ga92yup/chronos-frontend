@@ -67,7 +67,7 @@ export default class TimelinesService {
 
     update(timeline) {
 
-        let url = `${ this.resourceUrl }${ movie['_id'] }`;
+        let url = `${ this.resourceUrl }${ timeline['_id'] }`;
         return this.$http.put(url,timeline).then(responce => {
 
             return new Promise((resolve, reject) => {
