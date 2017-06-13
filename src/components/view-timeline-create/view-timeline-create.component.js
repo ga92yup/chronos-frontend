@@ -40,6 +40,10 @@ class ViewTimelineCreateComponentController{
 
     };
 
+    dummyTimeline() {
+        this.$state.go('timelines',{});
+    };
+
 
     static get $inject(){
         return ['$state', TimelinesService.name, UserService.name];
