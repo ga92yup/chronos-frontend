@@ -1,5 +1,6 @@
 'use strict';
 
+import MainComponent from './../components/main/main.component';
 import MoviesComponent from './../components/view-movies/view-movies.component';
 import MovieComponent from './../components/view-movie/view-movie.component';
 import MovieEditComponent from './../components/view-movie-edit/view-movie-edit.component';
@@ -25,9 +26,13 @@ config.$inject = ['$stateProvider', '$urlRouterProvider'];
 export default function config ($stateProvider, $urlRouterProvider){
 
     // For any unmatched url, redirect to /home
-    $urlRouterProvider.otherwise("/movies");
+    $urlRouterProvider.otherwise("/");
 
     $stateProvider
+        .state('main', {
+            url:'/test',
+            component: MainComponent.name
+        })
         .state('movies', {
             url: '/movies',
             component: MoviesComponent.name,

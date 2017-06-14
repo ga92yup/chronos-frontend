@@ -9,20 +9,14 @@ class AppContentComponent {
         this.template = template;
 
     }
-
     static get name() {
         return 'appContent';
     }
-
-
 }
 
 class AppContentComponentController{
     constructor(){
-
     }
-
 }
-
 
 export default AppContentComponent;
