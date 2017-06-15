@@ -21,7 +21,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                exclude: /(node_modules)/,
+                exclude: /(node_modules,libs)/,
                 loader: 'babel', // 'babel-loader' is also a legal name to reference
                 query: {
                     presets: ['es2015']
@@ -32,6 +32,11 @@ module.exports = {
                 loader: 'html'
             },
             // Extract css files
+            {
+                test: /\.png$/,
+                loader: 'file-loader'
+            },
+
             {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract("style-loader", "css-loader")

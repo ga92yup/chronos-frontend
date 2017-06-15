@@ -15,12 +15,15 @@
                 <input ng-model="$ctrl.timeline.description" type="text">
             </md-input-container>
 
+            <div id="timelineId1">
+            </div>
             <div layout="row">
                 <span flex></span>
                 <md-button class="md-raised md-primary" type="submit" ng-click="$ctrl.save()">Save</md-button>
                 <md-button class="md-raised" ng-click="$ctrl.cancel()">Cancel</md-button>
                 <md-button class="md-raised" ng-click="$ctrl.dummyTimeline()">Dummy</md-button>
-
+                <md-button class="md-raised" ng-click="$ctrl.dummyAddEvent()">Dummy Add Event</md-button>
+                <md-button class="md-raised" ng-click="$ctrl.dummyDeleteEvent()">Dummy Delete Event</md-button>
             </div>
 
         </form>

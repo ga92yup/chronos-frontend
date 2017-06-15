@@ -54,6 +54,10 @@ export default function config ($stateProvider, $urlRouterProvider){
                 timeline : resolveTimeline
             }
         })
+        .state('timelineDisplay', {
+            url: '/display',
+            component: TimelineComponent.name,
+        })
         .state('login', {
             url: '/login',
             component: LoginComponent.name,
