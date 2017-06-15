@@ -1,5 +1,63 @@
 <md-toolbar>
+
     <div class="md-toolbar-tools">
+
+        <md-sidenav md-is-locked-open="true" class="md-whiteframe-24dp" md-component-id="left">
+            <md-list>
+                <md-list-item>
+                    <md-button class="sidebar-button" flex>
+                        <i class="material-icons">search</i>
+                        Search
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <md-button class="sidebar-button" flex>
+                        <i class="material-icons">favorite</i>
+                        Popular
+                    </md-button>
+                </md-list-item>
+                <br>
+                <br>
+                <md-list-item>
+                    <md-button class="sidebar-button" flex>
+                        <i class="material-icons">verified_user</i>
+                        Privacy Settings
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <md-button class="sidebar-button" flex>
+                        <i class="material-icons">grade</i>
+                        Go Pro
+                    </md-button>
+                </md-list-item>
+                <br>
+                <br>
+                <md-list-item>
+                    <md-button class="sidebar-button" flex>
+                        <i class="material-icons">help</i>
+                        Help
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <md-button class="sidebar-button" flex>
+                        <i class="material-icons">language</i>
+                        Language
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <md-button class="sidebar-button" flex>
+                        <i class="material-icons">email</i>
+                        Contact
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <md-button class="sidebar-button" flex>
+                        <i class="material-icons">info</i>
+                        Terms & Conditions
+                    </md-button>
+                </md-list-item>
+            </md-list>
+        </md-sidenav>
 
         <a ui-sref="movies" layout="row">
             <md-icon><ng-md-icon icon="schedule" ></ng-md-icon></md-icon>
@@ -7,6 +65,7 @@
         </a>
 
         <span flex></span>
+        <md-button ng-click="$ctrl.toggleSidebar()">click</md-button>
 
         <span flex="5"></span>
         <md-button ng-click="$ctrl.login($event)" ng-hide="$ctrl.isAuthenticated()">
@@ -22,3 +81,5 @@
         </md-button>
     </div>
 </md-toolbar>
+
+

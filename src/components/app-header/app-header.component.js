@@ -1,4 +1,3 @@
-
 'use strict';
 
 import UserService from './../../services/user/user.service';
@@ -8,7 +7,7 @@ import template from './app-header.template.html';
 import './app-header.style.css';
 
 class AppHeaderComponent {
-    constructor(){
+    constructor() {
         this.controller = AppHeaderComponentController;
         this.template = template;
 
@@ -21,42 +20,47 @@ class AppHeaderComponent {
 
 }
 
-class AppHeaderComponentController{
-    constructor($state,UserService){
+class AppHeaderComponentController {
+    constructor($state, UserService, $mdSidenav) {
         this.$state = $state;
         this.UserService = UserService;
-
+        this.$mdSidenav = $mdSidenav;
     }
 
     openMenu($mdMenu, ev) {
         $mdMenu.open(ev);
     }
 
-    isAuthenticated(){
+    isAuthenticated() {
         return this.UserService.isAuthenticated();
     }
 
-    getCurrentUser(){
+    getCurrentUser() {
         let user = this.UserService.getCurrentUser();
         return user.username;
     }
 
 
-    goHome(){
-        this.$state.go('movies',{});
+    goHome() {
+        this.$state.go('movies', {});
     }
 
-    login(){
-        this.$state.go('login',{});
+    login() {
+        this.$state.go('login', {});
     }
 
-    logout(){
+    logout() {
         this.UserService.logout();
-        this.$state.go('movies',{});
+        this.$state.go('movies', {});
     }
 
-    static get $inject(){
-        return ['$state', UserService.name];
+
+    toggleSidebar() {
+        this.$mdSidenav('left').toggle();
+    }
+
+    static get $inject() {
+        return ['$state', UserService.name, '$mdSidenav'];
     }
 
 }
