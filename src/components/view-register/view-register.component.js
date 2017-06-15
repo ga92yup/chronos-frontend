@@ -37,7 +37,7 @@ class ViewRegisterComponentController{
         let email = this.register.mail;
 
         this.UserService.register(user,password,email).then(()=> {
-            this.$state.go('movies',{});
+            this.$state.go('timelines',{});
         });
     }
 
