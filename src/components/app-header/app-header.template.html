@@ -1,4 +1,5 @@
 <md-toolbar>
+
     <div class="md-toolbar-tools">
 
         <a ui-sref="timelines" layout="row">
@@ -7,6 +8,7 @@
         </a>
 
         <span flex></span>
+        <md-button>click</md-button>
 
         <span flex="5"></span>
         <md-button ng-click="$ctrl.login($event)" ng-hide="$ctrl.isAuthenticated()">
@@ -14,7 +16,7 @@
             Login
         </md-button>
         <span ng-show ="$ctrl.isAuthenticated()"><md-icon md-menu-align-target><ng-md-icon icon="account_circle" ></ng-md-icon></md-icon>
-            Hello, {{$ctrl.getCurrentUser()}}!
+            {{$ctrl.getCurrentUser()}}
         </span>
         <md-button ng-click="$ctrl.logout($event)" ng-show="$ctrl.isAuthenticated()">
             <md-icon md-menu-align-target><ng-md-icon icon="logout" ></ng-md-icon></md-icon>
@@ -22,3 +24,5 @@
         </md-button>
     </div>
 </md-toolbar>
+
+

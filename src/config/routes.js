@@ -1,5 +1,6 @@
 'use strict';
 
+import MainComponent from './../components/main/main.component';
 import TimelinesComponent from './../components/view-timelines/view-timelines.component';
 import TimelineComponent from './../components/view-timeline/view-timeline.component';
 import TimelineEditComponent from './../components/view-timeline-edit/view-timeline-edit.component';
@@ -25,15 +26,21 @@ config.$inject = ['$stateProvider', '$urlRouterProvider'];
 export default function config ($stateProvider, $urlRouterProvider){
 
     // For any unmatched url, redirect to /home
-    $urlRouterProvider.otherwise("/timelines");
+
+    $urlRouterProvider.otherwise("/");
+
 
     $stateProvider
+        .state('main', {
+            url:'/test',
+            component: MainComponent.name
+        })
         .state('timelines', {
             url: '/timelines',
             component: TimelinesComponent.name,
-            resolve: {
-                timelines : resolveTimelines
-            }
+//            resolve: {
+//               timelines : resolveTimelines
+//           }
         })
         .state('timelineAdd', {
             url: '/timelines/new',
