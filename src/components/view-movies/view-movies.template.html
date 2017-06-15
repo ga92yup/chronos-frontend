@@ -1,24 +1,32 @@
-<md-list>
+<div layout-fill layout="column" class="lightgreen">
+    <div flex="20" class="lightblue"></div>
+    <div class="l" layout="row" flex="60" layout-align="center center">
+        <md-button class="md-raised" href="#">Create</md-button>
+        <md-button class="md-raised" href="#">Explore</md-button>
+        <md-button class="md-raised" href="#">Templates</md-button>
+    </div>
+    <div flex="20" class="red"></div>
+</div>
+<!--
+    <div style="background-image: url(../../assets/images/testbackground.jpg); flex">
+    <section layout="row" layout-align="center center" flex>
+      <md-button class="md-raised" href="#">Create</md-button>
+      <md-button class="md-raised" href="#">Explore</md-button>
+      <md-button class="md-raised" href="#">Templates</md-button>
+    </section>
+    </div>
+    -->
 
-    <md-list-item aria-label="Movie" ng-click="$ctrl.details(movie)" class="noright" ng-repeat="movie in $ctrl.movies">
-        <md-icon><ng-md-icon icon="insert_drive_file"></ng-md-icon></md-icon>
+<style>
+    .red {
+        background-color: red;
+    }
 
-        <p> {{movie.title}} </p>
+    .lightblue {
+        background-color: lightblue;
+    }
 
-        <md-button class="md-icon-button" aria-label="Edit Item" ng-click="$ctrl.edit(movie)" >
-            <md-icon><ng-md-icon icon="mode_edit"></ng-md-icon></md-icon>
-        </md-button>
-
-        <md-button class="md-icon-button"aria-label="Delete Item" ng-click="$ctrl.delete(movie)" >
-            <md-icon><ng-md-icon icon="delete" ></ng-md-icon></md-icon>
-        </md-button>
-        <md-divider ng-if="!$last"></md-divider>
-    </md-list-item>
-    <md-divider></md-divider>
-
-</md-list>
-<md-button class="md-fab md-fab-bottom-right md-ink-ripple" aria-label="New Movie" ng-click="$ctrl.newMovie()">
-    <md-icon><ng-md-icon icon="add"></ng-md-icon></md-icon>
-</md-button>
-
-
+    .lightgreen {
+        background-color: lightgreen;
+    }
+</style>
