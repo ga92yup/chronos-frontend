@@ -3,6 +3,7 @@
 import UserService from './../../services/user/user.service';
 
 import template from './app-header.template.html';
+import AppContent from './../app-content/app-content';
 
 import './app-header.style.css';
 
@@ -40,7 +41,6 @@ class AppHeaderComponentController {
         return user.username;
     }
 
-
     goHome() {
         this.$state.go('movies', {});
     }
@@ -55,9 +55,9 @@ class AppHeaderComponentController {
     }
 
 
-    toggleSidebar() {
-        this.$mdSidenav('left').toggle();
-    }
+    //toggleSidebar() {
+    //    this.AppContent.toggleSidebar();
+    //}
 
     static get $inject() {
         return ['$state', UserService.name, '$mdSidenav'];
