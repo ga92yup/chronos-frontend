@@ -15,17 +15,16 @@ class AppContentComponent {
 }
 
 class AppContentComponentController{
-    constructor($mdSidenav){
-        this.$mdSidenav = $mdSidenav;
+    constructor(){
     }
 
-    toggleSidebar() {
-        console.log("togglefunction");
-        this.$mdSidenav('left').toggle();
-    }
+  //  toggleSidebar() {
+  //      console.log("togglefunction");
+  //      this.$mdSidenav('left').toggle();
+  //  }
 
     static get $inject() {
-        return ['$mdSidenav'];
+        return [];
     }
 
 }

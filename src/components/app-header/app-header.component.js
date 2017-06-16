@@ -3,7 +3,6 @@
 import UserService from './../../services/user/user.service';
 
 import template from './app-header.template.html';
-import AppContent from './../app-content/app-content';
 
 import './app-header.style.css';
 
@@ -17,8 +16,6 @@ class AppHeaderComponent {
     static get name() {
         return 'appHeader';
     }
-
-
 }
 
 class AppHeaderComponentController {
@@ -55,9 +52,9 @@ class AppHeaderComponentController {
     }
 
 
-    //toggleSidebar() {
-    //    this.AppContent.toggleSidebar();
-    //}
+    toggleSidebar() {
+        this.$mdSidenav('left').toggle();
+    }
 
     static get $inject() {
         return ['$state', UserService.name, '$mdSidenav'];
