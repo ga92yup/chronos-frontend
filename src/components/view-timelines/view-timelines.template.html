@@ -1,21 +1,12 @@
-<div layout-fill layout="column" class="lightgreen">
-    <div flex="20" class="lightblue"></div>
-    <div class="l" layout="row" flex="60" layout-align="center center">
-        <md-button class="md-raised" ng-click="$ctrl.newTimeline()">Create</md-button>
+<div layout-fill class="filler" layout="column">
+    <!-- <div flex="20" class="lightblue">test</div> -->
+    <div layout="row" layout-margin layout-align="center center" class="lightblue">
+        <md-button class="md-raised" href="#">Create</md-button>
         <md-button class="md-raised" href="#">Explore</md-button>
         <md-button class="md-raised" href="#">Templates</md-button>
     </div>
-    <div flex="20" class="red"></div>
+    <!-- <div flex="20" class="red">test</div> -->
 </div>
-<!--
-    <div style="background-image: url(../../assets/images/testbackground.jpg); flex">
-    <section layout="row" layout-align="center center" flex>
-      <md-button class="md-raised" href="#">Create</md-button>
-      <md-button class="md-raised" href="#">Explore</md-button>
-      <md-button class="md-raised" href="#">Templates</md-button>
-    </section>
-    </div>
-    -->
 
 <style>
     .red {
@@ -28,5 +19,9 @@
 
     .lightgreen {
         background-color: lightgreen;
+    }
+
+    .filler {
+        min-height: 100vh
     }
 </style>
