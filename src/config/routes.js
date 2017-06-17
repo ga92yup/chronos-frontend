@@ -22,13 +22,14 @@ function resolveTimelines(timelinesService){
 }
 
 
-config.$inject = ['$stateProvider', '$urlRouterProvider'];
-export default function config ($stateProvider, $urlRouterProvider){
+config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
+export default function config ($stateProvider, $urlRouterProvider, $locationProvider){
+
+    //Edit locationProvider to get rid of "!" in routing.
+    $locationProvider.hashPrefix('');
 
     // For any unmatched url, redirect to /home
-
     $urlRouterProvider.otherwise("/");
-
 
     $stateProvider
         .state('main', {
@@ -52,7 +53,6 @@ export default function config ($stateProvider, $urlRouterProvider){
             resolve: {
                 timeline : resolveTimeline
             }
-
         })
         .state('timelineEdit', {
             url: '/timelines/:timelineId/edit',
@@ -73,7 +73,5 @@ export default function config ($stateProvider, $urlRouterProvider){
             url: '/register',
             component: RegisterComponent.name,
         })
-
-
 }
 
