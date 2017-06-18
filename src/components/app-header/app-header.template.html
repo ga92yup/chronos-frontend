@@ -1,6 +1,6 @@
 <md-toolbar">
 
-<div class="md-toolbar-tools">
+<div class="md-toolbar-tools" layout-fill>
 
     <md-button class="menu" ng-click="$ctrl.toggleSidebar()">
         <md-icon md-menu-align-target>
@@ -16,15 +16,15 @@
             </a>
     -->
 
-    <div layout-padding="20">
-        <a ui-sref="timelines" layout="row">
-            <!--            <md-icon md-svg-src="../../assets/img/chronos-logo.svg" aria-label="android "></md-icon>
-                        <md-icon><ng-md-icon icon="schedule" ></ng-md-icon></md-icon>
-                        <h1>Chronos</h1> -->
-            <img ng-src="{{$ctrl.getLogo()}}" alt="notfound" />
-        </a>
-    </div>
+    <a ui-sref="home"><md-icon md-svg-src="/../../src/assets/img/chronos-logo.svg"></md-icon></a>
+    <!--
+    <a ui-sref="timelines" layout="row">
+                    <md-icon md-svg-src="../../assets/img/chronos-logo.svg" aria-label="android "></md-icon>
+                    <md-icon><ng-md-icon icon="schedule" ></ng-md-icon></md-icon>
+                    <h1>Chronos</h1>
 
+    </a>
+-->
     <span flex></span>
     <md-button ng-click="$ctrl.login($event)" ng-hide="$ctrl.isAuthenticated()">
         <md-icon md-menu-align-target>
