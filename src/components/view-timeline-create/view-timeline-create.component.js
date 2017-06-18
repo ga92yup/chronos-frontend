@@ -25,17 +25,20 @@ class ViewTimelineCreateComponentController{
             "name": "",
             "description": "",
             "content": {
-            "eventItem": [
-                {"id": 1, "content": "item 1", "start": "2013-04-20"},
-                {"id": 2, "content": "item 2", "start": "2013-04-14"},
-                {"id": 3, "content": "item 3", "start": "2013-04-18"},
-                {"id": 4, "content": "item 4", "start": "2013-04-16", end: "2013-04-19"},
-                {"id": 5, "content": "item 5", "start": "2013-04-25"},
-                {"id": 6, "content": "item 6", "start": "2013-04-27"}
-               ]
+                "eventItem": [
+                    {"id": 1, "content": "item 1", "start": "2013-04-20"},
+                    {"id": 2, "content": "item 2", "start": "2013-04-14"},
+                    {"id": 3, "content": "item 3", "start": "2013-04-18"},
+                    {"id": 4, "content": "item 4", "start": "2013-04-16", end: "2013-04-19"},
+                    {"id": 5, "content": "item 5", "start": "2013-04-25"},
+                    {"id": 6, "content": "item 6", "start": "2013-04-27"}
+                ]
             }
 
         };
+        this.contentOfEvent ="";
+        this.startOfEvent ="";
+        this.endOfEvent="";
 
         this.$state = $state;
         this.TimelinesService = TimelinesService;
@@ -45,10 +48,21 @@ class ViewTimelineCreateComponentController{
     }
 
     addEvent(){
-        this.event['id'] = this.timeline.content.eventItem.length + 1;
-        console.log(this.event['id']);
-        this.timeline.content.eventItem.push(this.event);
-        this.event = {};
+        let eventId = this.timeline.content.eventItem.length + 1;
+        let eventToAdd = {"id" : eventId, "content": this.contentOfEvent.toString(),
+            "start": this.startOfEvent.toString(), "end": this.endOfEvent.toString()};
+
+        console.log("Changing add dummy event")
+        console.log("Event ID" + eventId);
+        console.log(this.contentOfEvent);
+        console.log(this.startOfEvent);
+        console.log(this.endOfEvent);
+
+        this.timeline.content.eventItem.push(eventToAdd);
+        this.items.add(eventToAdd);
+        this.contentOfEvent ="";
+        this.startOfEvent ="";
+        this.endOfEvent="";
     }
 
 
@@ -74,11 +88,13 @@ class ViewTimelineCreateComponentController{
         var timeline = new vis.Timeline(container, this.items, options);
     };
 
-    dummyAddEvent() {
-        let eventToAdd = {"id": 7, "content": "item 7", "start": "2013-04-15", end: "2013-04-18"};
-        this.items.add(eventToAdd);
-        this.timeline.content.eventItem.push(eventToAdd);
-    };
+    /*
+     dummyAddEvent() {
+     let eventToAdd = {"id": 7, "content": "item 7", "start": "2013-04-15", end: "2013-04-18"};
+     this.items.add(eventToAdd);
+     this.timeline.content.eventItem.push(eventToAdd);
+     };
+     */
 
 
     static get $inject(){
