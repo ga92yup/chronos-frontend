@@ -1,7 +1,7 @@
 'use strict';
 
 import MainComponent from './../components/main/main.component';
-import TimelinesComponent from './../components/view-timelines/view-timelines.component';
+import HomeComponent from '../components/view-home/view-home.component';
 import TimelineComponent from './../components/view-timeline/view-timeline.component';
 import TimelineEditComponent from './../components/view-timeline-edit/view-timeline-edit.component';
 import TimelineCreateComponent from './../components/view-timeline-create/view-timeline-create.component';
@@ -29,15 +29,12 @@ export default function config ($stateProvider, $urlRouterProvider, $locationPro
     $locationProvider.hashPrefix('');
 
     // For any unmatched url, redirect to /home
-    $urlRouterProvider.otherwise("/");
+    $urlRouterProvider.otherwise("/home");
 
     $stateProvider
-        .state('timelines', {
-            url: '/',
-            component: TimelinesComponent.name,
-//            resolve: {
-//               timelines : resolveTimelines
-//           }
+        .state('home', {
+            url: '/home',
+            component: HomeComponent.name
         })
         .state('timelineAdd', {
             url: '/timelines/new',
