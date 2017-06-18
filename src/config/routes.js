@@ -31,12 +31,8 @@ export default function config ($stateProvider, $urlRouterProvider){
 
 
     $stateProvider
-        .state('main', {
-            url:'/test',
-            component: MainComponent.name
-        })
         .state('timelines', {
-            url: '/timelines',
+            url: '/',
             component: TimelinesComponent.name,
 //            resolve: {
 //               timelines : resolveTimelines

@@ -1,36 +1,48 @@
-<md-toolbar>
+<md-toolbar">
 
-    <div class="md-toolbar-tools">
+<div class="md-toolbar-tools">
 
-        <md-button class="menu" ng-click="$ctrl.toggleSidebar()" layout-align="center center"><i class="material-icons">menu</i></md-button>
-        <span flex></span>
+    <md-button class="menu" ng-click="$ctrl.toggleSidebar()">
+        <md-icon md-menu-align-target>
+            <ng-md-icon icon="menu"></ng-md-icon>
+        </md-icon>
+    </md-button>
+    <span flex></span>
 
-<!-- old title
+    <!-- old title
+            <a ui-sref="timelines" layout="row">
+                <md-icon><ng-md-icon icon="schedule" ></ng-md-icon></md-icon>
+                <h1>Chronos</h1>
+            </a>
+    -->
+
+    <div layout-padding="20">
         <a ui-sref="timelines" layout="row">
-            <md-icon><ng-md-icon icon="schedule" ></ng-md-icon></md-icon>
-            <h1>Chronos</h1>
+            <!--            <md-icon md-svg-src="../../assets/img/chronos-logo.svg" aria-label="android "></md-icon>
+                        <md-icon><ng-md-icon icon="schedule" ></ng-md-icon></md-icon>
+                        <h1>Chronos</h1> -->
+            <img src="../../assets/img/chronos-logo.png" alt="">
         </a>
--->
+    </div>
 
-        <a ui-sref="timelines" layout="row">
-            <md-icon md-svg-src="/src/assets/img/chronos-logo.svg" aria-label="android "></md-icon>
-        </a>
-
-
-
-        <span flex></span>
-        <md-button ng-click="$ctrl.login($event)" ng-hide="$ctrl.isAuthenticated()">
-            <md-icon md-menu-align-target><ng-md-icon icon="login" ></ng-md-icon></md-icon>
-            Login
-        </md-button>
-        <span ng-show ="$ctrl.isAuthenticated()"><md-icon md-menu-align-target><ng-md-icon icon="account_circle" ></ng-md-icon></md-icon>
+    <span flex></span>
+    <md-button ng-click="$ctrl.login($event)" ng-hide="$ctrl.isAuthenticated()">
+        <md-icon md-menu-align-target>
+            <ng-md-icon icon="login"></ng-md-icon>
+        </md-icon>
+        Login
+    </md-button>
+    <span ng-show="$ctrl.isAuthenticated()"><md-icon md-menu-align-target><ng-md-icon
+            icon="account_circle"></ng-md-icon></md-icon>
             {{$ctrl.getCurrentUser()}}
         </span>
-        <md-button ng-click="$ctrl.logout($event)" ng-show="$ctrl.isAuthenticated()">
-            <md-icon md-menu-align-target><ng-md-icon icon="logout" ></ng-md-icon></md-icon>
-            Logout
-        </md-button>
-    </div>
+    <md-button ng-click="$ctrl.logout($event)" ng-show="$ctrl.isAuthenticated()">
+        <md-icon md-menu-align-target>
+            <ng-md-icon icon="logout"></ng-md-icon>
+        </md-icon>
+        Logout
+    </md-button>
+</div>
 </md-toolbar>
 
 
