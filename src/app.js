@@ -15,6 +15,8 @@ import UserService from './services/user/user';
 import Routes from './config/routes';
 import Middlewares from './config/middlewares';
 
+import Theming from './config/theming';
+
 import AppContent from './components/app-content/app-content';
 import ViewHome from './components/view-home/view-home';
 import ViewTimeline from './components/view-timeline/view-timeline';
@@ -43,7 +45,7 @@ let app = angular.module('app', [
 app.constant('API_URL', 'http://localhost:3000/api');
 app.config(Routes);
 app.config(Middlewares);
-
+app.config(Theming);
 
 angular.element(document).ready(function() {
     return angular.bootstrap(document.body, [app.name], {
