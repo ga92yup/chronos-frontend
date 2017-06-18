@@ -15,6 +15,23 @@
                 <input ng-model="$ctrl.timeline.description" type="text">
             </md-input-container>
 
+            <md-input-container class="md-icon-float md-block">
+                <div layout="row">
+                    <span flex></span>
+                    <md-input-container>
+                        <label>Event</label>
+                        <input type="text" ng-model="$ctrl.contentOfEvent">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Start</label>
+                        <input type="text" ng-model="$ctrl.startOfEvent">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>End</label>
+                        <input type="text" ng-model="$ctrl.endOfEvent">
+                    </md-input-container>
+                </div>
+            </md-input-container>
 
             <md-input-container class="md-icon-float md-block">
                 <div id="timelineId1">
@@ -23,10 +40,10 @@
 
             <div layout="row">
                 <span flex></span>
-                <md-button class="md-raised md-primary" type="submit" ng-click="$ctrl.save()">Save</md-button>
-                <md-button class="md-raised" ng-click="$ctrl.cancel()">Cancel</md-button>
                 <md-button class="md-raised" ng-click="$ctrl.dummyTimeline()">Create</md-button>
-                <md-button class="md-raised" ng-click="$ctrl.dummyAddEvent()">Add Event</md-button>
+                <md-button class="md-raised" ng-click="$ctrl.addEvent()">Add Event</md-button>
+                <md-button class="md-raised md-primary" type="submit" ng-click="$ctrl.save()">Save</md-button>
+                <md-button class="md-raised md-warn" ng-click="$ctrl.cancel()">Cancel</md-button>
             </div>
 
         </form>
