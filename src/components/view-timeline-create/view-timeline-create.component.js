@@ -80,6 +80,18 @@ class ViewTimelineCreateComponentController{
         this.endOfEvent="";
     }
 
+    clearContent(){
+        this.timeline = {
+            "name": "",
+            "description": "",
+            "content": {
+                "eventItem": [
+                ]
+            }
+        };
+        this.items = new vis.DataSet(this.timeline.content.eventItem);
+    }
+
 
 
     cancel() {
