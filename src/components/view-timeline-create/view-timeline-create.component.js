@@ -51,13 +51,7 @@ class ViewTimelineCreateComponentController{
         let eventId = this.timeline.content.eventItem.length + 1;
         let eventToAdd = {"id" : eventId, "content": this.contentOfEvent.toString(),
             "start": this.startOfEvent.toString(), "end": this.endOfEvent.toString()};
-
-        console.log("Changing add dummy event")
-        console.log("Event ID" + eventId);
-        console.log(this.contentOfEvent);
-        console.log(this.startOfEvent);
-        console.log(this.endOfEvent);
-
+        
         this.timeline.content.eventItem.push(eventToAdd);
         this.items.add(eventToAdd);
         this.contentOfEvent ="";
