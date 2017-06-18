@@ -2,51 +2,64 @@
     <md-content class="md-no-momentum">
         <h1> {{$ctrl.timeline.name}} </h1>
         <br/>
-        <form name="timelineForm">
-            <md-input-container class="md-icon-float md-block">
+        <form name="TimelineForm">
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
                 <label>Name</label>
                 <md-icon><ng-md-icon icon="title" ></ng-md-icon></md-icon>
                 <input ng-model="$ctrl.timeline.name" type="text">
             </md-input-container>
 
-            <md-input-container class="md-icon-float md-block">
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
                 <label>Description</label>
                 <md-icon><ng-md-icon icon="title" ></ng-md-icon></md-icon>
                 <input ng-model="$ctrl.timeline.description" type="text">
             </md-input-container>
-
-            <md-input-container class="md-icon-float md-block">
-                <div layout="row">
-                    <span flex></span>
-                    <md-input-container>
-                        <label>Event</label>
-                        <input type="text" ng-model="$ctrl.contentOfEvent">
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Start</label>
-                        <input type="text" ng-model="$ctrl.startOfEvent">
-                    </md-input-container>
-                    <md-input-container>
-                        <label>End</label>
-                        <input type="text" ng-model="$ctrl.endOfEvent">
-                    </md-input-container>
-                </div>
-            </md-input-container>
+        </form>
 
             <md-input-container class="md-icon-float md-block">
                 <div id="timelineId1">
                 </div>
             </md-input-container>
 
+        <form name="EventForm">
             <div layout="row">
-                <span flex></span>
+                <span flex="30"></span>
+                <md-input-container flex-gt-sm>
+                    <label>Event Name</label>
+                    <input type="text" ng-model="$ctrl.contentOfEvent">
+                </md-input-container>
+                <md-input-container flex-gt-sm>
+                    <label>Start</label>
+                    <input type="text" name="start" ng-model="$ctrl.startOfEvent" required ng-pattern="/[0-9]{4}-[0-1][0-9]-[0-3][0-9]/">
+                    <div ng-messages="EventForm.start.$error" role="alert">
+                        <div ng-message-exp="['required', 'pattern']">
+                            Please enter a valid starting date in the form "yyyy-mm-dd".
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex-gt-sm>
+                    <label>End</label>
+                    <input type="text" name="end" ng-model="$ctrl.endOfEvent" required ng-pattern="/[0-9]{4}-[0-1][0-9]-[0-3][0-9]/">
+                    <div ng-messages="EventForm.end.$error" role="alert">
+                        <div ng-message-exp="['required', 'pattern']">
+                            Please enter a valid ending date in the form "yyyy-mm-dd".
+                        </div>
+                    </div>
+                </md-input-container>
+                <span flex="30"></span>
+            </div>
+        </form>
+
+            <div layout="row">
+                <span flex="30"></span>
                 <md-button class="md-raised" ng-click="$ctrl.dummyTimeline()">Create</md-button>
-                <md-button class="md-raised" ng-click="$ctrl.addEvent()">Add Event</md-button>
+                <md-button class="md-raised" ng-disabled="!EventForm.$valid" ng-click="$ctrl.addEvent()">Add Event</md-button>
                 <md-button class="md-raised md-primary" type="submit" ng-click="$ctrl.save()">Save</md-button>
                 <md-button class="md-raised md-warn" ng-click="$ctrl.cancel()">Cancel</md-button>
+                <span flex="30"></span>
             </div>
 
-        </form>
+
     </md-content>
 
 </div>
