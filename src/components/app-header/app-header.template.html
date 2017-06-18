@@ -7,25 +7,11 @@
             <ng-md-icon icon="menu"></ng-md-icon>
         </md-icon>
     </md-button>
+
     <span flex></span>
-
-    <!-- old title
-            <a ui-sref="home" layout="row">
-                <md-icon><ng-md-icon icon="schedule" ></ng-md-icon></md-icon>
-                <h1>Chronos</h1>
-            </a>
-    -->
-
     <a ui-sref="home" flex="30" style="height: 60%"><md-icon style="width:100%; height: 100%" md-svg-src="/../../src/assets/img/chronos-logo1.svg"></md-icon></a>
-    <!--
-    <a ui-sref="timelines" layout="row">
-                    <md-icon md-svg-src="../../assets/img/chronos-logo.svg" aria-label="android "></md-icon>
-                    <md-icon><ng-md-icon icon="schedule" ></ng-md-icon></md-icon>
-                    <h1>Chronos</h1>
-
-    </a>
--->
     <span flex></span>
+
     <md-button ng-click="$ctrl.login($event)" ng-hide="$ctrl.isAuthenticated()">
         <md-icon md-menu-align-target>
             <ng-md-icon icon="login"></ng-md-icon>

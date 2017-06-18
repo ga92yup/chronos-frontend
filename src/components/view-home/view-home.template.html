@@ -1,9 +1,16 @@
 <div layout-fill class="filler" layout="column">
-    <div flex="20"></div>
+    <div flex="10"></div>
+
     <div layout="row" layout-align="center center" ng-style="{'background-image':'url(../../src/assets/img/testbackground.png)', 'background-position': 'center center'}" flex="60" style="background-image: url('../../assets/img/testbackground.png')">
         <md-button class="md-raised" ng-click="$ctrl.newTimeline()">Create</md-button>
         <md-button class="md-raised" ui-sref="home">Explore</md-button>
         <md-button class="md-raised" ui-sref="home">Templates</md-button>
+    </div>
+
+    <div class="container" layout="row">
+        <div layout-margin layout-padding flex class="lightblue">Chronos is a new way to look at time!</div>
+        <div layout-margin layout-padding flex class="lightgreen">You can build your own timeline with an easy editor!</div>
+        <div layout-margin layout-padding flex class="lightblue">Save and share your timelines with others!</div>
     </div>
 </div>
 
