@@ -45,7 +45,7 @@ let app = angular.module('app', [
 app.constant('API_URL', 'http://localhost:3000/api');
 app.config(Routes);
 app.config(Middlewares);
-app.config(Theming);
+//app.config(Theming);
 
 angular.element(document).ready(function() {
     return angular.bootstrap(document.body, [app.name], {
