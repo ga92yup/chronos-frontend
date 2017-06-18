@@ -1,14 +1,14 @@
 
 'use strict';
 
-import template from './view-timelines.template.html';
+import template from './view-home.template.html';
 import TimelinesService from './../../services/timelines/timelines.service';
 import UserService from './../../services/user/user.service';
 
 
-class ViewTimelinesComponent {
+class ViewHomeComponent {
     constructor(){
-        this.controller = ViewTimelinesComponentController;
+        this.controller = ViewHomeComponentController;
         this.template = template;
         this.bindings = {
             timelines: '<',
@@ -16,13 +16,13 @@ class ViewTimelinesComponent {
     }
 
     static get name() {
-        return 'viewTimelines';
+        return 'home';
     }
 
 
 }
 
-class ViewTimelinesComponentController{
+class ViewHomeComponentController{
     constructor($state,TimelinesService,UserService){
         this.$state = $state;
         this.TimelinesService = TimelinesService;
@@ -77,4 +77,4 @@ class ViewTimelinesComponentController{
 
 }
 
-export default ViewTimelinesComponent;
+export default ViewHomeComponent;

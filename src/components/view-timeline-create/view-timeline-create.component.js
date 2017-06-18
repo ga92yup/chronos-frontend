@@ -37,7 +37,7 @@ class ViewTimelineCreateComponentController{
 
 
     cancel() {
-        this.$state.go('timelines',{});
+        this.$state.go('home',{});
     };
 
     save() {

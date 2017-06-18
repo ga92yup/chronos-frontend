@@ -33,7 +33,7 @@ class ViewTimelineEditComponentController{
 
     cancel() {
         this.model = JSON.parse(JSON.stringify(this.timeline));
-        this.$state.go('timelines',{});
+        this.$state.go('home',{});
     };
 
     save() {
@@ -51,7 +51,7 @@ class ViewTimelineEditComponentController{
         let _id = this.timeline['_id'];
 
         this.TimelinesService.delete(_id).then(response => {
-            this.$state.go('timelines',{});
+            this.$state.go('home',{});
         });
     };
 
