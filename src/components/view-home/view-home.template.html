@@ -2,32 +2,30 @@
     <div flex="10"></div>
 
     <div layout="row" layout-align="center center" ng-style="{'background-image':'url(../../src/assets/img/testbackground.png)', 'background-position': 'center center'}" flex="60" style="background-image: url('../../assets/img/testbackground.png')">
-        <md-button class="md-raised" ng-click="$ctrl.newTimeline()">Create</md-button>
-        <md-button class="md-raised" ui-sref="home">Explore</md-button>
-        <md-button class="md-raised" ui-sref="home">Templates</md-button>
+        <md-button class="md-raised landing" ng-click="$ctrl.newTimeline()">Create</md-button>
+        <md-button class="md-raised landing" ui-sref="home">Explore</md-button>
+        <md-button class="md-raised landing" ui-sref="home">Templates</md-button>
     </div>
 
-    <div class="container" layout="row">
-        <div layout-margin layout-padding flex class="lightblue">Chronos is a new way to look at time!</div>
-        <div layout-margin layout-padding flex class="lightgreen">You can build your own timeline with an easy editor!</div>
-        <div layout-margin layout-padding flex class="lightblue">Save and share your timelines with others!</div>
+    <div flex="10"></div>
+
+    <div layout="row">
+        <div flex="30"></div>
+        <div class="container" layout="column">
+            <md-icon class="icon" md-svg-src="/../../src/assets/img/clock.svg"></md-icon>
+            <div class="value" layout-margin layout-padding flex class="lightblue">Chronos is a new way to look at time!</div>
+        </div>
+        <div class="container" layout="column">
+            <md-icon class="icon" md-svg-src="/../../src/assets/img/draw.svg"></md-icon>
+            <div class="value" layout-margin layout-padding flex class="lightblue">Build your own timeline with an easy editor!</div>
+        </div>
+        <div class="container" layout="column">
+            <md-icon class="icon" md-svg-src="/../../src/assets/img/profile.svg"></md-icon>
+            <div class="value" layout-margin layout-padding flex class="lightblue">Save and share your timelines with others!</div>
+        </div>
+        <div flex="30"></div>
     </div>
+
+    <div flex="10"></div>
+
 </div>
-
-<style>
-    .red {
-        background-color: red;
-    }
-
-    .lightblue {
-        background-color: lightblue;
-    }
-
-    .lightgreen {
-        background-color: lightgreen;
-    }
-
-    .filler {
-        min-height: 100vh
-    }
-</style>

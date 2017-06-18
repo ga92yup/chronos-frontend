@@ -5,6 +5,8 @@ import template from './view-home.template.html';
 import TimelinesService from './../../services/timelines/timelines.service';
 import UserService from './../../services/user/user.service';
 
+import './view-home.style.css';
+
 
 class ViewHomeComponent {
     constructor(){

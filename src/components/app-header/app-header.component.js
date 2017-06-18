@@ -56,12 +56,6 @@ class AppHeaderComponentController {
         this.$mdSidenav('left').toggle();
     }
 
-    getLogo() {
-        let image = {'url': '../../src/assets/img/chronos-logo-blue.png', 'desc': 'logo'};
-        return image.url;
-    }
-
-
     static get $inject() {
         return ['$state', UserService.name, '$mdSidenav'];
     }
