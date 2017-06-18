@@ -1,6 +1,5 @@
 'use strict';
 
-import MainComponent from './../components/main/main.component';
 import HomeComponent from '../components/view-home/view-home.component';
 import TimelineComponent from './../components/view-timeline/view-timeline.component';
 import TimelineEditComponent from './../components/view-timeline-edit/view-timeline-edit.component';
