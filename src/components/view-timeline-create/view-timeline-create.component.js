@@ -12,6 +12,7 @@ class ViewTimelineCreateComponent {
     constructor(){
         this.controller = ViewTimelineCreateComponentController;
         this.template = template;
+        this.hasTimeline = false;
     }
 
     static get name() {
@@ -105,6 +106,7 @@ class ViewTimelineCreateComponentController{
         var container = document.getElementById('timelineId1');
         var options = {orientation: {axis: "none"}, timeAxis: {scale: 'day', step: 5}, autoResize: true,  zoomable:true, editable: true};
         var timeline = new vis.Timeline(container, this.items, options);
+        this.hasTimeline = true;
     };
 
 
