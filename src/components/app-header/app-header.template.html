@@ -1,6 +1,6 @@
-<md-toolbar">
+<md-toolbar class="md-medium-tall" >
 
-<div class="md-toolbar-tools" layout-fill>
+<div class="md-toolbar-tools" style="min-height: 100%" >
 
     <md-button class="menu" ng-click="$ctrl.toggleSidebar()">
         <md-icon md-menu-align-target>
@@ -16,7 +16,7 @@
             </a>
     -->
 
-    <a ui-sref="home" flex="30"><md-icon style="width:100%" md-svg-src="/../../src/assets/img/chronos-logo1.svg"></md-icon></a>
+    <a ui-sref="home" flex="30" style="height: 60%"><md-icon style="width:100%; height: 100%" md-svg-src="/../../src/assets/img/chronos-logo1.svg"></md-icon></a>
     <!--
     <a ui-sref="timelines" layout="row">
                     <md-icon md-svg-src="../../assets/img/chronos-logo.svg" aria-label="android "></md-icon>
@@ -44,5 +44,6 @@
     </md-button>
 </div>
 </md-toolbar>
+<md-divider></md-divider>
 
 
