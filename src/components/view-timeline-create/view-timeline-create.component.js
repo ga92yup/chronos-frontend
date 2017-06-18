@@ -21,6 +21,7 @@ class ViewTimelineCreateComponent {
 
 class ViewTimelineCreateComponentController{
     constructor($state, TimelinesService,UserService){
+/*
         this.timeline = {
             "name": "",
             "description": "",
@@ -36,6 +37,25 @@ class ViewTimelineCreateComponentController{
             }
 
         };
+*/
+
+        this.timeline = {
+            "name": "Web Application Engineering",
+            "description": "Schedule for the Seba Master course",
+            "content": {
+                "eventItem": [
+                    {"id": 1, "content": "L3:Web Site Design", "start": "2017-05-15"},
+                    {"id": 2, "content": "E1:Business Idea", "start": "2017-05-16", "end": "2017-05-18"},
+                    {"id": 3, "content": "L4:Single-Page Applications", "start": "2017-04-22"},
+                    {"id": 4, "content": "L5:AngularJS", "start": "2017-05-29"},
+                    {"id": 5, "content": "E2:Business Model \& Mockup", "start": "2017-05-29"},
+                    {"id": 6, "content": "L6:Rest Enabled Backend Service", "start": "2017-06-12"},
+                    {"id": 7, "content": "E3:Implementation Presentation", "start": "2017-06-19", "end": "2017-06-21"}
+                ]
+            }
+
+        };
+
         this.contentOfEvent ="";
         this.startOfEvent ="";
         this.endOfEvent="";
