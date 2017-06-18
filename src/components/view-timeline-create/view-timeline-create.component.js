@@ -20,20 +20,37 @@ class ViewTimelineCreateComponent {
 }
 
 class ViewTimelineCreateComponentController{
-    constructor($state, TimelineService,UserService){
-        this.timeline = {};
+    constructor($state, TimelinesService,UserService){
+        this.timeline = {
+            "name": "",
+            "description": "",
+            "content": {
+            "eventItem": [
+                {"id": 1, "content": "item 1", "start": "2013-04-20"},
+                {"id": 2, "content": "item 2", "start": "2013-04-14"},
+                {"id": 3, "content": "item 3", "start": "2013-04-18"},
+                {"id": 4, "content": "item 4", "start": "2013-04-16", end: "2013-04-19"},
+                {"id": 5, "content": "item 5", "start": "2013-04-25"},
+                {"id": 6, "content": "item 6", "start": "2013-04-27"}
+               ]
+            }
+
+        };
+
         this.$state = $state;
-        this.TimelineService = TimelineService;
+        this.TimelinesService = TimelinesService;
         this.UserService = UserService;
-        this.items = new vis.DataSet([
-            {id: 1, content: 'item 1', start: '2013-04-20'},
-            {id: 2, content: 'item 2', start: '2013-04-14'},
-            {id: 3, content: 'item 3', start: '2013-04-18'},
-            {id: 4, content: 'item 4', start: '2013-04-16', end: '2013-04-19'},
-            {id: 5, content: 'item 5', start: '2013-04-25'},
-            {id: 6, content: 'item 6', start: '2013-04-27'}
-        ]);
+
+        this.items = new vis.DataSet(this.timeline.content.eventItem);
     }
+
+    addEvent(){
+        this.event['id'] = this.timeline.content.eventItem.length + 1;
+        console.log(this.event['id']);
+        this.timeline.content.eventItem.push(this.event);
+        this.event = {};
+    }
+
 
 
     cancel() {
@@ -42,13 +59,11 @@ class ViewTimelineCreateComponentController{
 
     save() {
         let user = this.UserService.getCurrentUser();
-
         this.timeline['user'] = user['_id'];
         this.TimelinesService.create(this.timeline).then(data => {
             let _id = data['_id'];
             this.$state.go('timeline',{ timelineId:_id});
         });
-
     };
 
 
@@ -57,15 +72,12 @@ class ViewTimelineCreateComponentController{
         var container = document.getElementById('timelineId1');
         var options = {orientation: {axis: "none"}, timeAxis: {scale: 'day', step: 5}, autoResize: true,  zoomable:true, editable: true};
         var timeline = new vis.Timeline(container, this.items, options);
-
-        //        this.$state.go('timelineDisplay',{});
     };
 
     dummyAddEvent() {
-        this.items.add({id: 7, content: 'item 7', start: '2013-04-28'})
-    };
-
-    dummyDeleteEvent() {
+        let eventToAdd = {"id": 7, "content": "item 7", "start": "2013-04-15", end: "2013-04-18"};
+        this.items.add(eventToAdd);
+        this.timeline.content.eventItem.push(eventToAdd);
     };
 
 
