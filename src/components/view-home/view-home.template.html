@@ -1,11 +1,10 @@
 <div layout-fill class="filler" layout="column">
     <div flex="20"></div>
     <div layout="row" layout-align="center center" class="lightblue" flex="60" style="background-image: url('../../assets/img/testbackground.png')">
-        <md-button class="md-raised" href="#">Create</md-button>
-        <md-button class="md-raised" href="#">Explore</md-button>
-        <md-button class="md-raised" href="#">Templates</md-button>
+        <md-button class="md-raised" ng-click="$ctrl.newTimeline()">Create</md-button>
+        <md-button class="md-raised" ui-sref="home">Explore</md-button>
+        <md-button class="md-raised" ui-sref="home">Templates</md-button>
     </div>
-    <!-- <div flex="20" class="red">test</div> -->
 </div>
 
 <style>
