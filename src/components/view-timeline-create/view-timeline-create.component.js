@@ -49,9 +49,14 @@ class ViewTimelineCreateComponentController{
 
     addEvent(){
         let eventId = this.timeline.content.eventItem.length + 1;
-        let eventToAdd = {"id" : eventId, "content": this.contentOfEvent.toString(),
+        let eventToAdd = {};
+        if(this.endOfEvent.toString()!="")
+            eventToAdd = {"id" : eventId, "content": this.contentOfEvent.toString(),
             "start": this.startOfEvent.toString(), "end": this.endOfEvent.toString()};
-        
+        else
+            eventToAdd = {"id" : eventId, "content": this.contentOfEvent.toString(),
+                "start": this.startOfEvent.toString()};
+
         this.timeline.content.eventItem.push(eventToAdd);
         this.items.add(eventToAdd);
         this.contentOfEvent ="";
@@ -81,14 +86,6 @@ class ViewTimelineCreateComponentController{
         var options = {orientation: {axis: "none"}, timeAxis: {scale: 'day', step: 5}, autoResize: true,  zoomable:true, editable: true};
         var timeline = new vis.Timeline(container, this.items, options);
     };
-
-    /*
-     dummyAddEvent() {
-     let eventToAdd = {"id": 7, "content": "item 7", "start": "2013-04-15", end: "2013-04-18"};
-     this.items.add(eventToAdd);
-     this.timeline.content.eventItem.push(eventToAdd);
-     };
-     */
 
 
     static get $inject(){
