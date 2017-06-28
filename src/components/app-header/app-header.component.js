@@ -6,6 +6,8 @@ import template from './app-header.template.html';
 
 import './app-header.style.css';
 
+import "../../images/chronos-logo.svg";
+
 class AppHeaderComponent {
     constructor() {
         this.controller = AppHeaderComponentController;

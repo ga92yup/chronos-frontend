@@ -4,6 +4,10 @@
 import template from './view-home.template.html';
 import TimelinesService from './../../services/timelines/timelines.service';
 import UserService from './../../services/user/user.service';
+import "./../../images/profile.svg";
+import "./../../images/draw.svg";
+import "./../../images/clock.svg";
+import "../../images/background.png";
 
 import './view-home.style.css';
 
@@ -20,7 +24,6 @@ class ViewHomeComponent {
     static get name() {
         return 'home';
     }
-
 
 }
 
