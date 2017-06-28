@@ -33,7 +33,7 @@ module.exports = {
             },
             // Extract css files
             {
-                test: /\.(png|svg)$/,
+                test: /\.(jpe?g|gif|png|svg)$/i,
                 loader: "file-loader?name=./images/[name].[ext]"
             },
 
