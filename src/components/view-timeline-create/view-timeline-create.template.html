@@ -22,31 +22,81 @@
             </md-input-container>
 
         <form name="EventForm">
-            <div layout="row">
-                <span flex="30"></span>
-                <md-input-container flex-gt-sm>
-                    <label>Event Name</label>
-                    <input type="text" ng-model="$ctrl.contentOfEvent">
-                </md-input-container>
-                <md-input-container flex-gt-sm>
-                    <label>Start</label>
-                    <input type="text" name="start" ng-model="$ctrl.startOfEvent" required ng-pattern="/[0-9]{4}-[0-1][0-9]-[0-3][0-9]/">
-                    <div ng-messages="EventForm.start.$error" role="alert">
-                        <div ng-message-exp="['required', 'pattern']">
-                            Please enter a valid starting date in the form "yyyy-mm-dd".
-                        </div>
+            <div layout="column">
+                <div layout="row">
+                    <span flex="35"></span>
+                    <md-input-container flex-gt-sm>
+                        <label>Event Name</label>
+                        <input type="text" ng-model="$ctrl.contentOfEvent">
+                    </md-input-container>
+                    <span flex="35"></span>
+                </div>
+                <div layout="row">
+                    <span flex="35"></span>
+                    <div flex layout="row"><label>Start Date</label>
+                        <md-input-container flex-gt-sm="25">
+                            <label>Day</label>
+                            <input type="text" name="startDay" ng-model="$ctrl.startDay" ng-pattern="/^([1-9]|[12][0-9]|3[01])$/">
+                            <div ng-messages="EventForm.startDay.$error" role="alert">
+                                <div ng-message-exp="['pattern']">
+                                    A month has between 1 and 31 days.
+                                </div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container flex-gt-sm="25">
+                            <label>Month</label>
+                            <input type="text" name="startMonth" ng-model="$ctrl.startMonth" ng-pattern="/^([1-9]|1[012])$/">
+                            <div ng-messages="EventForm.startMonth.$error" role="alert">
+                                <div ng-message-exp="['pattern']">
+                                    A year has between 1 and 12 months.
+                                </div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container flex-gt-sm="25">
+                            <label>Year</label>
+                            <input type="text" name="startYear" ng-model="$ctrl.startYear" required ng-pattern="/^-?[0-9]{1,4}$/">
+                            <div ng-messages="EventForm.startYear.$error" role="alert">
+                                <div ng-message-exp="['required', 'pattern']">
+                                    Please enter a year between -9999 and 9999.
+                                </div>
+                            </div>
+                        </md-input-container>
                     </div>
-                </md-input-container>
-                <md-input-container flex-gt-sm>
-                    <label>End</label>
-                    <input type="text" name="end" ng-model="$ctrl.endOfEvent"  ng-pattern="/[0-9]{4}-[0-1][0-9]-[0-3][0-9]/">
-                    <div ng-messages="EventForm.end.$animEnter">
-                        <div ng-message-exp="['required', 'pattern']">
-                            Please enter a valid ending date in the form "yyyy-mm-dd".
-                        </div>
+                    <span flex="35"></span>
+                </div>
+                <div layout="row">
+                    <span flex="35"></span>
+                    <div flex layout="row"><label>End Date</label>
+                        <md-input-container flex-gt-sm="25">
+                            <label>Day</label>
+                            <input type="text" name="endDay" ng-model="$ctrl.endDay" ng-pattern="/^([1-9]|[12][0-9]|3[01])$/">
+                            <div ng-messages="EventForm.endDay.$error" role="alert">
+                                <div ng-message-exp="['pattern']">
+                                    A month has between 1 and 31 days.
+                                </div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container flex-gt-sm="25">
+                            <label>Month</label>
+                            <input type="text" name="endMonth" ng-model="$ctrl.endMonth" ng-pattern="/^([1-9]|1[012])$/">
+                            <div ng-messages="EventForm.endMonth.$error" role="alert">
+                                <div ng-message-exp="['pattern']">
+                                    A year has between 1 and 12 months.
+                                </div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container flex-gt-sm="25">
+                            <label>Year</label>
+                            <input type="text" name="endYear" ng-model="$ctrl.endYear" ng-pattern="/^-?[0-9]{1,4}$/">
+                            <div ng-messages="EventForm.endYear.$error" role="alert">
+                                <div ng-message-exp="['pattern']">
+                                    Please enter a year between -9999 and 9999.
+                                </div>
+                            </div>
+                        </md-input-container>
                     </div>
-                </md-input-container>
-                <span flex="30"></span>
+                    <span flex="35"></span>
+                </div>
             </div>
         </form>
 
