@@ -46,8 +46,9 @@ class ViewTimelineCreateComponentController{
             "content": {
                 "eventItem": [
                     {"id": 1, "content": "E1: Business Idea", "start": "2017-04-29", "end": "2017-05-14"},
-                    {"id": 2, "content": "E2: Business Model", "start": "2017-05-19", "end": "2017-05-28"},
-                    {"id": 3, "content": "E3: Initial Prototype", "start": "2017-05-30", "end": "2017-06-18"}
+                    {"id": 2, "content": "E2: Business Model", "start": "2017-05-9", "end": "2017-5-28"},
+                    {"id": 3, "content": "E3: Initial Prototype", "start": "2017-05-09", "end": "2017-06-18"},
+                    {"id": 4, "content": "TEST", "start": "2017-07-09"}
                 ]
             }
         };
@@ -66,13 +67,18 @@ class ViewTimelineCreateComponentController{
     addEvent(){
         let eventId = this.timeline.content.eventItem.length + 1;
         let eventToAdd = {};
-        if(this.endOfEvent.toString()!="")
-            eventToAdd = {"id" : eventId, "content": this.contentOfEvent.toString(),
-            "start": this.startOfEvent.toString(), "end": this.endOfEvent.toString()};
-        else
-            eventToAdd = {"id" : eventId, "content": this.contentOfEvent.toString(),
-                "start": this.startOfEvent.toString()};
+        let endOfEvent = this.concatenateDate("end");
+        let startOfEvent = this.concatenateDate("start");
+        console.log("Start: " + startOfEvent);
+        console.log("End: " + endOfEvent);
 
+        if(endOfEvent != null)
+            eventToAdd = {"id" : eventId, "content": this.contentOfEvent.toString(),
+            "start": startOfEvent.toString(), "end": endOfEvent.toString()};
+        else
+            console.log("end null");
+            eventToAdd = {"id" : eventId, "content": this.contentOfEvent.toString(),
+                "start": startOfEvent};
         this.timeline.content.eventItem.push(eventToAdd);
         this.items.add(eventToAdd);
         this.contentOfEvent ="";
@@ -90,6 +96,7 @@ class ViewTimelineCreateComponentController{
             }
         };
         this.items = new vis.DataSet(this.timeline.content.eventItem);
+        this.hasTimeline = false;
     }
 
 
@@ -110,9 +117,9 @@ class ViewTimelineCreateComponentController{
 
 
     dummyTimeline() {
-        var container = document.getElementById('timelineId1');
-        var options = {orientation: {axis: "none"}, timeAxis: {scale: 'day', step: 5}, autoResize: true,  zoomable:true, editable: true};
-        var timeline = new vis.Timeline(container, this.items, options);
+        let container = document.getElementById('timelineId1');
+        let options = {orientation: {axis: "none"}, timeAxis: {scale: 'day', step: 5}, autoResize: true,  zoomable:true, editable: true};
+        let timeline = new vis.Timeline(container, this.items, options);
         this.hasTimeline = true;
     };
 
@@ -121,7 +128,28 @@ class ViewTimelineCreateComponentController{
         return ['$state', TimelinesService.name, UserService.name];
     }
 
-}
+    concatenateDate(choice) {
+        let date = null;
+        if (choice === "end") {
+            date = this.endYear;
+            if (this.endMonth != null) {
+                date = date + "-" + this.endMonth;
+                if (this.endDay != null) {
+                    date = date + "-" + this.endDay;
+                }
+            }
+        } else if (choice === "start") {
+            date = this.startYear;
+            if (this.startMonth != null) {
+                date = date + "-" + this.startMonth;
+                if (this.startDay != null) {
+                    date = date + "-" + this.startDay;
+                }
+            }
+        }
+        return date;
+    }
 
+}
 
 export default ViewTimelineCreateComponent;
