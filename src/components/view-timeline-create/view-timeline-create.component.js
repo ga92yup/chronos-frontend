@@ -63,22 +63,23 @@ class ViewTimelineCreateComponentController{
 
         this.items = new vis.DataSet(this.timeline.content.eventItem);
     }
-
+    
     addEvent(){
         let eventId = this.timeline.content.eventItem.length + 1;
         let eventToAdd = {};
-        let endOfEvent = this.concatenateDate("end");
-        let startOfEvent = this.concatenateDate("start");
-        console.log("Start: " + startOfEvent);
-        console.log("End: " + endOfEvent);
-
-        if(endOfEvent != null)
-            eventToAdd = {"id" : eventId, "content": this.contentOfEvent.toString(),
-            "start": startOfEvent.toString(), "end": endOfEvent.toString()};
-        else
-            console.log("end null");
-            eventToAdd = {"id" : eventId, "content": this.contentOfEvent.toString(),
-                "start": startOfEvent};
+        this.endOfEvent = this.concatenateDate("end");
+        this.startOfEvent = this.concatenateDate("start");
+        if(this.endOfEvent.toString()!="") {
+            eventToAdd = {
+                "id": eventId, "content": this.contentOfEvent.toString(),
+                "start": this.startOfEvent.toString(), "end": this.endOfEvent.toString()
+            };
+        } else {
+            eventToAdd = {
+                "id": eventId, "content": this.contentOfEvent.toString(),
+                "start": this.startOfEvent.toString()
+            };
+        }
         this.timeline.content.eventItem.push(eventToAdd);
         this.items.add(eventToAdd);
         this.contentOfEvent ="";
