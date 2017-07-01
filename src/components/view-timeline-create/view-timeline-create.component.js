@@ -7,6 +7,7 @@ import TimelinesService from './../../services/timelines/timelines.service';
 import UserService from './../../services/user/user.service';
 import * as vis from '../../../libs/vis';
 import  '../../../libs/vis.css';
+import './view-timeline-create.style.css';
 
 class ViewTimelineCreateComponent {
     constructor(){
@@ -108,6 +109,7 @@ class ViewTimelineCreateComponentController{
         };
         this.items = new vis.DataSet(this.timeline.content.eventItem);
         this.hasTimeline = false;
+        this.clearEvent();
     }
 
 
