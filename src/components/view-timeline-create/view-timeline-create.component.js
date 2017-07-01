@@ -69,13 +69,11 @@ class ViewTimelineCreateComponentController{
         this.endOfEvent = this.concatenateDate("end");
         this.startOfEvent = this.concatenateDate("start");
         if(this.endOfEvent != "") {
-            console.log("end is here");
             eventToAdd = {
                 "id": eventId, "content": this.contentOfEvent.toString(),
                 "start": this.startOfEvent, "end": this.endOfEvent
             };
         } else {
-            console.log("no end");
             eventToAdd = {
                 "id": eventId, "content": this.contentOfEvent.toString(),
                 "start": this.startOfEvent
@@ -88,7 +86,6 @@ class ViewTimelineCreateComponentController{
     }
 
     clearEvent(){
-        console.log("events cleared");
         this.contentOfEvent = "";
         this.startDay = "";
         this.startMonth = "";
@@ -98,7 +95,6 @@ class ViewTimelineCreateComponentController{
         this.endYear = "";
         this.startOfEvent = "";
         this.endOfEvent = "";
-       // this.eventForm.$setPristine();
     }
 
     clearContent(){
