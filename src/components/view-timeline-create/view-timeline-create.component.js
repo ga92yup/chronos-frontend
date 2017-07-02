@@ -7,6 +7,7 @@ import TimelinesService from './../../services/timelines/timelines.service';
 import UserService from './../../services/user/user.service';
 import * as vis from '../../../libs/vis';
 import  '../../../libs/vis.css';
+import './view-timeline-create.style.css';
 
 class ViewTimelineCreateComponent {
     constructor(){
@@ -46,8 +47,8 @@ class ViewTimelineCreateComponentController{
             "content": {
                 "eventItem": [
                     {"id": 1, "content": "E1: Business Idea", "start": "2017-04-29", "end": "2017-05-14"},
-                    {"id": 2, "content": "E2: Business Model", "start": "2017-05-19", "end": "2017-05-28"},
-                    {"id": 3, "content": "E3: Initial Prototype", "start": "2017-05-30", "end": "2017-06-18"}
+                    {"id": 2, "content": "E2: Business Model", "start": "2017-05-9", "end": "2017-5-28"},
+                    {"id": 3, "content": "E3: Initial Prototype", "start": "2017-05-09", "end": "2017-06-18"},
                 ]
             }
         };
@@ -66,18 +67,35 @@ class ViewTimelineCreateComponentController{
     addEvent(){
         let eventId = this.timeline.content.eventItem.length + 1;
         let eventToAdd = {};
-        if(this.endOfEvent.toString()!="")
-            eventToAdd = {"id" : eventId, "content": this.contentOfEvent.toString(),
-            "start": this.startOfEvent.toString(), "end": this.endOfEvent.toString()};
-        else
-            eventToAdd = {"id" : eventId, "content": this.contentOfEvent.toString(),
-                "start": this.startOfEvent.toString()};
-
+        this.endOfEvent = this.concatenateDate("end");
+        this.startOfEvent = this.concatenateDate("start");
+        if(this.endOfEvent != "") {
+            eventToAdd = {
+                "id": eventId, "content": this.contentOfEvent.toString(),
+                "start": this.startOfEvent, "end": this.endOfEvent
+            };
+        } else {
+            eventToAdd = {
+                "id": eventId, "content": this.contentOfEvent.toString(),
+                "start": this.startOfEvent
+            };
+        }
         this.timeline.content.eventItem.push(eventToAdd);
         this.items.add(eventToAdd);
-        this.contentOfEvent ="";
-        this.startOfEvent ="";
-        this.endOfEvent="";
+        this.clearEvent();
+        eventToAdd = null;
+    }
+
+    clearEvent(){
+        this.contentOfEvent = "";
+        this.startDay = "";
+        this.startMonth = "";
+        this.startYear = "";
+        this.endDay = "";
+        this.endMonth = "";
+        this.endYear = "";
+        this.startOfEvent = "";
+        this.endOfEvent = "";
     }
 
     clearContent(){
@@ -90,6 +108,8 @@ class ViewTimelineCreateComponentController{
             }
         };
         this.items = new vis.DataSet(this.timeline.content.eventItem);
+        this.hasTimeline = false;
+        this.clearEvent();
     }
 
 
@@ -110,9 +130,9 @@ class ViewTimelineCreateComponentController{
 
 
     dummyTimeline() {
-        var container = document.getElementById('timelineId1');
-        var options = {orientation: {axis: "none"}, timeAxis: {scale: 'day', step: 5}, autoResize: true,  zoomable:true, editable: true};
-        var timeline = new vis.Timeline(container, this.items, options);
+        let container = document.getElementById('timelineId1');
+        let options = {orientation: {axis: "none"}, timeAxis: {scale: 'day', step: 5}, autoResize: true,  zoomable:true, editable: true};
+        let timeline = new vis.Timeline(container, this.items, options);
         this.hasTimeline = true;
     };
 
@@ -121,7 +141,29 @@ class ViewTimelineCreateComponentController{
         return ['$state', TimelinesService.name, UserService.name];
     }
 
-}
+    concatenateDate(choice) {
+        let date = "";
+        if (choice === "end") {
+            date = this.endYear;
+            if (this.endMonth != "") {
+                date = date + "-" + this.endMonth;
+                if (this.endDay != "") {
+                    date = date + "-" + this.endDay;
+                }
+            }
+        } else if (choice === "start") {
+            date = this.startYear;
+            if (this.startMonth != "") {
+                date = date + "-" + this.startMonth;
+                if (this.startDay != "") {
+                    date = date + "-" + this.startDay;
+                }
+            }
+        }
+        return date;
+        date = null;
+    }
 
+}
 
 export default ViewTimelineCreateComponent;
