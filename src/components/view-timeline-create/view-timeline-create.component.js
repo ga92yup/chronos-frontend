@@ -131,7 +131,7 @@ class ViewTimelineCreateComponentController{
 
     dummyTimeline() {
         let container = document.getElementById('timelineId1');
-        let options = {orientation: {axis: "none"}, timeAxis: {scale: 'day', step: 5}, autoResize: true,  zoomable:true, editable: true};
+        let options = {timeAxis: {scale: 'day', step: 5}, autoResize: true,  zoomable:true, editable: true};
         let timeline = new vis.Timeline(container, this.items, options);
         this.hasTimeline = true;
     };
