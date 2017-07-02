@@ -69,15 +69,15 @@ class ViewTimelineCreateComponentController{
         let eventToAdd = {};
         this.endOfEvent = this.concatenateDate("end");
         this.startOfEvent = this.concatenateDate("start");
-        if(this.endOfEvent != "") {
+        if(this.endOfEvent === "" || this.endOfEvent === undefined) {
             eventToAdd = {
                 "id": eventId, "content": this.contentOfEvent.toString(),
-                "start": this.startOfEvent, "end": this.endOfEvent
+                "start": this.startOfEvent
             };
         } else {
             eventToAdd = {
                 "id": eventId, "content": this.contentOfEvent.toString(),
-                "start": this.startOfEvent
+                "start": this.startOfEvent, "end": this.endOfEvent
             };
         }
         this.timeline.content.eventItem.push(eventToAdd);
@@ -142,26 +142,25 @@ class ViewTimelineCreateComponentController{
     }
 
     concatenateDate(choice) {
-        let date = "";
+        var date = "";
         if (choice === "end") {
             date = this.endYear;
-            if (this.endMonth != "") {
+            if (this.endMonth != undefined) {
                 date = date + "-" + this.endMonth;
-                if (this.endDay != "") {
+                if (this.endDay != undefined) {
                     date = date + "-" + this.endDay;
                 }
             }
         } else if (choice === "start") {
             date = this.startYear;
-            if (this.startMonth != "") {
+            if (this.startMonth != undefined) {
                 date = date + "-" + this.startMonth;
-                if (this.startDay != "") {
+                if (this.startDay != undefined) {
                     date = date + "-" + this.startDay;
                 }
             }
         }
         return date;
-        date = null;
     }
 
 }
