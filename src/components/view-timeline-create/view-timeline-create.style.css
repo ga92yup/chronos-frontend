@@ -14,3 +14,11 @@ md-input-container .md-error-spacer{
     padding-left: 10px;
     padding-right: 10px;
 }
+
+.vis-item .vis-item-overflow {
+    overflow: visible;
+}
+
+.vis-time-axis .vis-grid.vis-odd {
+    background: #f5f5f5;
+}
