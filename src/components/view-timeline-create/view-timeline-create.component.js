@@ -14,6 +14,7 @@ class ViewTimelineCreateComponent {
         this.controller = ViewTimelineCreateComponentController;
         this.template = template;
         this.hasTimeline = false;
+        this.timeline = null;
     }
 
     static get name() {
@@ -21,34 +22,17 @@ class ViewTimelineCreateComponent {
     }
 }
 
+
 class ViewTimelineCreateComponentController{
     constructor($state, TimelinesService,UserService){
-/*
-        this.timeline = {
-            "name": "",
-            "description": "",
-            "content": {
-                "eventItem": [
-                    {"id": 1, "content": "item 1", "start": "2013-04-20"},
-                    {"id": 2, "content": "item 2", "start": "2013-04-14"},
-                    {"id": 3, "content": "item 3", "start": "2013-04-18"},
-                    {"id": 4, "content": "item 4", "start": "2013-04-16", end: "2013-04-19"},
-                    {"id": 5, "content": "item 5", "start": "2013-04-25"},
-                    {"id": 6, "content": "item 6", "start": "2013-04-27"}
-                ]
-            }
-
-        };
-*/
-
-        this.timeline = {
+        this.dataModel = {
             "name": "Web Application Engineering",
             "description": "Schedule for the Seba Excercises",
             "content": {
                 "eventItem": [
                     {"id": 1, "content": "E1: Business Idea", "start": "2017-04-29", "end": "2017-05-14"},
-                    {"id": 2, "content": "E2: Business Model", "start": "2017-05-9", "end": "2017-5-28"},
-                    {"id": 3, "content": "E3: Initial Prototype", "start": "2017-05-09", "end": "2017-06-18"},
+                    {"id": 2, "content": '<div>E2: Business Model</div><img src="../../images/chronos-logo.svg" style="width:64px; height:64px;">', "start": "2017-05-9", "end": "2017-5-28"},
+                    {"id": 3, "content":  "E3: Initial Prototype", "start": "2017-05-09", "end": "2017-06-18"},
                 ]
             }
         };
@@ -61,15 +45,16 @@ class ViewTimelineCreateComponentController{
         this.TimelinesService = TimelinesService;
         this.UserService = UserService;
 
-        this.items = new vis.DataSet(this.timeline.content.eventItem);
+        this.items = new vis.DataSet(this.dataModel.content.eventItem);
     }
 
     addEvent(){
-        let eventId = this.timeline.content.eventItem.length + 1;
+        let eventId = this.dataModel.content.eventItem.length + 1;
         let eventToAdd = {};
         this.endOfEvent = this.concatenateDate("end");
         this.startOfEvent = this.concatenateDate("start");
-        if(this.endOfEvent === "" || this.endOfEvent === undefined) {
+        if(this.endOfEvent != "" || this.endOfEvent != undefined) {
+            console.log("End of event");
             eventToAdd = {
                 "id": eventId, "content": this.contentOfEvent.toString(),
                 "start": this.startOfEvent
@@ -80,11 +65,12 @@ class ViewTimelineCreateComponentController{
                 "start": this.startOfEvent, "end": this.endOfEvent
             };
         }
-        this.timeline.content.eventItem.push(eventToAdd);
+        this.dataModel.content.eventItem.push(eventToAdd);
         this.items.add(eventToAdd);
         this.clearEvent();
         eventToAdd = null;
     }
+
 
     clearEvent(){
         this.contentOfEvent = "";
@@ -99,7 +85,7 @@ class ViewTimelineCreateComponentController{
     }
 
     clearContent(){
-        this.timeline = {
+        this.dataModel = {
             "name": "",
             "description": "",
             "content": {
@@ -107,7 +93,7 @@ class ViewTimelineCreateComponentController{
                 ]
             }
         };
-        this.items = new vis.DataSet(this.timeline.content.eventItem);
+        this.items = new vis.DataSet(this.dataModel.content.eventItem);
         this.hasTimeline = false;
         this.clearEvent();
     }
@@ -120,8 +106,8 @@ class ViewTimelineCreateComponentController{
 
     save() {
         let user = this.UserService.getCurrentUser();
-        this.timeline['user'] = user['_id'];
-        this.TimelinesService.create(this.timeline).then(data => {
+        this.dataModel['user'] = user['_id'];
+        this.TimelinesService.create(this.dataModel).then(data => {
             let _id = data['_id'];
             this.$state.go('timeline',{ timelineId:_id});
         });
@@ -129,11 +115,14 @@ class ViewTimelineCreateComponentController{
 
 
 
-    dummyTimeline() {
+    drawTimeline(options) {
         let container = document.getElementById('timelineId1');
-        let options = {timeAxis: {scale: 'day', step: 5}, autoResize: true,  zoomable:true, editable: true};
-        let timeline = new vis.Timeline(container, this.items, options);
+        this.timeline = new vis.Timeline(container, this.items, options);
         this.hasTimeline = true;
+    }
+    dummyTimeline() {
+        let options = {timeAxis: {scale: 'day', step: 5}, autoResize: true,  zoomable:true, editable: true};
+        this.drawTimeline(options);
     };
 
 
@@ -142,20 +131,20 @@ class ViewTimelineCreateComponentController{
     }
 
     concatenateDate(choice) {
-        var date = "";
+        let date = "";
         if (choice === "end") {
             date = this.endYear;
-            if (this.endMonth != undefined) {
+            if (this.endMonth != "") {
                 date = date + "-" + this.endMonth;
-                if (this.endDay != undefined) {
+                if (this.endDay != "") {
                     date = date + "-" + this.endDay;
                 }
             }
         } else if (choice === "start") {
             date = this.startYear;
-            if (this.startMonth != undefined) {
+            if (this.startMonth != "") {
                 date = date + "-" + this.startMonth;
-                if (this.startDay != undefined) {
+                if (this.startDay != "") {
                     date = date + "-" + this.startDay;
                 }
             }
