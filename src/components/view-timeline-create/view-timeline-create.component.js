@@ -66,9 +66,11 @@ class ViewTimelineCreateComponentController{
         }
         this.dataModel.content.eventItem.push(eventToAdd);
         this.items.add(eventToAdd);
+        this.timeline.fit();
         this.clearEvent();
         eventToAdd = null;
     }
+
 
 
     clearEvent(){
@@ -93,6 +95,7 @@ class ViewTimelineCreateComponentController{
             }
         };
         this.items = new vis.DataSet(this.dataModel.content.eventItem);
+        this.timeline.destroy();
         this.hasTimeline = false;
         this.clearEvent();
     }
@@ -105,6 +108,12 @@ class ViewTimelineCreateComponentController{
 
     save() {
         let user = this.UserService.getCurrentUser();
+        this.dataModel.content.eventItem = this.items.get();
+        var arrayLength = this.dataModel.content.eventItem.length;
+        for (var i = 0; i < arrayLength; i++) {
+            console.log(this.dataModel.content.eventItem[i].id, this.dataModel.content.eventItem[i].content);
+        }
+
         this.dataModel['user'] = user['_id'];
         this.TimelinesService.create(this.dataModel).then(data => {
             let _id = data['_id'];
@@ -120,10 +129,14 @@ class ViewTimelineCreateComponentController{
         this.hasTimeline = true;
     }
     dummyTimeline() {
-        let options = {timeAxis: {scale: 'day', step: 5}, autoResize: true,  zoomable:true, editable: true};
+        let options = {timeAxis: {scale: 'day', step: 5},
+                       autoResize: true,
+                       zoomable:true,
+                       editable: true
+        };
         this.drawTimeline(options);
     };
-
+    
 
     static get $inject(){
         return ['$state', TimelinesService.name, UserService.name];
