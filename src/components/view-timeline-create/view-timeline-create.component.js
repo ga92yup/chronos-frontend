@@ -95,6 +95,7 @@ class ViewTimelineCreateComponentController{
             }
         };
         this.items = new vis.DataSet(this.dataModel.content.eventItem);
+        this.timeline.destroy();
         this.hasTimeline = false;
         this.clearEvent();
     }
