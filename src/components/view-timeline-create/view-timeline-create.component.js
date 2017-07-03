@@ -130,7 +130,7 @@ class ViewTimelineCreateComponentController{
     }
 
     concatenateDate(choice) {
-        let date = "";
+        var date = "";
         if (choice === "end") {
             date = this.endYear;
             if (this.endMonth != "") {
