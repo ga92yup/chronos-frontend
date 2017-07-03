@@ -27,7 +27,7 @@ md-input-container .md-error-spacer{
     border: 2px solid #cfd8e6;
     font-family:  "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 12pt;
-    background: #cfd8e6;
+    background: #fafafa;
 }
 
 
@@ -46,10 +46,10 @@ md-input-container .md-error-spacer{
 
 .vis-time-axis .vis-grid.vis-minor {
     border-width: 2px;
-    border-color: #cfd8e6;
+    border-color: #e4e9f0;
 }
 
 .vis-time-axis .vis-grid.vis-major {
     border-width: 2px;
-    border-color: #97B0F8;
+    border-color: #cfd8e6;
 }
