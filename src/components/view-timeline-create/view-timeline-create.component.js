@@ -66,6 +66,7 @@ class ViewTimelineCreateComponentController{
         }
         this.dataModel.content.eventItem.push(eventToAdd);
         this.items.add(eventToAdd);
+        this.timeline.fit();
         this.clearEvent();
         eventToAdd = null;
     }
