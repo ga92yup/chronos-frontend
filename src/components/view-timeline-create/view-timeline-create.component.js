@@ -133,17 +133,17 @@ class ViewTimelineCreateComponentController{
         var date = "";
         if (choice === "end") {
             date = this.endYear;
-            if (this.endMonth != "") {
+            if (this.endMonth != undefined) {
                 date = date + "-" + this.endMonth;
-                if (this.endDay != "") {
+                if (this.endDay != undefined) {
                     date = date + "-" + this.endDay;
                 }
             }
         } else if (choice === "start") {
             date = this.startYear;
-            if (this.startMonth != "") {
+            if (this.startMonth != undefined) {
                 date = date + "-" + this.startMonth;
-                if (this.startDay != "") {
+                if (this.startDay != undefined) {
                     date = date + "-" + this.startDay;
                 }
             }
