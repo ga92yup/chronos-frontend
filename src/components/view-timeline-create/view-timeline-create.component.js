@@ -53,8 +53,7 @@ class ViewTimelineCreateComponentController{
         let eventToAdd = {};
         this.endOfEvent = this.concatenateDate("end");
         this.startOfEvent = this.concatenateDate("start");
-        if(this.endOfEvent != "" || this.endOfEvent != undefined) {
-            console.log("End of event");
+        if(this.endOfEvent === "" || this.endOfEvent === undefined) {
             eventToAdd = {
                 "id": eventId, "content": this.contentOfEvent.toString(),
                 "start": this.startOfEvent
