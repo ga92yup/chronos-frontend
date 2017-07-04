@@ -121,13 +121,6 @@ class ViewTimelineCreateComponentController{
         });
     };
 
-
-
-    drawTimeline(options) {
-        let container = document.getElementById('timelineId1');
-        this.timeline = new vis.Timeline(container, this.items, options);
-        this.hasTimeline = true;
-    }
     dummyTimeline() {
         let options = {timeAxis: {scale: 'day', step: 5},
                        autoResize: true,
@@ -136,7 +129,16 @@ class ViewTimelineCreateComponentController{
         };
         this.drawTimeline(options);
     };
-    
+
+    drawTimeline(options) {
+        let container = document.getElementById('timelineId1');
+        let dummyName = this.timeline.name;
+        let dummyDescription = this.timeline.description;
+        this.timeline = new vis.Timeline(container, this.items, options);
+        this.timeline.name = dummyName;
+        this.timeline.description = dummyDescription;
+        this.hasTimeline = true;
+    }
 
     static get $inject(){
         return ['$state', TimelinesService.name, UserService.name];
