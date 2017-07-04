@@ -1,20 +1,24 @@
 <div layout="column" layout-padding>
     <md-content class="md-no-momentum">
-        <h1> {{$ctrl.timeline.name}} </h1>
-        <br/>
         <form name="TimelineForm">
-            <md-input-container class="md-icon-float md-block" flex-gt-sm>
-                <label>Name</label>
-                <md-icon><ng-md-icon icon="title" ></ng-md-icon></md-icon>
-                <input ng-model="$ctrl.timeline.name" type="text">
-            </md-input-container>
+            <div flex layout="row">
+                <span flex="10"></span>
+                <md-input-container class="md-icon-float md-block" flex-gt-sm flex="30">
+                    <label>Name</label>
+                    <md-icon><ng-md-icon icon="title" ></ng-md-icon></md-icon>
+                    <input ng-model="$ctrl.timeline.name" type="text">
+                </md-input-container>
 
-            <md-input-container class="md-icon-float md-block" flex-gt-sm>
-                <label>Description</label>
-                <md-icon><ng-md-icon icon="title" ></ng-md-icon></md-icon>
-                <input ng-model="$ctrl.timeline.description" type="text">
-            </md-input-container>
+                <md-input-container class="md-icon-float md-block" flex-gt-sm flex="60">
+                    <label>Description</label>
+                    <md-icon><ng-md-icon icon="title" ></ng-md-icon></md-icon>
+                    <textarea ng-model="$ctrl.timeline.description" md-maxlength="150" md-select-on-focus></textarea>
+                </md-input-container>
+                <span flex="10"></span>
+            </div>
         </form>
+
+        <h1> {{$ctrl.timeline.name}} </h1>
 
         <md-input-container class="md-icon-float md-block">
             <div id="timelineId1">
@@ -26,9 +30,15 @@
                 <span flex></span>
                 <div flex="20" class="eventInput" layout="column">
                     <span flex="40"></span>
-                <md-input-container>
+                    <md-input-container class="md-icon-float">
                         <label>Event Name</label>
-                        <input type="text" ng-model="$ctrl.contentOfEvent">
+                        <md-icon><ng-md-icon icon="title" ></ng-md-icon></md-icon>
+                        <input type="text" name="eventName" ng-model="$ctrl.contentOfEvent" required>
+                        <div ng-messages="EventForm.eventName.$error" role="alert">
+                            <div ng-message-exp="['required']">
+                                Please enter a name for your events.
+                        </div>
+                    </div>
                     </md-input-container>
                 </div>
                 <div flex="20" layout="column" class="eventInput">
@@ -97,20 +107,19 @@
                     </div>
                 <div layout="column">
                     <span flex="30"></span>
-                    <md-button class="md-raised" ng-disabled="!EventForm.$valid || !$ctrl.hasTimeline" ng-click="$ctrl.addEvent(); EventForm.$setPristine()">Add Event</md-button>
+                    <md-button class="md-raised" ng-disabled="!EventForm.$valid" ng-click="$ctrl.addEvent(); EventForm.$setPristine()">Add Event</md-button>
                 </div>
                 <span flex></span>
             </section>
         </form>
 
-            <div layout="row">
-                <span flex="30"></span>
-                <md-button class="md-raised" ng-disabled="$ctrl.hasTimeline" ng-click="$ctrl.dummyTimeline()">Create</md-button>
-                <md-button class="md-raised md-primary" type="submit" ng-click="$ctrl.save()">Save</md-button>
-                <md-button class="md-raised" type="submit" ng-click="$ctrl.clearContent()">Clear</md-button>
-                <md-button class="md-raised md-warn" ng-click="$ctrl.cancel()">Cancel</md-button>
-                <span flex="30"></span>
-            </div>
+        <div layout="row" flex>
+            <span flex></span>
+            <md-button class="md-raised md-primary" type="submit" ng-click="$ctrl.save()">Save</md-button>
+            <md-button class="md-raised" type="submit" ng-click="$ctrl.clearContent(); EventForm.$setPristine()">Clear</md-button>
+            <md-button class="md-raised md-warn" ng-click="$ctrl.cancel()">Cancel</md-button>
+            <span flex></span>
+        </div>
 
 
     </md-content>
