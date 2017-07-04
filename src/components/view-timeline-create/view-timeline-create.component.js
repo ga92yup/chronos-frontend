@@ -13,7 +13,6 @@ class ViewTimelineCreateComponent {
     constructor(){
         this.controller = ViewTimelineCreateComponentController;
         this.template = template;
-        this.hasTimeline = false;
         this.timeline = null;
     }
 
@@ -46,6 +45,7 @@ class ViewTimelineCreateComponentController{
         this.UserService = UserService;
 
         this.items = new vis.DataSet(this.dataModel.content.eventItem);
+        this.dummyTimeline();
     }
 
     addEvent(){
@@ -75,14 +75,14 @@ class ViewTimelineCreateComponentController{
 
     clearEvent(){
         this.contentOfEvent = "";
-        this.startDay = "";
-        this.startMonth = "";
-        this.startYear = "";
-        this.endDay = "";
-        this.endMonth = "";
-        this.endYear = "";
-        this.startOfEvent = "";
-        this.endOfEvent = "";
+        this.startDay = undefined;
+        this.startMonth = undefined;
+        this.startYear = undefined;
+        this.endDay = undefined;
+        this.endMonth = undefined;
+        this.endYear = undefined;
+        this.startOfEvent = undefined;
+        this.endOfEvent = undefined;
     }
 
     clearContent(){
@@ -96,7 +96,7 @@ class ViewTimelineCreateComponentController{
         };
         this.items = new vis.DataSet(this.dataModel.content.eventItem);
         this.timeline.destroy();
-        this.hasTimeline = false;
+        this.dummyTimeline();
         this.clearEvent();
     }
 
@@ -124,7 +124,7 @@ class ViewTimelineCreateComponentController{
     dummyTimeline() {
         let options = {timeAxis: {scale: 'day', step: 5},
                        autoResize: true,
-                       zoomable:true,
+                       zoomable: true,
                        editable: true
         };
         this.drawTimeline(options);
@@ -132,16 +132,7 @@ class ViewTimelineCreateComponentController{
 
     drawTimeline(options) {
         let container = document.getElementById('timelineId1');
-        let dummyName = this.timeline.name;
-        let dummyDescription = this.timeline.description;
         this.timeline = new vis.Timeline(container, this.items, options);
-        this.timeline.name = dummyName;
-        this.timeline.description = dummyDescription;
-        this.hasTimeline = true;
-    }
-
-    static get $inject(){
-        return ['$state', TimelinesService.name, UserService.name];
     }
 
     concatenateDate(choice) {
@@ -164,6 +155,10 @@ class ViewTimelineCreateComponentController{
             }
         }
         return date;
+    }
+
+    static get $inject(){
+        return ['$state', TimelinesService.name, UserService.name];
     }
 
 }

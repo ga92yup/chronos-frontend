@@ -97,7 +97,7 @@
                     </div>
                 <div layout="column">
                     <span flex="30"></span>
-                    <md-button class="md-raised" ng-disabled="!EventForm.$valid || !$ctrl.hasTimeline" ng-click="$ctrl.addEvent(); EventForm.$setPristine()">Add Event</md-button>
+                    <md-button class="md-raised" ng-disabled="!EventForm.$valid" ng-click="$ctrl.addEvent(); EventForm.$setPristine()">Add Event</md-button>
                 </div>
                 <span flex></span>
             </section>
@@ -105,9 +105,8 @@
 
             <div layout="row">
                 <span flex="30"></span>
-                <md-button class="md-raised" ng-disabled="$ctrl.hasTimeline" ng-click="$ctrl.dummyTimeline()">Create</md-button>
                 <md-button class="md-raised md-primary" type="submit" ng-click="$ctrl.save()">Save</md-button>
-                <md-button class="md-raised" type="submit" ng-click="$ctrl.clearContent()">Clear</md-button>
+                <md-button class="md-raised" type="submit" ng-click="$ctrl.clearContent(); EventForm.$setPristine()">Clear</md-button>
                 <md-button class="md-raised md-warn" ng-click="$ctrl.cancel()">Cancel</md-button>
                 <span flex="30"></span>
             </div>
