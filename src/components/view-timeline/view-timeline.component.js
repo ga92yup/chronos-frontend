@@ -10,7 +10,7 @@ class ViewTimelineComponent {
         this.controller = ViewTimelineComponentController;
         this.template = template;
         this.bindings = {
-            timeline: '<',
+            timelines: '<',
         }
 
     }
@@ -18,8 +18,6 @@ class ViewTimelineComponent {
     static get name() {
         return 'viewTimeline';
     }
-
-
 }
 
 class ViewTimelineComponentController{
@@ -41,10 +39,13 @@ class ViewTimelineComponentController{
 
     };
 
-
+    /**
+     * check for login and pass delete request to service.
+     */
     delete() {
         if (this.UserService.isAuthenticated()) {
             let _id = this.timeline['_id'];
+            console.log(this.timeline['_id']);
 
             this.TimelinesService.delete(_id).then(response => {
                 this.$state.go('timelines',{});

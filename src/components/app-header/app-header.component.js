@@ -40,8 +40,12 @@ class AppHeaderComponentController {
         return user.username;
     }
 
+    openUserTimelines() {
+        this.$state.go('timelines', {});
+    }
+
     goHome() {
-        this.$state.go('movies', {});
+        this.$state.go('home', {});
     }
 
     login() {
@@ -50,7 +54,7 @@ class AppHeaderComponentController {
 
     logout() {
         this.UserService.logout();
-        this.$state.go('movies', {});
+        this.$state.go('home', {});
     }
 
 
