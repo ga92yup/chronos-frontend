@@ -8,6 +8,7 @@ import UserService from './../../services/user/user.service';
 import * as vis from '../../../libs/vis';
 import  '../../../libs/vis.css';
 import './view-timeline-create.style.css';
+import Timeline from '../timeline/timeline';
 
 class ViewTimelineCreateComponent {
     constructor(){
