@@ -6,7 +6,12 @@
                 <md-input-container class="md-icon-float md-block" flex-gt-sm flex="30">
                     <label>Name</label>
                     <md-icon><ng-md-icon icon="title" ></ng-md-icon></md-icon>
-                    <input ng-model="$ctrl.timeline.name" type="text">
+                    <input ng-model="$ctrl.timeline.name" type="text" name="timelineName" required>
+                    <div ng-messages="TimelineForm.timelineName.$error" role="alert">
+                        <div ng-message-exp="['required']">
+                            Please enter a name for your timeline.
+                        </div>
+                    </div>
                 </md-input-container>
 
                 <md-input-container class="md-icon-float md-block" flex-gt-sm flex="60">
@@ -36,7 +41,7 @@
                         <input type="text" name="eventName" ng-model="$ctrl.contentOfEvent" required>
                         <div ng-messages="EventForm.eventName.$error" role="alert">
                             <div ng-message-exp="['required']">
-                                Please enter a name for your events.
+                                Please enter a name for your event.
                         </div>
                     </div>
                     </md-input-container>
