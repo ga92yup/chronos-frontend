@@ -3,11 +3,13 @@
 import * as vis from '../../../libs/vis';
 import  '../../../libs/vis.css';
 import './timeline.styles.css';
+import template from './timeline.template.html';
 
 class TimelineComponent {
     constructor() {
         this.restrict = 'E';
         this.replace = true;
+        this.template = template;
         this.scope = {
             data: '=',
             createdTimeline: '='
