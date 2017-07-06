@@ -14,6 +14,7 @@ class ViewTimelineCreateComponent {
     constructor(){
         this.controller = ViewTimelineCreateComponentController;
         this.template = template;
+        this.timeline = null;
         this.hasTimeline = false;
     }
 

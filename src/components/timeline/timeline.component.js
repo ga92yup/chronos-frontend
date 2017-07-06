@@ -10,9 +10,11 @@ class TimelineComponent {
         this.restrict = 'E';
         this.replace = true;
         this.template = template;
+
+        this.timeline = null;
+        this.hasTimeline = true;
         this.scope = {
-            data: '=',
-            createdTimeline: '='
+            data: '='
         };
     }
 
@@ -24,7 +26,7 @@ class TimelineComponent {
 
 
         // DOM element where the Timeline will be attached
-        let container = element[0];
+        let container = document.getElementById('timelineId1');
 
         // Create a DataSet (allows two way data-binding)
         let items = new vis.DataSet(data);
@@ -33,7 +35,7 @@ class TimelineComponent {
         let options = {};
 
         // Create a Timeline
-        scope.createdTimeline = new vis.Timeline(container, items, options);
+        this.timeline = new vis.Timeline(container, items, options);
 
 
     }
