@@ -113,7 +113,8 @@ class ViewTimelineCreateComponentController{
         for (var i = 0; i < arrayLength; i++) {
             console.log(this.dataModel.content.eventItem[i].id, this.dataModel.content.eventItem[i].content);
         }
-
+        this.dataModel.name = this.timeline.name;
+        this.dataModel.description = this.timeline.description;
         this.dataModel['user'] = user['_id'];
         this.TimelinesService.create(this.dataModel).then(data => {
             let _id = data['_id'];
