@@ -120,7 +120,7 @@
 
         <div layout="row" flex>
             <span flex></span>
-            <md-button class="md-raised md-primary" type="submit" ng-click="$ctrl.save()">Save</md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="!TimelineForm.$valid" ng-click="$ctrl.save()">Save</md-button>
             <md-button class="md-raised" type="submit" ng-click="$ctrl.clearContent(); EventForm.$setPristine()">Clear</md-button>
             <md-button class="md-raised md-warn" ng-click="$ctrl.cancel()">Cancel</md-button>
             <span flex></span>
