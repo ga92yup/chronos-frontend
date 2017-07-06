@@ -1,6 +1,7 @@
 'use strict';
 
 import angular from 'angular';
+import Timeline from '../timeline/timeline';
 
 import ViewTimelineCreateComponent from './view-timeline-create.component';
 
