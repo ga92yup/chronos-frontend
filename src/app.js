@@ -24,6 +24,7 @@ import ViewTimelineEdit from './components/view-timeline-edit/view-timeline-edit
 import ViewTimelineCreate from './components/view-timeline-create/view-timeline-create';
 import ViewLogin from './components/view-login/view-login';
 import ViewRegister from './components/view-register/view-register';
+import Timeline from './components/timeline/timeline';
 
 let app = angular.module('app', [
     uiRouter,
@@ -38,7 +39,8 @@ let app = angular.module('app', [
     ViewTimelineEdit.name,
     ViewTimelineCreate.name,
     ViewLogin.name,
-    ViewRegister.name
+    ViewRegister.name,
+    Timeline.name
 ]);
 
 //app.constant('API_URL', 'http://5aee6f28.ngrok.io/api');
