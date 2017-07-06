@@ -1,4 +1,8 @@
-<md-card>
+<h2 align="center">My timelines</h2>
+
+<!-- We define timelines in routes.js.-->
+
+<md-card ng-repeat="timeline in $ctrl.timelines">
     <md-card-title>
         <md-card-title-media>
             <div layout="row" layout-align="center center" layout-padding>
@@ -16,8 +20,8 @@
                 </md-button>
             </md-card-actions>
 
-            <span class="md-headline">{{$ctrl.timeline.name}}</span>
-            <span class="md-subhead">{{$ctrl.timeline.user}}</span>
+            <span class="md-headline">{{timeline.name}}</span>
+            <span class="md-subhead">{{timeline.user}}</span>
 
         </md-card-title-text>
 

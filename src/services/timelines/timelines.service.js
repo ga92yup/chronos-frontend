@@ -17,12 +17,20 @@ export default class TimelinesService {
         return 'timelinesService';
     }
 
+    /**
+     * Calls the get request on the /timelines endpoint without any id. The backend will return all timelines.
+     *
+     *
+     * @returns {Promise.<TResult>}
+     */
     list() {
 
         let url = this.resourceUrl;
         return this.$http.get(url).then(responce => {
 
             return new Promise((resolve, reject) => {
+                console.log("logging responses:")
+                console.log(responce.data)
                 resolve(responce.data);
 
             });
@@ -49,11 +57,17 @@ export default class TimelinesService {
 
             return new Promise((resolve, reject) => {
                 resolve(responce.data);
+                console.log(responce.data);
             });
 
         })
     }
 
+    /**
+     *
+     *
+     * @param id timeline ID
+     */
     delete(id) {
         let url = `${ this.resourceUrl }${ id }`;
         return this.$http.delete(url).then(responce => {
