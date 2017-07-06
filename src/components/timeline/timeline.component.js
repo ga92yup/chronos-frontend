@@ -10,6 +10,7 @@ class TimelineComponent {
         this.replace = true;
         this.scope = {
             data: '=',
+            createdTimeline: '='
         };
     }
 
@@ -30,7 +31,7 @@ class TimelineComponent {
         let options = {};
 
         // Create a Timeline
-        let timeline = new vis.Timeline(container, items, options);
+        scope.createdTimeline = new vis.Timeline(container, items, options);
 
 
     }

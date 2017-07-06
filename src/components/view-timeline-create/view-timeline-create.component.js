@@ -15,7 +15,6 @@ class ViewTimelineCreateComponent {
         this.controller = ViewTimelineCreateComponentController;
         this.template = template;
         this.hasTimeline = false;
-        this.timeline = null;
     }
 
     static get name() {
@@ -45,7 +44,7 @@ class ViewTimelineCreateComponentController{
         this.$state = $state;
         this.TimelinesService = TimelinesService;
         this.UserService = UserService;
-
+        this.timeline = null;
         this.items = new vis.DataSet(this.dataModel.content.eventItem);
     }
 
