@@ -62,11 +62,10 @@ class ViewHomeComponentController {
          this.$state.go('login',{});
          }
          */
-
     }
 
-    getByUser() {
-        this.TimelinesService.list("user", this.UserService.getCurrentUser()._id);
+    viewPublicTimelines() {
+        this.$state.go('timelines', { queryType: "public", queryContent: "all", headline: "These timelines are the most popular right now!" });
     }
 
     delete(timeline) {

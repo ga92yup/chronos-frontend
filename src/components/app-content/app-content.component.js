@@ -2,6 +2,7 @@
 'use strict';
 
 import template from './app-content.template.html';
+import TimelinesService from './../../services/timelines/timelines.service';
 
 class AppContentComponent {
     constructor(){
@@ -15,11 +16,19 @@ class AppContentComponent {
 }
 
 class AppContentComponentController{
-    constructor(){
+    constructor($state, TimelinesService, $mdSidenav){
+        this.$state = $state;
+        this.TimelinesService = TimelinesService;
+        this.$mdSidenav = $mdSidenav;
+    }
+
+    viewPublicTimelines() {
+        this.$state.go('timelines', { queryType: "public", queryContent: "all" });
+        this.$mdSidenav('left').toggle();
     }
 
     static get $inject() {
-        return [];
+        return ['$state', TimelinesService.name, '$mdSidenav'];
     }
 
 
