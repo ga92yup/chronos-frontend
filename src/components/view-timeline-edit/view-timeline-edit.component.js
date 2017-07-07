@@ -31,9 +31,12 @@ class ViewTimelineEditComponentController{
         this.model = JSON.parse(JSON.stringify(this.timeline))
     }
 
+
     cancel() {
         this.model = JSON.parse(JSON.stringify(this.timeline));
-        this.$state.go('home',{});
+        //will go back to previous page using browsers back function
+        window.history.back();
+        //this.$state.go('home',{});
     };
 
     save() {
