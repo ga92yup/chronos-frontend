@@ -8,11 +8,11 @@ import './timeline.styles.css';
 import template from './timeline.template.html';
 
 class TimelineComponent {
-    constructor($state, TimelinesService, UserService) {
+    constructor() {
+        this.controller = TimelineComponentController;
         this.restrict = 'E';
         this.replace = true;
         this.template = template;
-
         this.timeline = null;
         this.hasTimeline = true;
 
@@ -98,7 +98,8 @@ class TimelineComponentController{
     }
 
     clearContent(){
-        this.dataModel = {
+        console.log("Clear content called");
+/*        this.dataModel = {
             "name": "",
             "description": "",
             "content": {
@@ -109,11 +110,12 @@ class TimelineComponentController{
         this.items = new vis.DataSet(this.dataModel.content.eventItem);
         this.timeline.destroy();
         this.dummyTimeline();
-        this.clearEvent();
+        this.clearEvent();*/
     }
 
 
     cancel() {
+        console.log("Button cancel pressed");
         this.$state.go('home',{});
     };
 
@@ -172,7 +174,6 @@ class TimelineComponentController{
     static get $inject(){
         return ['$state', TimelinesService.name, UserService.name];
     }
-
 
 
 }
