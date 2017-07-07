@@ -28,10 +28,10 @@ class ViewTimelineComponentController{
 
     }
 
-    edit () {
+    edit (tl) {
 
         if (this.UserService.isAuthenticated()) {
-            let _id = this.timeline['_id'];
+            let _id = tl['_id'];
             this.$state.go('timelineEdit',{ timelineId:_id});
         } else {
             this.$state.go('login',{});

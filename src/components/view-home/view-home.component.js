@@ -34,17 +34,17 @@ class ViewHomeComponentController{
         this.UserService = UserService;
 
     }
-
+/* hide this function until details page exist.
     details (timeline) {
         let _id = timeline['_id'];
         this.$state.go('timeline',{ timelineId:_id});
     };
-
+*/
     edit (timeline) {
 
         if (this.UserService.isAuthenticated()) {
             let _id = timeline['_id'];
-            this.$state.go('timelineEdit',{ timelineId:_id});
+            this.$state.go('timelineEdit',{ timelineId:_id });
         } else {
             this.$state.go('login',{});
         }
