@@ -19,10 +19,15 @@ app-header > md-toolbar, app-header > md-toolbar > .md-toolbar-tools{
 
 }
 
-.logo{
+.brand{
     height: 60%;
     transform: translateX(-50%);
     left: 50%;
+    position: absolute;
+}
+
+.right {
+    right: 0%;
     position: absolute;
 }
 
