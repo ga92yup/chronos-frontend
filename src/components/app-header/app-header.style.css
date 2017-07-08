@@ -15,8 +15,6 @@ app-header > md-toolbar, app-header > md-toolbar > .md-toolbar-tools{
     min-height: 50px;
     height: 50px;
     color: darkslategray;
-
-
 }
 
 .brand{
