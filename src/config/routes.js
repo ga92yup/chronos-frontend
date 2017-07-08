@@ -42,20 +42,17 @@ export default function config($stateProvider, $urlRouterProvider, $locationProv
         .state('timelines', {
             url: '/timelines/:queryType/:queryContent',
             component: ViewTimelineComponent.name,
+            //A resolve contains one or more promises that must resolve successfully before the route will change.
+            // This means you can wait for data to become available before showing a view,
+            // and simplify the initialization of the model inside a controller because the initial
+            // data is given to the controller instead of the controller needing to go out and fetch the data.
             resolve: {
                 timelines: resolveTimelines
+            },
+            params: {
+              headline: "default",
             }
         })
-
-        /* obsolete
-         .state('timeline', {
-         url: '/timelines/:timelineId',
-         component: ViewTimelineComponent.name,
-         resolve: {
-         timeline : resolveTimeline
-         }
-         })
-         */
         .state('timelineEdit', {
             url: '/timelines/:timelineId/edit',
             component: ViewTimelineEditComponent.name,
