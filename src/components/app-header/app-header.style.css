@@ -20,12 +20,10 @@ app-header > md-toolbar, app-header > md-toolbar > .md-toolbar-tools{
 }
 
 .logo{
-    align-items: center;
-    position: relative;
-    top: 30px;
-    max-height: 55px;
-    width: auto;
-
+    height: 60%;
+    transform: translateX(-50%);
+    left: 50%;
+    position: absolute;
 }
 
 md-nav-bar.md-default-theme md-nav-ink-bar, md-nav-bar md-nav-ink-bar {
