@@ -65,7 +65,7 @@ class ViewHomeComponentController {
     }
 
     viewPublicTimelines() {
-        this.$state.go('timelines', { queryType: "public", queryContent: "all", headline: "These timelines are the most popular right now!" });
+        this.$state.go('timelines', { queryType: "public", queryContent: "all" });
     }
 
     delete(timeline) {

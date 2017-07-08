@@ -72,6 +72,24 @@ class ViewTimelineComponentController{
         return posterURL;
     }
 
+    getHeadline() {
+        let headline;
+
+        if (this.$state.params.queryType === "public") {
+
+            if (this.$state.params.queryContent === "all") {
+                headline = "Here are all public timelines!"
+            }
+            else {
+                headline = "Here are all the timelines to your topic: " + this.$state.params.queryContent;
+            }
+        }
+        else {
+            headline = "Here are all of your timelines!";
+        }
+        return headline
+    }
+
     static get $inject(){
         return ['$state', TimelinesService.name, UserService.name];
     }
