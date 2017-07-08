@@ -43,6 +43,7 @@ export default class UserService {
 
         let base64Url = token.split('.')[1];
         let base64 = base64Url.replace('-', '+').replace('_', '/');
+        console.log(JSON.parse(this.$window.atob(base64)).user);
         return JSON.parse(this.$window.atob(base64)).user;
     }
 

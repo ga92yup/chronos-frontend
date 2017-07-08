@@ -18,19 +18,21 @@ export default class TimelinesService {
     }
 
     /**
-     * Calls the get request on the /timelines endpoint without any id. The backend will return all timelines.
+     * Calls the get request on the /timelines/:queryType/:queryContent.
      *
+     * @param queryType The type of the query. It can either be "user" or "public".
+     * @param queryContent If type is user: this will be the user ID. If type is public this will be "all" or a filter string.
      *
      * @returns {Promise.<TResult>}
      */
-    list() {
+    list(queryType, queryContent) {
 
-        let url = this.resourceUrl;
+        let url = `${ this.resourceUrl }${ queryType }/${ queryContent }`;
         return this.$http.get(url).then(responce => {
 
             return new Promise((resolve, reject) => {
-                console.log("logging responses:")
-                console.log(responce.data)
+                console.log("logging responses:");
+                console.log(responce.data);
                 resolve(responce.data);
 
             });

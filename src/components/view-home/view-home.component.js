@@ -1,4 +1,3 @@
-
 'use strict';
 
 import template from './view-home.template.html';
@@ -13,7 +12,7 @@ import './view-home.style.css';
 
 
 class ViewHomeComponent {
-    constructor(){
+    constructor() {
         this.controller = ViewHomeComponentController;
         this.template = template;
         this.bindings = {
@@ -27,43 +26,47 @@ class ViewHomeComponent {
 
 }
 
-class ViewHomeComponentController{
-    constructor($state,TimelinesService,UserService){
+class ViewHomeComponentController {
+    constructor($state, TimelinesService, UserService) {
         this.$state = $state;
         this.TimelinesService = TimelinesService;
         this.UserService = UserService;
 
     }
-/* hide this function until details page exist.
-    details (timeline) {
-        let _id = timeline['_id'];
-        this.$state.go('timeline',{ timelineId:_id});
-    };
-*/
-    edit (timeline) {
+
+    /* hide this function until details page exist.
+     details (timeline) {
+     let _id = timeline['_id'];
+     this.$state.go('timeline',{ timelineId:_id});
+     };
+     */
+    edit(timeline) {
 
         if (this.UserService.isAuthenticated()) {
+            //access the "_id" element of the current timeline object
             let _id = timeline['_id'];
-            this.$state.go('timelineEdit',{ timelineId:_id });
+            this.$state.go('timelineEdit', {timelineId: _id});
         } else {
-            this.$state.go('login',{});
+            this.$state.go('login', {});
         }
     };
 
-    newTimeline(){
+    newTimeline() {
 
         this.$state.go('timelineAdd', {});
 
         /* example for future login wall
-        if (this.UserService.isAuthenticated()) {
-            this.$state.go('timelineAdd',{});
-        } else {
-            this.$state.go('login',{});
-        }
-        */
-
+         if (this.UserService.isAuthenticated()) {
+         this.$state.go('timelineAdd',{});
+         } else {
+         this.$state.go('login',{});
+         }
+         */
     }
 
+    viewPublicTimelines() {
+        this.$state.go('timelines', { queryType: "public", queryContent: "all", headline: "These timelines are the most popular right now!" });
+    }
 
     delete(timeline) {
         if (this.UserService.isAuthenticated()) {
@@ -75,12 +78,12 @@ class ViewHomeComponentController{
             })
 
         } else {
-            this.$state.go('login',{});
+            this.$state.go('login', {});
         }
     };
 
 
-    static get $inject(){
+    static get $inject() {
         return ['$state', TimelinesService.name, UserService.name];
     }
 

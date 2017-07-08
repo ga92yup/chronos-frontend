@@ -15,9 +15,9 @@ function resolveTimeline($stateParams, timelinesService) {
     return timelinesService.get($stateParams.timelineId);
 }
 
-resolveTimelines.$inject = [TimelinesService.name];
-function resolveTimelines(timelinesService) {
-    return timelinesService.list();
+resolveTimelines.$inject = ['$stateParams', TimelinesService.name];
+function resolveTimelines($stateParams, timelinesService) {
+    return timelinesService.list($stateParams.queryType, $stateParams.queryContent);
 }
 
 
@@ -40,7 +40,7 @@ export default function config($stateProvider, $urlRouterProvider, $locationProv
             component: ViewTimelineCreateComponent.name
         })
         .state('timelines', {
-            url: '/timelines',
+            url: '/timelines/:queryType/:queryContent',
             component: ViewTimelineComponent.name,
             resolve: {
                 timelines: resolveTimelines
