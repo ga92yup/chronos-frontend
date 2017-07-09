@@ -29,16 +29,33 @@ class ViewTimelineCreateComponentController{
             "description": "Schedule for the Seba Excercises",
             "content": {
                 "eventItem": [
-                    {"id": 1, "content": "E1: Business Idea", "start": "2017-04-29", "end": "2017-05-14"},
-                    {"id": 2, "content": '<div>E2: Business Model</div><img src="../../images/chronos-logo.svg" style="width:64px; height:64px;">', "start": "2017-05-9", "end": "2017-5-28"},
-                    {"id": 3, "content":  "E3: Initial Prototype", "start": "2017-05-09", "end": "2017-06-18"},
+                    {"id": 1, "content": "E1: Business Idea", "start": "2017-4-29", "end": "2017-5-14"},
+                    {"id": 2, "content": '<div>E2: Business Model</div><img src="../../images/chronos-logo.svg" style="width:64px; height:64px;">', "start": "2017-5-9", "end": "2017-5-28"},
+                    {"id": 3, "content":  "E3: Initial Prototype", "start": "2017-5-9", "end": "2017-6-18"},
                 ]
             }
         };
 
+
+        this.event = {
+            title: "",
+            text: "",
+            image: "",
+            video: "",
+            content: "",
+            fromContentToEvent: function() {
+
+            },
+            fromEventToContent: function() {
+
+            }
+        }
+
+
         this.contentOfEvent ="";
         this.startOfEvent ="";
         this.endOfEvent="";
+        this.editEventPressed = false;
 
         this.$state = $state;
         this.TimelinesService = TimelinesService;
@@ -48,8 +65,79 @@ class ViewTimelineCreateComponentController{
         this.dummyTimeline();
     }
 
+
+    clearEvent(){
+        this.contentOfEvent = "";
+        this.startDay = undefined;
+        this.startMonth = undefined;
+        this.startYear = undefined;
+        this.endDay = undefined;
+        this.endMonth = undefined;
+        this.endYear = undefined;
+        this.startOfEvent = undefined;
+        this.endOfEvent = undefined;
+        this.editEventPressed = false;
+    }
+
+    editEvent() {
+       let selectedEvents = this.timeline.getSelection();
+       if (selectedEvents.length == 1 ){
+                this.editEventPressed = true;
+                console.log("One event seleted " + selectedEvents[0]);
+                let item = this.items.get(selectedEvents[0]);
+                console.log(item);
+                this.contentOfEvent = item.content;
+                this.startOfEvent = item.start;
+                this.endOfEvent = item.end;
+                var startdate = this.startOfEvent.split("-");
+                this.startYear = startdate[0];
+                this.startMonth = startdate[1];
+                this.startDay = startdate[2];
+                var enddate = this.endOfEvent.split("-");
+                this.endYear = enddate[0];
+                this.endMonth = enddate[1];
+                this.endDay = enddate[2];
+       }
+       else {
+           console.log("Select just one event to edit");
+       }
+    }
+
+    saveEvent() {
+        let eventsList = this.timeline.getSelection();
+        let eventId = eventsList[0];
+        let eventToAdd = this.manipulateEvent(eventId);
+        this.items.update(eventToAdd);
+        this.timeline.fit();
+        var foundIndex = this.dataModel.content.eventItem.findIndex(x => x.id == eventId);
+        this.dataModel.content.eventItem[foundIndex] = eventToAdd;
+        var arrayLength = this.dataModel.content.eventItem.length;
+        for (var i = 0; i < arrayLength; i++) {
+            console.log(this.dataModel.content.eventItem[i].id, this.dataModel.content.eventItem[i].content);
+        }
+
+        this.clearEvent();
+    }
+
+    cancelEventEdit(){
+        this.clearEvent();
+    }
+
+
     addEvent(){
         let eventId = this.dataModel.content.eventItem.length + 1;
+        let eventToAdd = this.manipulateEvent(eventId);
+        this.dataModel.content.eventItem.push(eventToAdd);
+        this.items.add(eventToAdd);
+        this.timeline.fit();
+        this.clearEvent();
+        eventToAdd = null;
+
+    }
+
+
+    manipulateEvent(eventId){
+        let eventToManipulate= {};
         let eventToAdd = {};
         this.endOfEvent = this.concatenateDate("end");
         this.startOfEvent = this.concatenateDate("start");
@@ -64,26 +152,11 @@ class ViewTimelineCreateComponentController{
                 "start": this.startOfEvent, "end": this.endOfEvent
             };
         }
-        this.dataModel.content.eventItem.push(eventToAdd);
-        this.items.add(eventToAdd);
-        this.timeline.fit();
-        this.clearEvent();
-        eventToAdd = null;
+        return eventToAdd;
     }
 
 
 
-    clearEvent(){
-        this.contentOfEvent = "";
-        this.startDay = undefined;
-        this.startMonth = undefined;
-        this.startYear = undefined;
-        this.endDay = undefined;
-        this.endMonth = undefined;
-        this.endYear = undefined;
-        this.startOfEvent = undefined;
-        this.endOfEvent = undefined;
-    }
 
     clearContent(){
         this.dataModel = {
@@ -126,7 +199,9 @@ class ViewTimelineCreateComponentController{
         let options = {timeAxis: {scale: 'day', step: 5},
                        autoResize: true,
                        zoomable: true,
-                       editable: true
+                       editable: true,
+
+
         };
         this.drawTimeline(options);
     };
