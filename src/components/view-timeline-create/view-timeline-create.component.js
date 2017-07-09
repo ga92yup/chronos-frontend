@@ -123,6 +123,10 @@ class ViewTimelineCreateComponentController{
         this.clearEvent();
     }
 
+    isEventSelected(){
+        //return this.timeline.getSelection().length === 1;
+        return true;
+    }
 
     addEvent(){
         let eventId = this.dataModel.content.eventItem.length + 1;

@@ -114,6 +114,20 @@
                     <span flex="30"></span>
                     <md-button class="md-raised" ng-disabled="!EventForm.$valid" ng-click="$ctrl.addEvent(); EventForm.$setPristine()">Add Event</md-button>
                 </div>
+                <div layout="column">
+                    <span flex="30"></span>
+                    <md-button class="md-raised" ng-show="$ctrl.isEventSelected() && !$ctrl.editEventPressed()" ng-click="$ctrl.editEvent(); EventForm.$setPristine()">Edit Event</md-button>
+                </div>
+
+                <div layout="column">
+                    <span flex="30"></span>
+                    <md-button class="md-raised" ng-show="$ctrl.editEventPressed()" ng-click="$ctrl.saveEvent(); EventForm.$setPristine()">Save Event</md-button>
+                </div>
+                <div layout="column">
+                    <span flex="30"></span>
+                    <md-button class="md-raised" ng-show="$ctrl.editEventPressed()" ng-click="$ctrl.cancelEventEdit(); EventForm.$setPristine()">Cancel Edit</md-button>
+                </div>
+
                 <span flex></span>
             </section>
         </form>
