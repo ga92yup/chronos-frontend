@@ -39,6 +39,19 @@ class ViewTimelineComponentController{
 
     };
 
+    newTimeline() {
+
+        this.$state.go('timelineAdd', {});
+
+        /* example for future login wall
+         if (this.UserService.isAuthenticated()) {
+         this.$state.go('timelineAdd',{});
+         } else {
+         this.$state.go('login',{});
+         }
+         */
+    }
+
     /**
      * check for login and pass delete request to service.
      */

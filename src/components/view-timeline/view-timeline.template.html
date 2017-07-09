@@ -1,4 +1,10 @@
-<h2 align="center">{{ $ctrl.getHeadline() }}</h2>
+<section layout="column" layout-align="center center">
+    <h2>{{ $ctrl.getHeadline() }}</h2>
+    <div layout="row" style="width: 100%">
+    <md-button flex class="md-raised landing md-accent" ng-click="$ctrl.newTimeline()">Create a new timeline</md-button>
+    </div>
+</section>
+
 
 <!-- We define timelines in routes.js.-->
 
@@ -11,12 +17,16 @@
         </md-card-title-media>
         <md-card-title-text>
             <md-card-actions layout="row" layout-align="end center">
-                <md-button class="md-icon-button" aria-label="Edit Item" ng-click="$ctrl.edit(timeline)" >
-                    <md-icon><ng-md-icon icon="mode_edit"></ng-md-icon></md-icon>
+                <md-button class="md-icon-button" aria-label="Edit Item" ng-click="$ctrl.edit(timeline)">
+                    <md-icon>
+                        <ng-md-icon icon="mode_edit"></ng-md-icon>
+                    </md-icon>
                 </md-button>
 
-                <md-button class="md-icon-button"aria-label="Delete Item" ng-click="$ctrl.delete(timeline)" >
-                    <md-icon><ng-md-icon icon="delete" ></ng-md-icon></md-icon>
+                <md-button class="md-icon-button" aria-label="Delete Item" ng-click="$ctrl.delete(timeline)">
+                    <md-icon>
+                        <ng-md-icon icon="delete"></ng-md-icon>
+                    </md-icon>
                 </md-button>
             </md-card-actions>
 
@@ -30,6 +40,4 @@
     <md-card-content>
         <p>{{$ctrl.timeline.description}}</p>
     </md-card-content>
-
-
 </md-card>
