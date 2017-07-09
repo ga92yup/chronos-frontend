@@ -28,10 +28,10 @@ class ViewTimelineComponentController{
 
     }
 
-    edit (tl) {
+    edit (timeline) {
 
         if (this.UserService.isAuthenticated()) {
-            let _id = tl['_id'];
+            let _id = timeline['_id'];
             this.$state.go('timelineEdit',{ timelineId:_id});
         } else {
             this.$state.go('login',{});
@@ -42,13 +42,13 @@ class ViewTimelineComponentController{
     /**
      * check for login and pass delete request to service.
      */
-    delete() {
+    delete(timeline) {
         if (this.UserService.isAuthenticated()) {
-            let _id = this.timeline['_id'];
-            console.log(this.timeline['_id']);
+            let _id = timeline['_id'];
+            console.log("delete: " + timeline['_id']);
 
             this.TimelinesService.delete(_id).then(response => {
-                this.$state.go('timelines',{});
+                this.$state.go('timelines', { queryType: "user", queryContent: this.UserService.getCurrentUser()._id });
             });
         } else {
             this.$state.go('login',{});
