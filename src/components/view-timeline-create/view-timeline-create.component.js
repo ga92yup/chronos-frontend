@@ -118,7 +118,7 @@ class ViewTimelineCreateComponentController{
         this.dataModel['user'] = user['_id'];
         this.TimelinesService.create(this.dataModel).then(data => {
             let _id = data['_id'];
-            this.$state.go('timeline',{ timelineId:_id});
+            this.$state.go('timelines',{ queryType: "user", queryContent: user._id });
         });
     };
 

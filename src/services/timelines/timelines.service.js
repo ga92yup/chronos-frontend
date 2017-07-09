@@ -20,8 +20,8 @@ export default class TimelinesService {
     /**
      * Calls the get request on the /timelines/:queryType/:queryContent.
      *
-     * @param queryType The type of the query. It can either be "user" or "public".
-     * @param queryContent If type is user: this will be the user ID. If type is public this will be "all" or a filter string.
+     * @param queryType :The type of the query. It can either be "user" or "public".
+     * @param queryContent :If type is user: this will be the user ID. If type is public this will be "all" or a filter string.
      *
      * @returns {Promise.<TResult>}
      */
@@ -41,6 +41,12 @@ export default class TimelinesService {
 
     }
 
+    /**
+     * Makes a get request to the server for a single timeline object.
+     *
+     * @param id : The id will be extracted from the timeline object
+     * and passed to the function.
+     */
     get(id) {
         let url = `${ this.resourceUrl }${ id }`;
         return this.$http.get(url).then(responce => {
@@ -52,23 +58,22 @@ export default class TimelinesService {
         })
     }
 
-
     create(timeline) {
         let url = this.resourceUrl;
         return this.$http.post(url,timeline).then(responce => {
 
             return new Promise((resolve, reject) => {
                 resolve(responce.data);
-                console.log(responce.data);
             });
 
         })
     }
 
     /**
+     * Makes a delete request to the server for a single timeline object.
      *
-     *
-     * @param id timeline ID
+     * @param id : The id will be extracted from the timeline object
+     * and passed to the function.
      */
     delete(id) {
         let url = `${ this.resourceUrl }${ id }`;

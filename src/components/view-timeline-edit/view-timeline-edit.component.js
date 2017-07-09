@@ -24,6 +24,7 @@ class ViewTimelineEditComponentController{
         this.model = {};
         this.$state = $state;
         this.TimelinesService = TimelinesService;
+        this.UserService = UserService;
     }
 
     $onInit() {
@@ -45,7 +46,7 @@ class ViewTimelineEditComponentController{
         this.TimelinesService.update(this.model).then(data => {
             this.timeline = JSON.parse(JSON.stringify(data));
 
-            this.$state.go('timeline',{ timelineId:_id});
+            this.$state.go('timelines', { queryType: "user", queryContent: this.UserService.getCurrentUser()._id });
         });
 
     };
@@ -59,7 +60,7 @@ class ViewTimelineEditComponentController{
     };
 
     static get $inject(){
-        return ['$state', TimelinesService.name];
+        return ['$state', TimelinesService.name, UserService.name];
     }
 
 }
