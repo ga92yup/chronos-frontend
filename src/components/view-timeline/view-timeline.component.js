@@ -48,7 +48,10 @@ class ViewTimelineComponentController{
             console.log("delete: " + timeline['_id']);
 
             this.TimelinesService.delete(_id).then(response => {
-                this.$state.go('timelines', { queryType: "user", queryContent: this.UserService.getCurrentUser()._id });
+                // go to the same state does not trigger reload by default.
+                this.$state.reload();
+               // would only work if coming from other state:
+               // this.$state.go('timelines', { queryType: "user", queryContent: this.UserService.getCurrentUser()._id });
             });
         } else {
             this.$state.go('login',{});
