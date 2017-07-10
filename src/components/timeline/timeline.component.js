@@ -1,7 +1,7 @@
 'use strict';
 
-import * as vis from 'vis';
-import 'vis/dist/vis.css';
+import * as vis from '../../../libs/vis';
+import  '../../../libs/vis.css';
 import './timeline.styles.css';
 
 class TimelineComponent {
