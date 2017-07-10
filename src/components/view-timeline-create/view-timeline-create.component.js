@@ -24,6 +24,34 @@ class ViewTimelineCreateComponent {
 
 class ViewTimelineCreateComponentController{
     constructor($state, TimelinesService,UserService){
+        this.event = {
+            id: "",
+            title: "E3: Initial Prototype",
+            text: "Content of the event can be displayed here",
+            image:"../../images/chronos-logo.svg",
+            start: "",
+            end: "",
+            template: function(){
+                return "<div><table><tr><td><h4 class='title'>" + this.title + "</h4></td></tr>" + " <tr><td><img src="+ this.image + " style='width:64px; height:64px;'>"
+                    + "</td></tr></table><aside class='text'>" + this.text + "</aside></div>";
+            },
+            parseTemplate: function(htmlString){
+                let parser = new DOMParser();
+                let parsedHtml = parser.parseFromString(htmlString, 'text/html');
+                if( parsedHtml.getElementsByClassName("title").length > 0)
+                    this.title = parsedHtml.getElementsByClassName("title")[0].innerHTML;
+                else
+                    this.title = htmlString;
+                if (parsedHtml.getElementsByClassName("text").length > 0)
+                    this.text = parsedHtml.getElementsByClassName("text")[0].innerHTML;
+                if (parsedHtml.images.length > 0)
+                        this.image = parsedHtml.images[0].src;
+                console.log(this.title + " " + this.text + " " + this.image);
+            }
+        };
+
+
+
         this.dataModel = {
             "name": "Web Application Engineering",
             "description": "Schedule for the Seba Excercises",
@@ -31,25 +59,10 @@ class ViewTimelineCreateComponentController{
                 "eventItem": [
                     {"id": 1, "content": "E1: Business Idea", "start": "2017-4-29", "end": "2017-5-14"},
                     {"id": 2, "content": '<div>E2: Business Model</div><img src="../../images/chronos-logo.svg" style="width:64px; height:64px;">', "start": "2017-5-9", "end": "2017-5-28"},
-                    {"id": 3, "content":  "E3: Initial Prototype", "start": "2017-5-9", "end": "2017-6-18"},
+                    {"id": 3, "content": this.event.template() , "start": "2017-5-9", "end": "2017-6-18"},
                 ]
             }
         };
-
-
-        this.event = {
-            title: "",
-            text: "",
-            image: "",
-            video: "",
-            content: "",
-            fromContentToEvent: function() {
-
-            },
-            fromEventToContent: function() {
-
-            }
-        }
 
 
         this.contentOfEvent ="";
@@ -63,6 +76,11 @@ class ViewTimelineCreateComponentController{
 
         this.items = new vis.DataSet(this.dataModel.content.eventItem);
         this.dummyTimeline();
+    }
+
+
+    cancelEventEdit(){
+        this.clearEvent();
     }
 
 
@@ -86,7 +104,9 @@ class ViewTimelineCreateComponentController{
                 console.log("One event seleted " + selectedEvents[0]);
                 let item = this.items.get(selectedEvents[0]);
                 console.log(item);
-                this.contentOfEvent = item.content;
+
+                this.event.parseTemplate(item.content);
+                this.contentOfEvent = this.event.title;
                 this.startOfEvent = item.start;
                 this.endOfEvent = item.end;
                 var startdate = this.startOfEvent.split("-");
@@ -119,9 +139,7 @@ class ViewTimelineCreateComponentController{
         this.clearEvent();
     }
 
-    cancelEventEdit(){
-        this.clearEvent();
-    }
+
 
     isEventSelected(){
         //return this.timeline.getSelection().length === 1;
