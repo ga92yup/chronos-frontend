@@ -41,9 +41,7 @@ class AppHeaderComponentController {
     }
 
     viewUserTimelines() {
-        let userId = this.UserService.getCurrentUser()._id;
-        console.log(userId);
-        this.$state.go('timelines', { queryType: "user", queryContent: userId });
+        this.$state.go('timelines', { queryType: "user", queryContent: this.UserService.getCurrentUser()._id });
     }
 
     goHome() {

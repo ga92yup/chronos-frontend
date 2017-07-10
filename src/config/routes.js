@@ -48,13 +48,10 @@ export default function config($stateProvider, $urlRouterProvider, $locationProv
             // data is given to the controller instead of the controller needing to go out and fetch the data.
             resolve: {
                 timelines: resolveTimelines
-            },
-            params: {
-              headline: "default",
             }
         })
         .state('timelineEdit', {
-            url: '/timelines/:timelineId/edit',
+            url: '/timeline/:timelineId/edit',
             component: ViewTimelineEditComponent.name,
             resolve: {
                 timeline: resolveTimeline
