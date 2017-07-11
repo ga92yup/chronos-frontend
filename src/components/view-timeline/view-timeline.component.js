@@ -21,10 +21,13 @@ class ViewTimelineComponent {
 }
 
 class ViewTimelineComponentController{
-    constructor($state,TimelinesService,UserService){
+    constructor($state,TimelinesService,UserService,$mdDialog){
         this.$state = $state;
         this.TimelinesService = TimelinesService;
         this.UserService = UserService;
+        this.$mdDialog = $mdDialog;
+
+
 
     }
 
@@ -106,8 +109,38 @@ class ViewTimelineComponentController{
         return headline
     }
 
+    privacy(priv, timeline){
+
+        if (this.UserService.isAuthenticated()) {
+            if (priv) {
+
+
+                var alert = this.$mdDialog.alert()
+                    .title('You just made your timeline public!')
+                    .textContent('Share this url to show your timeline to friends:')
+                    .ok('ok')
+
+
+
+                this.$mdDialog
+                    .show(alert)
+                    .finally(function () {
+                        alert = undefined;
+                    })
+
+                timeline.privacySetting = true;
+
+            } else {
+                timeline.privacySetting = false;
+            }
+            this.TimelinesService.update(timeline);
+        } else {
+            this.$state.go('login',{});
+        }
+    }
+
     static get $inject(){
-        return ['$state', TimelinesService.name, UserService.name];
+        return ['$state', TimelinesService.name, UserService.name, '$mdDialog'];
     }
 
 }

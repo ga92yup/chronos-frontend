@@ -32,7 +32,7 @@
             <span class="md-headline">{{timeline.name}}</span>
             <md-card-actions>
                 <div layout="row" layout-align="end center">
-                    <md-switch layout-align="end" layout-margin="" aria-label="Privacy">public timeline</md-switch>
+                    <md-switch  md-invert ng-model="timeline.privacySetting" ng-change="$ctrl.privacy(timeline.privacySetting , timeline)" layout-align="end" >Public</md-switch>
                 </div>
 
             </md-card-actions>
@@ -40,7 +40,11 @@
         </md-card-title-text>
 
     </md-card-title>
-
+    <div style="visibility: hidden">
+        <div class="md-dialog-container" id="myDialog">
+            <md-dialog layout="fix" layout-padding></md-dialog>
+        </div>
+    </div>
     <md-card-content>
         <p>{{$ctrl.timeline.description}}</p>
     </md-card-content>
