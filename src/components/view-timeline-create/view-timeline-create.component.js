@@ -26,14 +26,22 @@ class ViewTimelineCreateComponentController{
     constructor($state, TimelinesService,UserService){
         this.event = {
             id: "",
-            title: "E3: Initial Prototype",
-            text: "Content of the event can be displayed here",
-            image:"../../images/chronos-logo.svg",
-            start: "",
-            end: "",
+            title: "",
+            text: "",
+            image:"",
+            start: undefined,
+            end: undefined,
             template: function(){
-                return "<div><table><tr><td><h4 class='title'>" + this.title + "</h4></td></tr>" + " <tr><td><img src="+ this.image + " style='width:64px; height:64px;'>"
-                    + "</td></tr></table><aside class='text'>" + this.text + "</aside></div>";
+                if(this.title == undefined)
+                    return "";
+                else if (this.text!= "" && this.image!="")
+                        return "<h4 class='title'>" + this.title + "</h4>" +
+                             " <img src="+ this.image + " style='width:64px; height:64px;'>" + "<aside class='text'>" + this.text + "</aside>";
+                else if (this.text!= "")
+                    return "<h4 class='title'>" + this.title + "</h4>"+ "<aside class='text'>" + this.text + "</aside>";
+                else if (this.image!="")
+                    return "<h4 class='title'>" + this.title + "</h4>"+ " <img src="+ this.image + " style='width:64px; height:64px;'>";
+
             },
             parseTemplate: function(htmlString){
                 let parser = new DOMParser();
@@ -57,22 +65,23 @@ class ViewTimelineCreateComponentController{
             "description": "Schedule for the Seba Excercises",
             "content": {
                 "eventItem": [
-                    {"id": 1, "content": "E1: Business Idea", "start": "2017-4-29", "end": "2017-5-14"},
-                    {"id": 2, "content": '<div>E2: Business Model</div><img src="../../images/chronos-logo.svg" style="width:64px; height:64px;">', "start": "2017-5-9", "end": "2017-5-28"},
-                    {"id": 3, "content": this.event.template() , "start": "2017-5-9", "end": "2017-6-18"},
+                    {"id": 1, "content": "<h4 class='title'> E1: Business Idea </h4><aside class='text'> Create the initial business idea </aside>", "start": "2017-4-29", "end": "2017-5-14"},
+                    {"id": 2, "content": '<h4 class="title">E2: Business Model</h4><img src="../../images/chronos-logo.svg" style="width:64px; height:64px;">', "start": "2017-5-9", "end": "2017-5-28"},
+                    {"id": 3, "content": '<h4 class="title">E3: Initial Prototype</h4><img src="../../images/chronos-logo.svg" style="width:64px; height:64px;">' +
+                    '<aside class="text">Description text of prototype</aside>', "start": "2017-5-9", "end": "2017-6-18"},
                 ]
             }
         };
 
 
-        this.contentOfEvent ="";
-        this.startOfEvent ="";
-        this.endOfEvent="";
+
         this.editEventPressed = false;
 
         this.$state = $state;
         this.TimelinesService = TimelinesService;
         this.UserService = UserService;
+
+        this.editEventPressed = false;
 
         this.items = new vis.DataSet(this.dataModel.content.eventItem);
         this.dummyTimeline();
@@ -85,15 +94,18 @@ class ViewTimelineCreateComponentController{
 
 
     clearEvent(){
-        this.contentOfEvent = "";
+        this.event.title = "";
+        this.event.text = "";
+        this.event.image = "";
+        this.event.start = undefined;
+        this.event.end = undefined;
+
         this.startDay = undefined;
         this.startMonth = undefined;
         this.startYear = undefined;
         this.endDay = undefined;
         this.endMonth = undefined;
         this.endYear = undefined;
-        this.startOfEvent = undefined;
-        this.endOfEvent = undefined;
         this.editEventPressed = false;
     }
 
@@ -106,14 +118,13 @@ class ViewTimelineCreateComponentController{
                 console.log(item);
 
                 this.event.parseTemplate(item.content);
-                this.contentOfEvent = this.event.title;
-                this.startOfEvent = item.start;
-                this.endOfEvent = item.end;
-                var startdate = this.startOfEvent.split("-");
+                this.event.start = item.start;
+                this.event.end = item.end;
+                var startdate = this.event.start.split("-");
                 this.startYear = startdate[0];
                 this.startMonth = startdate[1];
                 this.startDay = startdate[2];
-                var enddate = this.endOfEvent.split("-");
+                var enddate = this.event.end.split("-");
                 this.endYear = enddate[0];
                 this.endMonth = enddate[1];
                 this.endDay = enddate[2];
@@ -161,17 +172,17 @@ class ViewTimelineCreateComponentController{
     manipulateEvent(eventId){
         let eventToManipulate= {};
         let eventToAdd = {};
-        this.endOfEvent = this.concatenateDate("end");
-        this.startOfEvent = this.concatenateDate("start");
-        if(this.endOfEvent === "" || this.endOfEvent === undefined) {
+        this.event.end = this.concatenateDate("end");
+        this.event.start = this.concatenateDate("start");
+        if(this.event.end === "" || this.event.end === undefined) {
             eventToAdd = {
-                "id": eventId, "content": this.contentOfEvent.toString(),
-                "start": this.startOfEvent
+                "id": eventId, "content": this.event.template(),
+                "start": this.event.start
             };
         } else {
             eventToAdd = {
-                "id": eventId, "content": this.contentOfEvent.toString(),
-                "start": this.startOfEvent, "end": this.endOfEvent
+                "id": eventId, "content": this.event.template(),
+                "start": this.event.start, "end": this.event.end
             };
         }
         return eventToAdd;

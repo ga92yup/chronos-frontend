@@ -45,13 +45,25 @@
                     <md-input-container class="md-icon-float">
                         <label>Event Name</label>
                         <md-icon><ng-md-icon icon="title" ></ng-md-icon></md-icon>
-                        <input type="text" name="eventName" ng-model="$ctrl.contentOfEvent" required>
+                        <input type="text" name="eventName" ng-model="$ctrl.event.title" required>
                         <div ng-messages="EventForm.eventName.$error" ng-if="EventForm.startYear.$dirty" role="alert">
                             <div ng-message-exp="['required']">
                                 Please enter a name for your event.
                         </div>
                     </div>
                     </md-input-container>
+                    <md-input-container class="md-icon-float">
+                        <label>Event Content</label>
+                        <md-icon><ng-md-icon icon="title" ></ng-md-icon></md-icon>
+                        <input type="text" name="eventName" ng-model="$ctrl.event.text" required>
+                        <div ng-messages="EventForm.eventName.$error" role="alert">
+                            <div ng-message-exp="['required']">
+                                Please enter a name for your event.
+                            </div>
+                        </div>
+                    </md-input-container>
+
+
                 </div>
                 <div flex="20" layout="column" class="eventInput">
                     <label class="headline">Start Date</label>
