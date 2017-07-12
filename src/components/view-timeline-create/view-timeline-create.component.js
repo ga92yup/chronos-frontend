@@ -55,7 +55,6 @@ class ViewTimelineCreateComponentController{
                     this.text = parsedHtml.getElementsByClassName("text")[0].innerHTML;
                 if (parsedHtml.images.length > 0)
                         this.image = parsedHtml.images[0].src;
-                console.log(this.title + " " + this.text + " " + this.image);
             }
         };
 
@@ -109,9 +108,7 @@ class ViewTimelineCreateComponentController{
        let selectedEvents = this.timeline.getSelection();
        if (selectedEvents.length == 1 ){
                 this.editEventPressed = true;
-                console.log("One event seleted " + selectedEvents[0]);
                 let item = this.items.get(selectedEvents[0]);
-                console.log(item);
 
                 this.event.parseTemplate(item.content);
                 this.event.start = item.start;
@@ -120,13 +117,11 @@ class ViewTimelineCreateComponentController{
                 this.startYear = startdate[0];
                 this.startMonth = startdate[1];
                 this.startDay = startdate[2];
-                console.log("Edit event function, printing START date Day:" + this.startDay + " Month:" + this.startMonth + " Year:" + this.startYear);
                 if(this.event.end != undefined) {
                     var enddate = this.event.end.split("-");
                     this.endYear = enddate[0];
                     this.endMonth = enddate[1];
                     this.endDay = enddate[2];
-                    console.log("Edit event function, printing END date Day:" + this.endDay + " Month:" + this.endMonth + " Year:" + this.endYear);
                 }
            this.editInProgress = true;
        }
@@ -174,19 +169,16 @@ class ViewTimelineCreateComponentController{
         this.event.start = this.concatenateDate("start");
 
         if(this.event.end =="" || this.event.end === undefined) {
-            console.log("Not creating the end of event");
             eventToAdd = {
                 "id": eventId, "content": this.event.template(),
                 "start": this.event.start
             };
         } else {
-            console.log("Creating the end of event");
             eventToAdd = {
                 "id": eventId, "content": this.event.template(),
                 "start": this.event.start, "end": this.event.end
             };
         }
-        console.log("The start of the event " + eventToAdd.start);
         return eventToAdd;
     }
 
