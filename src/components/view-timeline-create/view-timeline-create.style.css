@@ -58,3 +58,20 @@ h1 {
     border-width: 2px;
     border-color: #cfd8e6;
 }
+
+.zoomIn {
+    top:70%;
+    left:93%;
+}
+
+.zoomOut {
+    top:83%;
+    left:93%;
+}
+
+.zoom {
+    position:absolute;
+    background-color: lightgray;
+    height: 4em;
+    min-width: 4em;
+}
