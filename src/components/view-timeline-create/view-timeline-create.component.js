@@ -253,6 +253,14 @@ class ViewTimelineCreateComponentController{
         return date;
     }
 
+    zoomIn(){
+        this.timeline.zoomIn(0.3);
+    }
+
+    zoomOut(){
+        this.timeline.zoomOut(0.3);
+    }
+
     static get $inject(){
         return ['$state', TimelinesService.name, UserService.name];
     }
