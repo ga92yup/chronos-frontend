@@ -32,15 +32,16 @@ class ViewTimelineCreateComponentController{
             start: undefined,
             end: undefined,
             template: function(){
-                if(this.title == undefined)
+                if(this.title == "")
                     return "";
-                else if (this.text!= "" && this.image!="")
+                else if (this.text!= "" && this.image !="")
                         return "<h4 class='title'>" + this.title + "</h4>" +
                              " <img src="+ this.image + " style='width:64px; height:64px;'>" + "<aside class='text'>" + this.text + "</aside>";
                 else if (this.text!= "")
                     return "<h4 class='title'>" + this.title + "</h4>"+ "<aside class='text'>" + this.text + "</aside>";
                 else if (this.image!="")
                     return "<h4 class='title'>" + this.title + "</h4>"+ " <img src="+ this.image + " style='width:64px; height:64px;'>";
+                else return "<h4 class='title'>" + this.title + "</h4>";
 
             },
             parseTemplate: function(htmlString){
