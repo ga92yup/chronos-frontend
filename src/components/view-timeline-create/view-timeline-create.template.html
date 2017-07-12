@@ -25,10 +25,17 @@
 
         <h1> {{$ctrl.timeline.name}} </h1>
 
+        <div class="timeline">
         <md-input-container class="md-icon-float md-block">
-            <div id="timelineId1">
-            </div>
+            <div id="timelineId1"></div>
+            <md-button ng-click="$ctrl.zoomIn()"; class="zoomIn zoom">
+                <md-icon><ng-md-icon icon="zoom_in"></ng-md-icon></md-icon>
+            </md-button>
+            <md-button ng-click="$ctrl.zoomOut()"; class="zoomOut zoom">
+                <md-icon><ng-md-icon icon="zoom_out" ></ng-md-icon></md-icon>
+            </md-button>
         </md-input-container>
+        </div>
 
         <form name="EventForm">
             <section layout="row" class="eventForm">
@@ -39,7 +46,7 @@
                         <label>Event Name</label>
                         <md-icon><ng-md-icon icon="title" ></ng-md-icon></md-icon>
                         <input type="text" name="eventName" ng-model="$ctrl.event.title" required>
-                        <div ng-messages="EventForm.eventName.$error" role="alert">
+                        <div ng-messages="EventForm.eventName.$error" ng-if="EventForm.startYear.$dirty" role="alert">
                             <div ng-message-exp="['required']">
                                 Please enter a name for your event.
                         </div>

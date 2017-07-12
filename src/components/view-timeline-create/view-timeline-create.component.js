@@ -229,12 +229,10 @@ class ViewTimelineCreateComponentController{
     };
 
     dummyTimeline() {
-        let options = {timeAxis: {scale: 'day', step: 5},
-                       autoResize: true,
-                       zoomable: true,
-                       editable: true,
-
-
+        let options = {
+            autoResize: true,
+            zoomable: true,
+            editable: true,
         };
         this.drawTimeline(options);
     };
@@ -264,6 +262,14 @@ class ViewTimelineCreateComponentController{
             }
         }
         return date;
+    }
+
+    zoomIn(){
+        this.timeline.zoomIn(0.3);
+    }
+
+    zoomOut(){
+        this.timeline.zoomOut(0.3);
     }
 
     static get $inject(){
