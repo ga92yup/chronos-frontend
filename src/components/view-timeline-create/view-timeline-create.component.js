@@ -233,6 +233,7 @@ class ViewTimelineCreateComponentController{
             autoResize: true,
             zoomable: true,
             editable: true,
+            minHeight: 300
         };
         this.drawTimeline(options);
     };
