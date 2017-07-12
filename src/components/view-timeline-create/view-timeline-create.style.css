@@ -60,13 +60,13 @@ h1 {
 }
 
 .zoomIn {
-    top:70%;
-    left:93%;
+    bottom: 5em;
+    right: 1em;
 }
 
 .zoomOut {
-    top:83%;
-    left:93%;
+    bottom: 1em;
+    right: 1em;
 }
 
 .zoom {
