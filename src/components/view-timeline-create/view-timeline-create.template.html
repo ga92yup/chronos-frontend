@@ -39,7 +39,7 @@
                         <label>Event Name</label>
                         <md-icon><ng-md-icon icon="title" ></ng-md-icon></md-icon>
                         <input type="text" name="eventName" ng-model="$ctrl.contentOfEvent" required>
-                        <div ng-messages="EventForm.eventName.$error" role="alert">
+                        <div ng-messages="EventForm.eventName.$error" ng-if="EventForm.startYear.$dirty" role="alert">
                             <div ng-message-exp="['required']">
                                 Please enter a name for your event.
                         </div>
