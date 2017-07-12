@@ -58,8 +58,6 @@ class ViewTimelineCreateComponentController{
             }
         };
 
-
-
         this.dataModel = {
             "name": "Web Application Engineering",
             "description": "Schedule for the Seba Excercises",
@@ -73,8 +71,6 @@ class ViewTimelineCreateComponentController{
             }
         };
 
-
-
         this.editEventPressed = false;
 
         this.$state = $state;
@@ -87,11 +83,10 @@ class ViewTimelineCreateComponentController{
         this.dummyTimeline();
     }
 
-
     cancelEventEdit(){
         this.clearEvent();
+        this.editInProgress = false;
     }
-
 
     clearEvent(){
         this.event.title = "";
@@ -128,6 +123,8 @@ class ViewTimelineCreateComponentController{
                 this.endYear = enddate[0];
                 this.endMonth = enddate[1];
                 this.endDay = enddate[2];
+
+           this.editInProgress = true;
        }
        else {
            console.log("Select just one event to edit");
@@ -146,11 +143,9 @@ class ViewTimelineCreateComponentController{
         for (var i = 0; i < arrayLength; i++) {
             console.log(this.dataModel.content.eventItem[i].id, this.dataModel.content.eventItem[i].content);
         }
-
+        this.editInProgress = false;
         this.clearEvent();
     }
-
-
 
     isEventSelected(){
         //return this.timeline.getSelection().length === 1;
@@ -165,9 +160,7 @@ class ViewTimelineCreateComponentController{
         this.timeline.fit();
         this.clearEvent();
         eventToAdd = null;
-
     }
-
 
     manipulateEvent(eventId){
         let eventToManipulate= {};
@@ -188,9 +181,6 @@ class ViewTimelineCreateComponentController{
         return eventToAdd;
     }
 
-
-
-
     clearContent(){
         this.dataModel = {
             "name": "",
@@ -205,8 +195,6 @@ class ViewTimelineCreateComponentController{
         this.dummyTimeline();
         this.clearEvent();
     }
-
-
 
     cancel() {
         this.$state.go('home',{});
