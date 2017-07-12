@@ -145,7 +145,7 @@
                 </div>
                 <div layout="column">
                     <span flex="30"></span>
-                    <md-button class="md-raised iconBtn"  ng-disabled="!EventForm.$dirty" ng-click="$ctrl.cancelEventEdit(); EventForm.$setPristine()">
+                    <md-button class="md-raised iconBtn"  ng-disabled="!EventForm.$dirty && !$ctrl.editInProgress" ng-click="$ctrl.cancelEventEdit(); EventForm.$setPristine()">
                         <md-icon><ng-md-icon icon="undo"></ng-md-icon></md-icon>
                     </md-button>
                 </div>
