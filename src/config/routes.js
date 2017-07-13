@@ -35,10 +35,12 @@ export default function config($stateProvider, $urlRouterProvider, $locationProv
             url: '/home',
             component: HomeComponent.name
         })
-        .state('timelineAdd', {
+    /*    .state('timelineAdd', {
             url: '/timelines/new',
             component: ViewTimelineCreateComponent.name
         })
+
+      */
         .state('timelines', {
             url: '/timelines/:queryType/:queryContent',
             component: ViewTimelineComponent.name,
@@ -50,6 +52,19 @@ export default function config($stateProvider, $urlRouterProvider, $locationProv
                 timelines: resolveTimelines
             }
         })
+        .state('timelineCreate', {
+            url:'/timeline/new',
+            component: ViewTimelineCreateComponent.name,
+            resolve: {
+                data: {
+                    timeline: {
+                        name: "Set a name",
+                        description: "Set a description"
+                    }
+                }
+            }
+        })
+
         .state('timelineEdit', {
             url: '/timeline/:timelineId/edit',
             component: ViewTimelineEditComponent.name,

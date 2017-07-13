@@ -13,7 +13,9 @@ class ViewTimelineCreateComponent {
     constructor(){
         this.controller = ViewTimelineCreateComponentController;
         this.template = template;
-        this.timeline = null;
+        this.bindings = {
+            timelineModel: '<',
+        }
     }
 
     static get name() {
@@ -59,8 +61,8 @@ class ViewTimelineCreateComponentController{
         };
 
         this.dataModel = {
-            "name": "Web Application Engineering",
-            "description": "Schedule for the Seba Excercises",
+            "name": "n",
+            "description": "d",
             "content": {
                 "eventItem": [
                     {"id": 1, "content": "<h4 class='title'> E1: Business Idea </h4><aside class='text'> Create the initial business idea </aside>", "start": "2017-4-29", "end": "2017-5-14"},
@@ -79,6 +81,7 @@ class ViewTimelineCreateComponentController{
 
         this.editEventPressed = false;
 
+        //Creating an object which holds the events
         this.items = new vis.DataSet(this.dataModel.content.eventItem);
         this.dummyTimeline();
     }
