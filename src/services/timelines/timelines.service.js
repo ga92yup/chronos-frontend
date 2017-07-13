@@ -1,15 +1,17 @@
 'use strict';
 
+import UserService from '../user/user.service';
 
 export default class TimelinesService {
 
     static get $inject(){
-        return ['$http', 'API_URL'];
+        return ['$http', 'API_URL', UserService.name];
     }
 
-    constructor($http,API_URL) {
+    constructor($http,API_URL,UserService) {
         this.$http = $http;
         this.resourceUrl = `${ API_URL }/timeline/`;
+        this.UserService = UserService;
 
     }
 
@@ -48,8 +50,13 @@ export default class TimelinesService {
      * and passed to the function.
      */
     get(id) {
+
+        let user = this.UserService.getCurrentUser()._id;
+
+        console.log("user: " + user);
+
         let url = `${ this.resourceUrl }${ id }`;
-        return this.$http.get(url).then(responce => {
+        return this.$http.get(url, {params: {user: user}}).then(responce => {
 
             return new Promise((resolve, reject) => {
                 resolve(responce.data);
