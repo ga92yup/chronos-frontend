@@ -109,6 +109,15 @@ class ViewTimelineComponentController{
         return headline
     }
 
+    showSwitch(){
+        if (this.$state.params.queryType === "public") {
+
+            if (this.$state.params.queryContent === "all") {
+                return true;
+            }
+        }
+    }
+
     privacy(priv, timeline){
 
         if (this.UserService.isAuthenticated()) {
@@ -137,6 +146,21 @@ class ViewTimelineComponentController{
         } else {
             this.$state.go('login',{});
         }
+    }
+
+    getCurrentUser() {
+        let user = this.UserService.getCurrentUser();
+        return user.username;
+    }
+    dateFormat(created_at) {
+        let dateObj = created_at;
+        let month = dateObj.getUTCMonth() + 1; //months from 1-12
+        let day = dateObj.getUTCDay();
+        let year = dateObj.getUTCFullYear();
+
+        return (day + "." + month + "." + year);
+
+
     }
 
     static get $inject(){

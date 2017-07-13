@@ -8,7 +8,7 @@
 
 <!-- We define timelines in routes.js.-->
 
-<md-card ng-repeat="timeline in $ctrl.timelines">
+<md-card ng-repeat="timeline in $ctrl.timelines | orderBy:timeline.created_at:true" >
     <md-card-title>
         <md-card-title-media>
             <div layout="row" layout-align="center center" layout-padding>
@@ -32,11 +32,13 @@
             <span class="md-headline">{{timeline.name}}</span>
             <md-card-actions>
                 <div layout="row" layout-align="end center">
-                    <md-switch  md-invert ng-model="timeline.privacySetting" ng-change="$ctrl.privacy(timeline.privacySetting , timeline)" layout-align="end" >Public</md-switch>
+                    <md-switch  md-invert ng-model="timeline.privacySetting" ng-change="$ctrl.privacy(timeline.privacySetting , timeline)" layout-align="end" ng-hide="$ctrl.showSwitch()">Public</md-switch>
                 </div>
 
             </md-card-actions>
-            <span class="md-subhead">User: {{timeline.user}}</span>
+            <span>User: {{$ctrl.getCurrentUser()}}</span>
+            <span class="md-subhead">Creation Date: </span>
+            <span class="md-subhead">Description: {{timeline.description}}</span>
         </md-card-title-text>
 
     </md-card-title>
@@ -45,7 +47,8 @@
             <md-dialog layout="fix" layout-padding></md-dialog>
         </div>
     </div>
+
     <md-card-content>
-        <p>{{$ctrl.timeline.description}}</p>
+        <p></p>
     </md-card-content>
 </md-card>
