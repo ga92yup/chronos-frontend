@@ -76,7 +76,7 @@ class ViewTimelineComponentController{
 
 
     getPosterURL(){
-      let posterURL = 'http://placehold.it/32x32';
+     // let posterURL = 'http://placehold.it/32x32';
  /*         if (this.timeline.hasOwnProperty('posters')) {
             if (this.timeline.posters.hasOwnProperty('thumbnail')) {
                 posterURL = this.timeline.posters.thumbnail;
@@ -88,6 +88,8 @@ class ViewTimelineComponentController{
                 posterURL = this.timeline.posters.original;
             }
         } */
+        let posterURL = 'Timeline.PNG';
+
         return posterURL;
     }
 
@@ -153,14 +155,8 @@ class ViewTimelineComponentController{
         return user.username;
     }
     dateFormat(created_at) {
-        let dateObj = created_at;
-        let month = dateObj.getUTCMonth() + 1; //months from 1-12
-        let day = dateObj.getUTCDay();
-        let year = dateObj.getUTCFullYear();
-
-        return (day + "." + month + "." + year);
-
-
+        let dateObj = created_at.substring(0,10);
+        return dateObj;
     }
 
     static get $inject(){
