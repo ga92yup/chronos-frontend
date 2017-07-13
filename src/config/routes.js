@@ -52,24 +52,16 @@ export default function config($stateProvider, $urlRouterProvider, $locationProv
                 timelines: resolveTimelines
             }
         })
-        .state('timelineCreate', {
+        .state('timelineAdd', {
             url:'/timeline/new',
             component: ViewTimelineCreateComponent.name,
-            resolve: {
-                data: {
-                    timeline: {
-                        name: "Set a name",
-                        description: "Set a description"
-                    }
-                }
-            }
         })
 
         .state('timelineEdit', {
             url: '/timeline/:timelineId/edit',
-            component: ViewTimelineEditComponent.name,
+            component: ViewTimelineCreateComponent.name,
             resolve: {
-                timeline: resolveTimeline
+                timelineModel: resolveTimeline
             }
         })
         .state('timelineDisplay', {
