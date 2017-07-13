@@ -4,7 +4,7 @@
             <div flex layout="row">
                 <span flex="10"></span>
                 <md-input-container class="md-icon-float md-block" flex-gt-sm flex="30">
-                    <label>Name</label>
+                    <label>Name of Timeline</label>
                     <md-icon><ng-md-icon icon="title" ></ng-md-icon></md-icon>
                     <input ng-model="$ctrl.timeline.name" type="text" name="timelineName" required>
                     <div ng-messages="TimelineForm.timelineName.$error" role="alert">
@@ -15,7 +15,7 @@
                 </md-input-container>
 
                 <md-input-container class="md-icon-float md-block" flex-gt-sm flex="60">
-                    <label>Description</label>
+                    <label>Description of Timeline</label>
                     <md-icon><ng-md-icon icon="title" ></ng-md-icon></md-icon>
                     <textarea ng-model="$ctrl.timeline.description" md-maxlength="150" md-select-on-focus></textarea>
                 </md-input-container>
@@ -40,32 +40,27 @@
         <form name="EventForm">
             <section layout="row" class="eventForm">
                 <span flex></span>
-                <div flex="20" class="eventInput" layout="column">
-                    <span flex="40"></span>
-                    <md-input-container class="md-icon-float">
+                <div flex="30" class="eventInput" layout="column">
+                    <span flex="35"></span>
+                    <md-input-container class="md-icon-float" flex="5">
                         <label>Event Name</label>
                         <md-icon><ng-md-icon icon="title" ></ng-md-icon></md-icon>
                         <input type="text" name="eventName" ng-model="$ctrl.event.title" required>
-                        <div ng-messages="EventForm.eventName.$error" ng-if="EventForm.startYear.$dirty" role="alert">
-                            <div ng-message-exp="['required']">
-                                Please enter a name for your event.
-                        </div>
-                    </div>
-                    </md-input-container>
-                    <md-input-container class="md-icon-float">
-                        <label>Event Content</label>
-                        <md-icon><ng-md-icon icon="title" ></ng-md-icon></md-icon>
-                        <input type="text" name="eventName" ng-model="$ctrl.event.text" required>
-                        <div ng-messages="EventForm.eventName.$error" role="alert">
+                        <div ng-messages="EventForm.eventName.$error" ng-if="EventForm.eventName.$dirty" role="alert">
                             <div ng-message-exp="['required']">
                                 Please enter a name for your event.
                             </div>
                         </div>
                     </md-input-container>
-
-
+                    <md-input-container class="md-icon-float" flex="50">
+                        <label>Event Content</label>
+                        <md-icon><ng-md-icon icon="title" ></ng-md-icon></md-icon>
+                        <textarea ng-model="$ctrl.event.text" md-maxlength="150" md-select-on-focus></textarea>
+                    </md-input-container>
+                    <span flex="50"></span>
                 </div>
                 <div flex="20" layout="column" class="eventInput">
+                    <span flex="20"></span>
                     <label class="headline">Start Date</label>
                         <div flex layout="row">
                             <md-input-container flex="30">
@@ -89,8 +84,7 @@
                             <md-input-container flex="40">
                                 <label>Year</label>
                                 <input type="text" name="startYear" ng-model="$ctrl.startYear" required ng-pattern="/^-?[0-9]{1,4}$/">
-                                <div ng-messages="EventForm.startYear.$error" ng-if="EventForm.startYear.$dirty" role="alert">
-                                    <div ng-message-exp="['required', 'pattern']">
+                                <div ng-messages="EventForm.startYear.$error" ng-if="EventForm.startYear.$dirty" role="alert"> <div ng-message-exp="['required', 'pattern']">
                                         Please enter a year between -9999 and 9999.
                                     </div>
                                 </div>
@@ -98,6 +92,7 @@
                         </div>
                     </div>
                     <div flex="20" layout="column" class="eventInput">
+                        <span flex="20"></span>
                         <label class="headline">End Date</label>
                         <div layout="row">
                             <md-input-container flex="30">
@@ -131,20 +126,28 @@
                     </div>
                 <div layout="column">
                     <span flex="30"></span>
-                    <md-button class="md-raised" ng-disabled="!EventForm.$valid" ng-click="$ctrl.addEvent(); EventForm.$setPristine()">Add Event</md-button>
+                    <md-button class="md-raised iconBtn" ng-hide="$ctrl.editInProgress" ng-disabled="!EventForm.$valid" ng-click="$ctrl.addEvent(); EventForm.$setPristine()">
+                        <md-icon><ng-md-icon icon="add"></ng-md-icon></md-icon>
+                    </md-button>
                 </div>
                 <div layout="column">
                     <span flex="30"></span>
-                    <md-button class="md-raised" ng-click="$ctrl.editEvent(); EventForm.$setPristine()">Edit Event</md-button>
+                    <md-button class="md-raised iconBtn" ng-hide="$ctrl.editInProgress" ng-click="$ctrl.editEvent(); EventForm.$setPristine()">
+                        <md-icon><ng-md-icon icon="create"></ng-md-icon></md-icon>
+                    </md-button>
                 </div>
 
                 <div layout="column">
                     <span flex="30"></span>
-                    <md-button class="md-raised"  ng-click="$ctrl.saveEvent(); EventForm.$setPristine()">Save Event</md-button>
+                    <md-button class="md-raised iconBtn" ng-show="$ctrl.editInProgress" ng-click="$ctrl.saveEvent(); EventForm.$setPristine()">
+                        <md-icon><ng-md-icon icon="archive"></ng-md-icon></md-icon>
+                    </md-button>
                 </div>
                 <div layout="column">
                     <span flex="30"></span>
-                    <md-button class="md-raised"  ng-click="$ctrl.cancelEventEdit(); EventForm.$setPristine()">Cancel Edit</md-button>
+                    <md-button class="md-raised iconBtn"  ng-disabled="!EventForm.$dirty && !$ctrl.editInProgress" ng-click="$ctrl.cancelEventEdit(); EventForm.$setPristine()">
+                        <md-icon><ng-md-icon icon="undo"></ng-md-icon></md-icon>
+                    </md-button>
                 </div>
 
                 <span flex></span>

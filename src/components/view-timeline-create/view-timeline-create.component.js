@@ -32,15 +32,16 @@ class ViewTimelineCreateComponentController{
             start: undefined,
             end: undefined,
             template: function(){
-                if(this.title == undefined)
+                if(this.title == "")
                     return "";
-                else if (this.text!= "" && this.image!="")
+                else if (this.text!= "" && this.image !="")
                         return "<h4 class='title'>" + this.title + "</h4>" +
                              " <img src="+ this.image + " style='width:64px; height:64px;'>" + "<aside class='text'>" + this.text + "</aside>";
                 else if (this.text!= "")
                     return "<h4 class='title'>" + this.title + "</h4>"+ "<aside class='text'>" + this.text + "</aside>";
                 else if (this.image!="")
                     return "<h4 class='title'>" + this.title + "</h4>"+ " <img src="+ this.image + " style='width:64px; height:64px;'>";
+                else return "<h4 class='title'>" + this.title + "</h4>";
 
             },
             parseTemplate: function(htmlString){
@@ -54,11 +55,8 @@ class ViewTimelineCreateComponentController{
                     this.text = parsedHtml.getElementsByClassName("text")[0].innerHTML;
                 if (parsedHtml.images.length > 0)
                         this.image = parsedHtml.images[0].src;
-                console.log(this.title + " " + this.text + " " + this.image);
             }
         };
-
-
 
         this.dataModel = {
             "name": "Web Application Engineering",
@@ -73,8 +71,6 @@ class ViewTimelineCreateComponentController{
             }
         };
 
-
-
         this.editEventPressed = false;
 
         this.$state = $state;
@@ -87,11 +83,10 @@ class ViewTimelineCreateComponentController{
         this.dummyTimeline();
     }
 
-
     cancelEventEdit(){
         this.clearEvent();
+        this.editInProgress = false;
     }
-
 
     clearEvent(){
         this.event.title = "";
@@ -113,9 +108,7 @@ class ViewTimelineCreateComponentController{
        let selectedEvents = this.timeline.getSelection();
        if (selectedEvents.length == 1 ){
                 this.editEventPressed = true;
-                console.log("One event seleted " + selectedEvents[0]);
                 let item = this.items.get(selectedEvents[0]);
-                console.log(item);
 
                 this.event.parseTemplate(item.content);
                 this.event.start = item.start;
@@ -124,10 +117,13 @@ class ViewTimelineCreateComponentController{
                 this.startYear = startdate[0];
                 this.startMonth = startdate[1];
                 this.startDay = startdate[2];
-                var enddate = this.event.end.split("-");
-                this.endYear = enddate[0];
-                this.endMonth = enddate[1];
-                this.endDay = enddate[2];
+                if(this.event.end != undefined) {
+                    var enddate = this.event.end.split("-");
+                    this.endYear = enddate[0];
+                    this.endMonth = enddate[1];
+                    this.endDay = enddate[2];
+                }
+           this.editInProgress = true;
        }
        else {
            console.log("Select just one event to edit");
@@ -138,19 +134,18 @@ class ViewTimelineCreateComponentController{
         let eventsList = this.timeline.getSelection();
         let eventId = eventsList[0];
         let eventToAdd = this.manipulateEvent(eventId);
-        this.items.update(eventToAdd);
+        this.items.remove(eventId);
+        this.items.add(eventToAdd);
         this.timeline.fit();
         var foundIndex = this.dataModel.content.eventItem.findIndex(x => x.id == eventId);
         this.dataModel.content.eventItem[foundIndex] = eventToAdd;
         var arrayLength = this.dataModel.content.eventItem.length;
         for (var i = 0; i < arrayLength; i++) {
-            console.log(this.dataModel.content.eventItem[i].id, this.dataModel.content.eventItem[i].content);
+            console.log(this.dataModel.content.eventItem[i].id, this.dataModel.content.eventItem[i].end);
         }
-
+        this.editInProgress = false;
         this.clearEvent();
     }
-
-
 
     isEventSelected(){
         //return this.timeline.getSelection().length === 1;
@@ -165,16 +160,15 @@ class ViewTimelineCreateComponentController{
         this.timeline.fit();
         this.clearEvent();
         eventToAdd = null;
-
     }
-
 
     manipulateEvent(eventId){
         let eventToManipulate= {};
         let eventToAdd = {};
         this.event.end = this.concatenateDate("end");
         this.event.start = this.concatenateDate("start");
-        if(this.event.end === "" || this.event.end === undefined) {
+
+        if(this.event.end =="" || this.event.end === undefined) {
             eventToAdd = {
                 "id": eventId, "content": this.event.template(),
                 "start": this.event.start
@@ -187,9 +181,6 @@ class ViewTimelineCreateComponentController{
         }
         return eventToAdd;
     }
-
-
-
 
     clearContent(){
         this.dataModel = {
@@ -206,8 +197,6 @@ class ViewTimelineCreateComponentController{
         this.clearEvent();
     }
 
-
-
     cancel() {
         this.$state.go('home',{});
     };
@@ -217,7 +206,7 @@ class ViewTimelineCreateComponentController{
         this.dataModel.content.eventItem = this.items.get();
         var arrayLength = this.dataModel.content.eventItem.length;
         for (var i = 0; i < arrayLength; i++) {
-            console.log(this.dataModel.content.eventItem[i].id, this.dataModel.content.eventItem[i].content);
+            console.log(this.dataModel.content.eventItem[i].id, this.dataModel.content.eventItem[i].content, this.dataModel.content.eventItem[i].end);
         }
         this.dataModel.name = this.timeline.name;
         this.dataModel.description = this.timeline.description;
@@ -233,6 +222,7 @@ class ViewTimelineCreateComponentController{
             autoResize: true,
             zoomable: true,
             editable: true,
+            minHeight: 300
         };
         this.drawTimeline(options);
     };
@@ -245,18 +235,19 @@ class ViewTimelineCreateComponentController{
     concatenateDate(choice) {
         var date = "";
         if (choice === "end") {
-            date = this.endYear;
-            if (this.endMonth != undefined) {
+            if(this.endYear != undefined && this.endYear != "")
+                     date = this.endYear;
+            if (this.endMonth != undefined && this.endMonth != "") {
                 date = date + "-" + this.endMonth;
-                if (this.endDay != undefined) {
+                if (this.endDay != undefined && this.endDay != "") {
                     date = date + "-" + this.endDay;
                 }
             }
         } else if (choice === "start") {
             date = this.startYear;
-            if (this.startMonth != undefined) {
+            if (this.startMonth != undefined && this.startMonth != "") {
                 date = date + "-" + this.startMonth;
-                if (this.startDay != undefined) {
+                if (this.startDay != undefined && this.startDay != "") {
                     date = date + "-" + this.startDay;
                 }
             }
