@@ -4,6 +4,7 @@
 import template from './view-timeline-edit.template.html';
 
 import TimelinesService from './../../services/timelines/timelines.service';
+import UserService from './../../services/user/user.service';
 
 class ViewTimelineEditComponent {
     constructor(){
@@ -20,7 +21,7 @@ class ViewTimelineEditComponent {
 }
 
 class ViewTimelineEditComponentController{
-    constructor($state, TimelinesService){
+    constructor($state, TimelinesService, UserService){
         this.model = {};
         this.$state = $state;
         this.TimelinesService = TimelinesService;
