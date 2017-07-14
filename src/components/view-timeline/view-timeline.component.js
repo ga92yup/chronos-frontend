@@ -32,7 +32,7 @@ class ViewTimelineComponentController{
 
         if (this.UserService.isAuthenticated()) {
             let _id = timeline['_id'];
-            this.$state.go('timelineEdit',{ timelineId:_id});
+            this.$state.go('timelineEdit',{ timelineId:_id, mode: "edit"});
         } else {
             this.$state.go('login',{});
         }
@@ -46,7 +46,7 @@ class ViewTimelineComponentController{
 
     newTimeline() {
 
-        this.$state.go('timelineAdd', {});
+        this.$state.go('timelineAdd', {mode: "new"});
 
         /* example for future login wall
          if (this.UserService.isAuthenticated()) {
