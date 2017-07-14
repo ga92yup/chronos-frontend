@@ -141,15 +141,15 @@ class ViewTimelineCreateComponentController{
                 this.event.parseTemplate(item.content);
                 this.event.start = item.start;
                 this.event.end = item.end;
-                var startdate = this.event.start.split("-");
-                this.startYear = startdate[0];
-                this.startMonth = startdate[1];
-                this.startDay = startdate[2].substring(0,2);
+                var startdate = new Date(this.event.start);
+                this.startYear = startdate.getFullYear();
+                this.startMonth = startdate.getMonth()+1;
+                this.startDay = startdate.getDate();
                 if(this.event.end != undefined) {
-                    var enddate = this.event.end.split("-");
-                    this.endYear = enddate[0];
-                    this.endMonth = enddate[1];
-                    this.endDay = enddate[2].substring(0,2);
+                    var enddate = new Date(this.event.end);
+                    this.endYear = enddate.getFullYear();
+                    this.endMonth = enddate.getMonth()+1;
+                    this.endDay = enddate.getDate();
                 }
            this.editInProgress = true;
        }
