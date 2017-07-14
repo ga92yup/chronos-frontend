@@ -40,16 +40,6 @@ class ViewHomeComponentController {
      this.$state.go('timeline',{ timelineId:_id});
      };
      */
-    edit(timeline) {
-
-        if (this.UserService.isAuthenticated()) {
-            //access the "_id" element of the current timeline object
-            let _id = timeline['_id'];
-            this.$state.go('timelineEdit', {timelineId: _id, mode: "edit"});
-        } else {
-            this.$state.go('login', {});
-        }
-    };
 
     newTimeline() {
 
@@ -67,21 +57,6 @@ class ViewHomeComponentController {
     viewPublicTimelines() {
         this.$state.go('timelines', { queryType: "public", queryContent: "all" });
     }
-
-    delete(timeline) {
-        if (this.UserService.isAuthenticated()) {
-            let _id = timeline['_id'];
-
-            this.TimelinesService.delete(_id).then(response => {
-                let index = this.timelines.map(x => x['_id']).indexOf(_id);
-                this.timelines.splice(index, 1);
-            })
-
-        } else {
-            this.$state.go('login', {});
-        }
-    };
-
 
     static get $inject() {
         return ['$state', TimelinesService.name, UserService.name];
