@@ -224,6 +224,9 @@ class ViewTimelineCreateComponentController{
         }
  //       this.dataModel.name = this.timeline.name;
         //      this.dataModel.description = this.timeline.description;
+
+        this.dataModel['created_at'] = this.currentTime();
+        this.dataModel['uname'] = user['username']
         this.dataModel['user'] = user['_id'];
         if(this.timelineModel===undefined)
             this.TimelinesService.create(this.dataModel).then(data => {
@@ -237,6 +240,13 @@ class ViewTimelineCreateComponentController{
             });
 
     };
+
+    currentTime() {
+
+        let dateObj = Date.now();
+
+        return dateObj;
+    }
 
     dummyTimeline() {
         let options = {

@@ -4,6 +4,7 @@
 import template from './view-timeline.template.html';
 import TimelinesService from './../../services/timelines/timelines.service';
 import UserService from './../../services/user/user.service';
+import "./../../images/Timeline.PNG";
 
 class ViewTimelineComponent {
     constructor(){
@@ -12,7 +13,6 @@ class ViewTimelineComponent {
         this.bindings = {
             timelines: '<',
         }
-
     }
 
     static get name() {
@@ -26,9 +26,6 @@ class ViewTimelineComponentController{
         this.TimelinesService = TimelinesService;
         this.UserService = UserService;
         this.$mdDialog = $mdDialog;
-
-
-
     }
 
     edit (timeline) {
@@ -76,7 +73,7 @@ class ViewTimelineComponentController{
 
 
     getPosterURL(){
-      let posterURL = 'http://placehold.it/32x32';
+     // let posterURL = 'http://placehold.it/32x32';
  /*         if (this.timeline.hasOwnProperty('posters')) {
             if (this.timeline.posters.hasOwnProperty('thumbnail')) {
                 posterURL = this.timeline.posters.thumbnail;
@@ -88,6 +85,8 @@ class ViewTimelineComponentController{
                 posterURL = this.timeline.posters.original;
             }
         } */
+        let posterURL = 'Timeline.PNG';
+
         return posterURL;
     }
 
@@ -107,6 +106,15 @@ class ViewTimelineComponentController{
             headline = "Here are all of your timelines!";
         }
         return headline
+    }
+
+    showSwitch(){
+        if (this.$state.params.queryType === "public") {
+
+            if (this.$state.params.queryContent === "all") {
+                return true;
+            }
+        }
     }
 
     privacy(priv, timeline){
@@ -137,6 +145,15 @@ class ViewTimelineComponentController{
         } else {
             this.$state.go('login',{});
         }
+    }
+
+    getCurrentUser() {
+        let user = this.UserService.getCurrentUser();
+        return user.username;
+    }
+    dateFormat(created_at) {
+        let dateObj = created_at.substring(0, 10);
+        return dateObj;
     }
 
     static get $inject(){
