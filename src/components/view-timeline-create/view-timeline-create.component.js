@@ -130,12 +130,12 @@ class ViewTimelineCreateComponentController{
                 var startdate = this.event.start.split("-");
                 this.startYear = startdate[0];
                 this.startMonth = startdate[1];
-                this.startDay = startdate[2];
+                this.startDay = startdate[2].substring(0,2);
                 if(this.event.end != undefined) {
                     var enddate = this.event.end.split("-");
                     this.endYear = enddate[0];
                     this.endMonth = enddate[1];
-                    this.endDay = enddate[2];
+                    this.endDay = enddate[2].substring(0,2);
                 }
            this.editInProgress = true;
        }
