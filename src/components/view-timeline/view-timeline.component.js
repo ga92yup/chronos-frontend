@@ -2,6 +2,7 @@
 'use strict';
 
 import template from './view-timeline.template.html';
+import dialogtemplate from './dialog.tmpl.html';
 import TimelinesService from './../../services/timelines/timelines.service';
 import UserService from './../../services/user/user.service';
 import "./../../images/Timeline.PNG";
@@ -10,6 +11,7 @@ class ViewTimelineComponent {
     constructor(){
         this.controller = ViewTimelineComponentController;
         this.template = template;
+        this.dialogtemplate = dialogtemplate;
         this.bindings = {
             timelines: '<',
         }
@@ -117,7 +119,7 @@ class ViewTimelineComponentController{
         }
     }
 
-    privacy(priv, timeline){
+    /*privacy(priv, timeline){
 
         if (this.UserService.isAuthenticated()) {
             if (priv) {
@@ -145,7 +147,42 @@ class ViewTimelineComponentController{
         } else {
             this.$state.go('login',{});
         }
+    }*/
+
+    DialogController() {
+    this.hide = function() {
+        this.$mdDialog.hide();
+    };
+
+    this.cancel = function() {
+        this.$mdDialog.cancel();
+    };
+
+}
+    showDialog(priv, timeline) {
+        if (this.UserService.isAuthenticated()) {
+            if (priv) {
+
+                this.$mdDialog.show({
+                    controller: this.DialogController(),
+                    templateUrl: dialogtemplate,
+                    parent: angular.element(document.body),
+                    clickOutsideToClose: true,
+                });
+
+                timeline.privacySetting = true;
+
+            } else{
+                timeline.privacySetting = false;
+            }
+            this.TimelinesService.update(timeline);
+        } else {
+            this.$state.go('login',{});
+        }
     }
+
+
+
 
     getCurrentUser() {
         let user = this.UserService.getCurrentUser();

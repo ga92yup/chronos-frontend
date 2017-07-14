@@ -35,17 +35,18 @@
                          <ng-md-icon icon="delete"></ng-md-icon>
                      </md-icon>
                  </md-button>
-                 <md-switch  md-invert ng-model="timeline.privacySetting" ng-change="$ctrl.privacy(timeline.privacySetting , timeline)" layout-align="end center" ng-hide="$ctrl.showSwitch()">
+                 <md-switch  md-invert ng-model="timeline.privacySetting" ng-change="$ctrl.showDialog(timeline.privacySetting , timeline)" layout-align="end center" ng-hide="$ctrl.showSwitch()">
                  Public
                  </md-switch>
              </md-card-actions>
         </md-card-title-text>
     </md-card-title>
 
-    <div style="visibility: hidden">
+
+    <!--<div style="visibility: hidden">
         <div class="md-dialog-container" id="myDialog">
             <md-dialog layout="fix" layout-padding></md-dialog>
         </div>
-    </div>
+    </div>-->
 
 </md-card>
