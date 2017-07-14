@@ -4,6 +4,7 @@
 import template from './view-timeline.template.html';
 import TimelinesService from './../../services/timelines/timelines.service';
 import UserService from './../../services/user/user.service';
+import "./../../images/Timeline.PNG";
 
 class ViewTimelineComponent {
     constructor(){
@@ -12,7 +13,6 @@ class ViewTimelineComponent {
         this.bindings = {
             timelines: '<',
         }
-
     }
 
     static get name() {
@@ -26,9 +26,6 @@ class ViewTimelineComponentController{
         this.TimelinesService = TimelinesService;
         this.UserService = UserService;
         this.$mdDialog = $mdDialog;
-
-
-
     }
 
     edit (timeline) {
