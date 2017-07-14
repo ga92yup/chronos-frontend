@@ -53,21 +53,23 @@ export default function config($stateProvider, $urlRouterProvider, $locationProv
             }
         })
         .state('timelineAdd', {
-            url:'/timeline/new',
+            url:'/timeline/:mode',
             component: ViewTimelineCreateComponent.name,
         })
 
         .state('timelineEdit', {
-            url: '/timeline/:timelineId/edit',
+            url: '/timeline/:timelineId/:mode',
             component: ViewTimelineCreateComponent.name,
             resolve: {
                 timelineModel: resolveTimeline
             }
         })
+        /*
         .state('timelineDisplay', {
             url: '/display',
             component: ViewTimelineComponent.name,
         })
+        */
         .state('login', {
             url: '/login',
             component: LoginComponent.name,

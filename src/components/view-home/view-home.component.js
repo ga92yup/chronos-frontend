@@ -43,7 +43,7 @@ class ViewHomeComponentController {
 
     newTimeline() {
 
-        this.$state.go('timelineAdd', {});
+        this.$state.go('timelineAdd', {mode: "new"});
 
         /* example for future login wall
          if (this.UserService.isAuthenticated()) {
