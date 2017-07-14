@@ -45,7 +45,7 @@ class ViewHomeComponentController {
         if (this.UserService.isAuthenticated()) {
             //access the "_id" element of the current timeline object
             let _id = timeline['_id'];
-            this.$state.go('timelineEdit', {timelineId: _id});
+            this.$state.go('timelineEdit', {timelineId: _id, mode: "edit"});
         } else {
             this.$state.go('login', {});
         }
@@ -53,7 +53,7 @@ class ViewHomeComponentController {
 
     newTimeline() {
 
-        this.$state.go('timelineAdd', {});
+        this.$state.go('timelineAdd', {mode: "new"});
 
         /* example for future login wall
          if (this.UserService.isAuthenticated()) {

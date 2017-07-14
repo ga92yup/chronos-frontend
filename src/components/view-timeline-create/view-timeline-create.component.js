@@ -69,9 +69,19 @@ class ViewTimelineCreateComponentController{
         this.TimelinesService = TimelinesService;
         this.UserService = UserService;
 
+        this.editMode = false;
     }
 
     $onInit() {
+        //  determine which mode was selected. If not in edit and view mode, we hide all edit buttons.
+        if (this.$state.params.mode === "edit") {
+            this.editMode = true;
+        }
+        else if (this.$state.params.mode === "new") {
+            this.editMode = true;
+        }
+        console.log("stateparams: " + this.$state.params.mode);
+
         //Clone the Timeline Data
         console.log("Calling the onInit function")
         if(this.timelineModel!= undefined)
