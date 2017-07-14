@@ -69,18 +69,22 @@ class ViewTimelineCreateComponentController{
         this.TimelinesService = TimelinesService;
         this.UserService = UserService;
 
-        this.editMode = false;
+        this.editMode;
     }
 
     $onInit() {
-        //  determine which mode was selected. If not in edit and view mode, we hide all edit buttons.
+        //  Determine which mode we are in. Possible modes are: "new", "edit", "view".
+        //  They are set by adding the respective keyword to the url.
+
+        this.editMode = false;
         if (this.$state.params.mode === "edit") {
             this.editMode = true;
         }
         else if (this.$state.params.mode === "new") {
             this.editMode = true;
         }
-        console.log("stateparams: " + this.$state.params.mode);
+        //console.log("stateparams: " + this.$state.params.mode);
+        //console.log("editMode: " + this.editMode);
 
         //Clone the Timeline Data
         console.log("Calling the onInit function")
@@ -102,7 +106,7 @@ class ViewTimelineCreateComponentController{
         }
         //Creating an object which holds the events
         this.items = new vis.DataSet(this.dataModel.content.eventItem);
-        this.dummyTimeline();
+        this.createTimelineWithOptions();
     }
 
 
@@ -217,7 +221,7 @@ class ViewTimelineCreateComponentController{
         };
         this.items = new vis.DataSet(this.dataModel.content.eventItem);
         this.timeline.destroy();
-        this.dummyTimeline();
+        this.createTimelineWithOptions();
         this.clearEvent();
     }
 
@@ -258,13 +262,17 @@ class ViewTimelineCreateComponentController{
         return dateObj;
     }
 
-    dummyTimeline() {
+    createTimelineWithOptions() {
         let options = {
             autoResize: true,
             zoomable: true,
             editable: true,
             minHeight: 300
         };
+        // Disable any editing functions within the vis timeline object when in view mode.
+        if (this.editMode === false) {
+            options.editable = false;
+        }
         this.drawTimeline(options);
     };
 
