@@ -13,7 +13,9 @@ class ViewTimelineCreateComponent {
     constructor(){
         this.controller = ViewTimelineCreateComponentController;
         this.template = template;
-        this.timeline = null;
+        this.bindings = {
+            timelineModel: '<',
+        }
     }
 
     static get name() {
@@ -57,19 +59,9 @@ class ViewTimelineCreateComponentController{
                         this.image = parsedHtml.images[0].src;
             }
         };
+        console.log("Debugger getting the dataModel " + this.timelineModel);
 
-        this.dataModel = {
-            "name": "Web Application Engineering",
-            "description": "Schedule for the Seba Excercises",
-            "content": {
-                "eventItem": [
-                    {"id": 1, "content": "<h4 class='title'> E1: Business Idea </h4><aside class='text'> Create the initial business idea </aside>", "start": "2017-4-29", "end": "2017-5-14"},
-                    {"id": 2, "content": '<h4 class="title">E2: Business Model</h4><img src="../../images/chronos-logo.svg" style="width:64px; height:64px;">', "start": "2017-5-9", "end": "2017-5-28"},
-                    {"id": 3, "content": '<h4 class="title">E3: Initial Prototype</h4><img src="../../images/chronos-logo.svg" style="width:64px; height:64px;">' +
-                    '<aside class="text">Description text of prototype</aside>', "start": "2017-5-9", "end": "2017-6-18"},
-                ]
-            }
-        };
+        this.dataModel = {};
 
         this.editEventPressed = false;
 
@@ -77,11 +69,33 @@ class ViewTimelineCreateComponentController{
         this.TimelinesService = TimelinesService;
         this.UserService = UserService;
 
-        this.editEventPressed = false;
+    }
 
+    $onInit() {
+        //Clone the Timeline Data
+        console.log("Calling the onInit function")
+        if(this.timelineModel!= undefined)
+           this.dataModel = JSON.parse(JSON.stringify(this.timelineModel));
+        else {
+            this.dataModel = {
+                "name": "",
+                "description": "",
+                "content": {
+                    "eventItem": [
+                        {"id": 1, "content": "<h4 class='title'> E1: Business Idea </h4><aside class='text'> Create the initial business idea </aside>", "start": "2017-4-29", "end": "2017-5-14"},
+                        {"id": 2, "content": '<h4 class="title">E2: Business Model</h4><img src="../../images/chronos-logo.svg" style="width:64px; height:64px;">', "start": "2017-5-9", "end": "2017-5-28"},
+                        {"id": 3, "content": '<h4 class="title">E3: Initial Prototype</h4><img src="../../images/chronos-logo.svg" style="width:64px; height:64px;">' +
+                        '<aside class="text">Description text of prototype</aside>', "start": "2017-5-9", "end": "2017-6-18"},
+                    ]
+                }
+            };
+        }
+        //Creating an object which holds the events
         this.items = new vis.DataSet(this.dataModel.content.eventItem);
         this.dummyTimeline();
     }
+
+
 
     cancelEventEdit(){
         this.clearEvent();
@@ -208,15 +222,23 @@ class ViewTimelineCreateComponentController{
         for (var i = 0; i < arrayLength; i++) {
             console.log(this.dataModel.content.eventItem[i].id, this.dataModel.content.eventItem[i].content, this.dataModel.content.eventItem[i].end);
         }
-        this.dataModel.name = this.timeline.name;
-        this.dataModel.description = this.timeline.description;
+ //       this.dataModel.name = this.timeline.name;
+        //      this.dataModel.description = this.timeline.description;
+
         this.dataModel['created_at'] = this.currentTime();
         this.dataModel['uname'] = user['username']
         this.dataModel['user'] = user['_id'];
-        this.TimelinesService.create(this.dataModel).then(data => {
-            let _id = data['_id'];
-            this.$state.go('timelines',{ queryType: "user", queryContent: user._id });
-        });
+        if(this.timelineModel===undefined)
+            this.TimelinesService.create(this.dataModel).then(data => {
+                let _id = data['_id'];
+                this.$state.go('timelines',{ queryType: "user", queryContent: user._id });
+            });
+        else
+            this.TimelinesService.update(this.dataModel).then(data => {
+                let _id = data['_id'];
+                this.$state.go('timelines',{ queryType: "user", queryContent: user._id });
+            });
+
     };
 
     currentTime() {
