@@ -2,7 +2,6 @@
 'use strict';
 
 import template from './view-timeline.template.html';
-import dialogtemplate from './dialog.tmpl.html';
 import TimelinesService from './../../services/timelines/timelines.service';
 import UserService from './../../services/user/user.service';
 import "./../../images/Timeline.PNG";
@@ -11,7 +10,6 @@ class ViewTimelineComponent {
     constructor(){
         this.controller = ViewTimelineComponentController;
         this.template = template;
-        this.dialogtemplate = dialogtemplate;
         this.bindings = {
             timelines: '<',
         }
@@ -40,6 +38,11 @@ class ViewTimelineComponentController{
         }
 
     };
+
+    viewTimeline(timeline){
+        let _id = timeline['_id']
+        this.$state.go('timelineEdit', {timelineId:_id, mode: "view"} )
+    }
 
     newTimeline() {
 
@@ -149,28 +152,50 @@ class ViewTimelineComponentController{
         }
     }*/
 
-    DialogController() {
-    this.hide = function() {
-        this.$mdDialog.hide();
-    };
 
-    this.cancel = function() {
-        this.$mdDialog.cancel();
-    };
 
-}
+
     showDialog(priv, timeline) {
-        if (this.UserService.isAuthenticated()) {
+        function DialogController($mdDialog) {
+
+            this.closeDialog = function () {
+                $mdDialog.hide();
+            }
+        }
+
+            if (this.UserService.isAuthenticated()) {
             if (priv) {
-
                 this.$mdDialog.show({
-                    controller: this.DialogController(),
-                    templateUrl: dialogtemplate,
+                    controller: new DialogController(this.$mdDialog),
+                    template:
+                    '<md-dialog aria-label="PrivacySettings">'+
+                        '<form ng-cloak>'+
+                            '<md-toolbar>'+
+                                '<div class="md-toolbar-tools">'+
+                                    '<h2>Privacy Settings</h2>'+
+                                    '<span flex></span>'+
+                                '</div>'+
+                            '</md-toolbar>'+
+                            '<md-dialog-content>'+
+                                '<div class="md-dialog-content">'+
+                                    '<h2>Congratulations, You successfully made your timeline public!</h2>'+
+                                    '<p>You can now share the Link below for your friends or colleagues to see your timeline.</p>'+
+                                '</div>'+
+                            '</md-dialog-content>'+
+                            '<md-dialog-actions layout="row">'+
+                                '<span flex>URL: http</span>'+
+                                '<md-button ng-click="$ctrl.closeDialog()">'+
+                                    'OK'+
+                                '</md-button>'+
+                            '</md-dialog-actions>'+
+                        '</form>'+
+                    '</md-dialog>',
                     parent: angular.element(document.body),
-                    clickOutsideToClose: true,
+                    clickOutsideToClose: true
                 });
-
+                DialogController.$inject = ['$mdDialog'];
                 timeline.privacySetting = true;
+
 
             } else{
                 timeline.privacySetting = false;
