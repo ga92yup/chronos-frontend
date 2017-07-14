@@ -155,7 +155,7 @@ class ViewTimelineComponentController{
         return user.username;
     }
     dateFormat(created_at) {
-        let dateObj = created_at.substring(0,10);
+        let dateObj = created_at.substring(0, 10);
         return dateObj;
     }
 
