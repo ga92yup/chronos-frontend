@@ -4,3 +4,14 @@
 .login-form md-card md-card-title {
     background-color: blue;
 }
+
+p {
+    font-size: small;
+}
+
+.registerBtn {
+    background: none;
+    border: none;
+    padding: 0px;
+    color: blue;
+}

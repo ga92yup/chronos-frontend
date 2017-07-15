@@ -41,3 +41,13 @@ npm start
 ```
 
 Now browse to the app at `http://localhost:8000/index.html`.
+
+
+### Run the Application live edit
+
+npm run build
+
+npm run dev
+
+Check console output for server url. New URL might be:
+http://localhost:8080/

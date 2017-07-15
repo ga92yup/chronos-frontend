@@ -1,63 +1,82 @@
 'use strict';
 
-import MoviesComponent from './../components/view-movies/view-movies.component';
-import MovieComponent from './../components/view-movie/view-movie.component';
-import MovieEditComponent from './../components/view-movie-edit/view-movie-edit.component';
-import MovieCreateComponent from './../components/view-movie-create/view-movie-create.component';
+import HomeComponent from '../components/view-home/view-home.component';
+import ViewTimelineComponent from './../components/view-timeline/view-timeline.component';
+import ViewTimelineEditComponent from './../components/view-timeline-edit/view-timeline-edit.component';
+import ViewTimelineCreateComponent from './../components/view-timeline-create/view-timeline-create.component';
 import LoginComponent from './../components/view-login/view-login.component';
+import RegisterComponent from './../components/view-register/view-register.component';
 
-import MoviesService from './../services/movies/movies.service';
+import TimelinesService from './../services/timelines/timelines.service';
 
 
-resolveMovie.$inject = ['$stateParams', MoviesService.name];
-function resolveMovie($stateParams,moviesService){
-    return moviesService.get($stateParams.movieId);
+resolveTimeline.$inject = ['$stateParams', TimelinesService.name];
+function resolveTimeline($stateParams, timelinesService) {
+    return timelinesService.get($stateParams.timelineId);
 }
 
-resolveMovies.$inject = [MoviesService.name];
-function resolveMovies(moviesService){
-    return moviesService.list();
+resolveTimelines.$inject = ['$stateParams', TimelinesService.name];
+function resolveTimelines($stateParams, timelinesService) {
+    return timelinesService.list($stateParams.queryType, $stateParams.queryContent);
 }
 
 
-config.$inject = ['$stateProvider', '$urlRouterProvider'];
-export default function config ($stateProvider, $urlRouterProvider){
+config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
+export default function config($stateProvider, $urlRouterProvider, $locationProvider) {
+
+    //Edit locationProvider to get rid of "!" in routing.
+    $locationProvider.hashPrefix('');
 
     // For any unmatched url, redirect to /home
-    $urlRouterProvider.otherwise("/movies");
+    $urlRouterProvider.otherwise("/home");
 
     $stateProvider
-        .state('movies', {
-            url: '/movies',
-            component: MoviesComponent.name,
-            resolve: {
-                movies : resolveMovies
-            }
+        .state('home', {
+            url: '/home',
+            component: HomeComponent.name
         })
-        .state('movieAdd', {
-            url: '/movies/new',
-            component: MovieCreateComponent.name
+    /*    .state('timelineAdd', {
+            url: '/timelines/new',
+            component: ViewTimelineCreateComponent.name
         })
-        .state('movie', {
-            url: '/movies/:movieId',
-            component: MovieComponent.name,
-            resolve: {
-                movie : resolveMovie
-            }
 
-        })
-        .state('movieEdit', {
-            url: '/movies/:movieId/edit',
-            component: MovieEditComponent.name,
+      */
+        .state('timelines', {
+            url: '/timelines/:queryType/:queryContent',
+            component: ViewTimelineComponent.name,
+            //A resolve contains one or more promises that must resolve successfully before the route will change.
+            // This means you can wait for data to become available before showing a view,
+            // and simplify the initialization of the model inside a controller because the initial
+            // data is given to the controller instead of the controller needing to go out and fetch the data.
             resolve: {
-                movie : resolveMovie
+                timelines: resolveTimelines
             }
         })
+        .state('timelineAdd', {
+            url:'/timeline/:mode',
+            component: ViewTimelineCreateComponent.name,
+        })
+
+        .state('timelineEdit', {
+            url: '/timeline/:timelineId/:mode',
+            component: ViewTimelineCreateComponent.name,
+            resolve: {
+                timelineModel: resolveTimeline
+            }
+        })
+        /*
+        .state('timelineDisplay', {
+            url: '/display',
+            component: ViewTimelineComponent.name,
+        })
+        */
         .state('login', {
             url: '/login',
             component: LoginComponent.name,
         })
-
-
+        .state('register', {
+            url: '/register',
+            component: RegisterComponent.name,
+        })
 }
 

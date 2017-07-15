@@ -1,0 +1,23 @@
+.icon{
+    width: 84px !important;
+    height: 84px !important;
+}
+
+.value{
+    font-family: "Roboto", Arial, sans-serif;
+    width: 12em;
+    text-align: center;
+}
+
+.filler{
+    min-height: 100vh
+}
+
+.landing.md-raised{
+    padding: 10px;
+    width: 15em;
+}
+
+.landing.md-raised:not([disabled]):hover {
+    background-color: rgb(82,159,233) !important;
+}
