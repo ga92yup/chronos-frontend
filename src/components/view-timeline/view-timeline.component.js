@@ -80,18 +80,6 @@ class ViewTimelineComponentController{
 
 
     getPosterURL(){
-     // let posterURL = 'http://placehold.it/32x32';
- /*         if (this.timeline.hasOwnProperty('posters')) {
-            if (this.timeline.posters.hasOwnProperty('thumbnail')) {
-                posterURL = this.timeline.posters.thumbnail;
-            } else if (this.timeline.posters.hasOwnProperty('profile')) {
-                posterURL = this.timeline.posters.profile;
-            } else if (this.timeline.posters.hasOwnProperty('detailed')) {
-                posterURL = this.timeline.posters.detailed;
-            } else {
-                posterURL = this.timeline.posters.original;
-            }
-        } */
         let posterURL = 'Timeline.PNG';
 
         return posterURL;
