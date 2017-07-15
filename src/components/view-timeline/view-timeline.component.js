@@ -124,16 +124,16 @@ class ViewTimelineComponentController{
                     '<md-dialog aria-label="PrivacySettings">'+
                         '<form ng-cloak>'+
                             '<md-toolbar>'+
-                                '<div class="md-toolbar-tools" style="padding-left: 225px" >'+
+                                '<div class="md-toolbar-tools" style="padding-left: 290px" >'+
                                     '<h2>Privacy Settings</h2>'+
                                     '<span flex></span>'+
                                 '</div>'+
                             '</md-toolbar>'+
                             '<md-dialog-content>'+
                                 '<div class="md-dialog-content">'+
-                                    '<h3>Congratulations, you successfully made your timeline public!</h3>'+
-                                    '<h4>You can now copy the link below and share it with your friends or colleagues.</h4>'+
-                                    '<div style="background-color:#ceced0; padding-left:38px; border: double; border-color:#1A1A1A" layout-padding >'+
+                                    '<h3 style="padding-left: 70px">Congratulations, you successfully made your timeline public!</h3>'+
+                                    '<h4 style="padding-bottom: 20px">You can now copy the link below and share it with your friends or colleagues.</h4>'+
+                                    '<div style="background-color:#ceced0; padding-left:100px; border: double; border-color:#1A1A1A" layout-padding >'+
                                     url+'#/timeline/'+_id+'/view'+
                                     '</div>'+
                                 '</div>'+
