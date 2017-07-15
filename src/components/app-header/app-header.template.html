@@ -3,7 +3,7 @@
     <div class="md-toolbar-tools" style="min-height: 100%">
 
         <md-button class="menu" ng-click="$ctrl.toggleSidebar()">
-            <md-icon md-menu-align-target>
+            <md-icon md-menu-align-target aria-label="sideBar">
                 <ng-md-icon style="fill: #529fe9" icon="menu"></ng-md-icon>
             </md-icon>
         </md-button>
@@ -22,12 +22,12 @@
 
             <md-button ng-click="$ctrl.viewUserTimelines()" ng-show="$ctrl.isAuthenticated()">
                 <span ng-show="$ctrl.isAuthenticated()"><md-icon md-menu-align-target>
-                    <ng-md-icon style="fill: #529fe9" icon="account_circle"></ng-md-icon></md-icon>
+                    <ng-md-icon style="fill: #529fe9" icon="account_circle" aria-label="userIcon"></ng-md-icon></md-icon>
                         {{$ctrl.getCurrentUser()}}
                 </span>
             </md-button>
             <md-button ng-click="$ctrl.logout($event)" ng-show="$ctrl.isAuthenticated()">
-                <md-icon md-menu-align-target>
+                <md-icon md-menu-align-target aria-label="logoutIcon">
                     <ng-md-icon style="fill: #529fe9" icon="logout"></ng-md-icon>
                 </md-icon>
                 Logout
