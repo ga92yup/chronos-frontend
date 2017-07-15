@@ -5,6 +5,7 @@ import template from './view-timeline.template.html';
 import TimelinesService from './../../services/timelines/timelines.service';
 import UserService from './../../services/user/user.service';
 import "./../../images/Timeline.PNG";
+import './view-timeline.style.css';
 
 class ViewTimelineComponent {
     constructor(){
