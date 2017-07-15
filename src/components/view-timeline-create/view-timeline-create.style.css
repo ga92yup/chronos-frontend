@@ -2,6 +2,10 @@ md-input-container .md-error-spacer{
     display:none;
 }
 
+h4{
+    padding: 1px;
+    margin: 1px;
+}
 .headline{
     text-align: center;
     background-color: rgb(82,159,233);
