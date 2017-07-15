@@ -22,11 +22,12 @@ class ViewTimelineComponent {
 }
 
 class ViewTimelineComponentController{
-    constructor($state,TimelinesService,UserService,$mdDialog){
+    constructor($state,TimelinesService,UserService,$mdDialog,$location){
         this.$state = $state;
         this.TimelinesService = TimelinesService;
         this.UserService = UserService;
         this.$mdDialog = $mdDialog;
+        this.$location = $location;
     }
 
     edit (timeline) {
@@ -165,10 +166,12 @@ class ViewTimelineComponentController{
 
     showDialog(priv, timeline) {
         let _id = timeline['_id'];
+        //Get url from url bar and split any routes
+        let url = this.$location.absUrl();
+        url = url.split("#")[0];
             if (this.UserService.isAuthenticated()) {
             if (priv) {
                 this.$mdDialog.show({
-                    //controller: this.DialogController(),
                     template:
                     '<md-dialog aria-label="PrivacySettings">'+
                         '<form ng-cloak>'+
@@ -180,10 +183,10 @@ class ViewTimelineComponentController{
                             '</md-toolbar>'+
                             '<md-dialog-content>'+
                                 '<div class="md-dialog-content">'+
-                                    '<h3>Congratulations, You successfully made your timeline public!</h3>'+
-                                    '<h4>You can now copy the Link below and share it with friends or colleagues.</h4>'+
+                                    '<h3>Congratulations, you successfully made your timeline public!</h3>'+
+                                    '<h4>You can now copy the link below and share it with your friends or colleagues.</h4>'+
                                     '<div style="background-color:#ceced0; padding-left:38px; border: double; border-color:#1A1A1A" layout-padding >'+
-                                        'http://localhost:8080/#/timeline/'+_id+'/view'+
+                                    url+'#/timeline/'+_id+'/view'+
                                     '</div>'+
                                 '</div>'+
                             '</md-dialog-content>'+
@@ -215,13 +218,13 @@ class ViewTimelineComponentController{
         let user = this.UserService.getCurrentUser();
         return user.username;
     }
-    dateFormat(created_at) {
-        let dateObj = created_at.substring(0, 10);
-        return dateObj;
+
+    static dateFormat(created_at) {
+        return created_at.substring(0, 10);
     }
 
     static get $inject(){
-        return ['$state', TimelinesService.name, UserService.name, '$mdDialog'];
+        return ['$state', TimelinesService.name, UserService.name, '$mdDialog', '$location'];
     }
 
 }
