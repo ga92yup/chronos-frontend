@@ -167,8 +167,9 @@ class ViewTimelineComponentController{
         return user.username;
     }
 
-    static dateFormat(created_at) {
-        return created_at.substring(0, 10);
+    dateFormat(created_at) {
+        let dateObj = created_at.substring(0, 10);
+        return dateObj;
     }
 
     static get $inject(){
