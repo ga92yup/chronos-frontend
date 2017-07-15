@@ -39,6 +39,11 @@ class ViewTimelineComponentController{
 
     };
 
+    view(timeline){
+        let _id = timeline['_id'];
+        this.$state.go('timelineEdit', {timelineId:_id, mode: "view"} );
+    }
+
     newTimeline() {
 
         this.$state.go('timelineAdd', {mode: "new"});
@@ -117,7 +122,7 @@ class ViewTimelineComponentController{
         }
     }
 
-    privacy(priv, timeline){
+    /*privacy(priv, timeline){
 
         if (this.UserService.isAuthenticated()) {
             if (priv) {
@@ -139,6 +144,64 @@ class ViewTimelineComponentController{
                 timeline.privacySetting = true;
 
             } else {
+                timeline.privacySetting = false;
+            }
+            this.TimelinesService.update(timeline);
+        } else {
+            this.$state.go('login',{});
+        }
+    }*/
+
+
+    /*DialogController() {
+    this.hide = function() {
+        this.$mdDialog.hide();
+    };
+    this.cancel = function() {
+        this.$mdDialog.cancel();
+    };
+}*/
+
+    showDialog(priv, timeline) {
+        let _id = timeline['_id'];
+            if (this.UserService.isAuthenticated()) {
+            if (priv) {
+                this.$mdDialog.show({
+                    //controller: this.DialogController(),
+                    template:
+                    '<md-dialog aria-label="PrivacySettings">'+
+                        '<form ng-cloak>'+
+                            '<md-toolbar>'+
+                                '<div class="md-toolbar-tools" style="padding-left: 225px" >'+
+                                    '<h2>Privacy Settings</h2>'+
+                                    '<span flex></span>'+
+                                '</div>'+
+                            '</md-toolbar>'+
+                            '<md-dialog-content>'+
+                                '<div class="md-dialog-content">'+
+                                    '<h3>Congratulations, You successfully made your timeline public!</h3>'+
+                                    '<h4>You can now copy the Link below and share it with friends or colleagues.</h4>'+
+                                    '<div style="background-color:#ceced0; padding-left:38px; border: double; border-color:#1A1A1A" layout-padding >'+
+                                        'http://localhost:8080/#/timeline/'+_id+'/view'+
+                                    '</div>'+
+                                '</div>'+
+                            '</md-dialog-content>'+
+                    /*'<md-dialog-actions layout="row">'+
+                                '<span flex></span>'+
+                                '<md-button ng-click="cancel()">'+
+                                    'OK'+
+                                '</md-button>'+
+                            '</md-dialog-actions>'+*/
+                        '</form>'+
+                    '</md-dialog>',
+                    parent: angular.element(document.body),
+                    clickOutsideToClose: true
+
+                });
+                timeline.privacySetting = true;
+
+
+            } else{
                 timeline.privacySetting = false;
             }
             this.TimelinesService.update(timeline);
