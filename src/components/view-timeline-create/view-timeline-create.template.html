@@ -11,7 +11,7 @@
                     <input ng-model="$ctrl.dataModel.name" type="text" name="timelineName" required>
                     <div ng-messages="TimelineForm.timelineName.$error" role="alert">
                         <div ng-message-exp="['required']">
-                            Please enter a name for your timeline.
+                            Please enter a name for your timeline before saving.
                         </div>
                     </div>
                 </md-input-container>
@@ -48,7 +48,7 @@
             </md-input-container>
         </div>
 
-        <form ng-show="$ctrl.editMode" name="EventForm">
+        <form ng-show="$ctrl.editMode" name="EventForm" novalidate>
             <section layout="row" class="eventForm">
                 <span flex></span>
                 <div flex="30" class="eventInput" layout="column">
