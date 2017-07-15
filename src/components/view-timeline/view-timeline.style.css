@@ -1,0 +1,20 @@
+.timelineCard:hover {
+    background-color: gainsboro;
+}
+
+.timelineCard {
+    height: 14em;
+}
+
+.image {
+    max-width: 22em;
+    max-height: 10em;
+}
+
+.buttonArea {
+    max-width: 15em;
+}
+
+.md-subhead.description {
+    overflow: auto;
+}
