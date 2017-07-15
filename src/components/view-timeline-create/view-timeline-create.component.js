@@ -97,7 +97,7 @@ class ViewTimelineCreateComponentController{
                 "content": {
                     "eventItem": [
                         {"id": 1, "content": '<h4 class="title">My first Chronos event!</h4>' +
-                        '<aside class="text">You can add events, drag them in time, zoom, and then save your timeline and share it with your friends.' +
+                        '<aside class="text"><br>You can add events, drag them in time, zoom, and then save your timeline and share it with your friends.' +
                         '<br>To edit an event, click on it and then press the edit-button.<br>Have fun with <img src="../../images/chronos-logo.svg" style="width:64px; height:64px; vertical-align: middle"> !</aside>', "start": "2017-5-9", "end": "2017-6-18"},
                     ]
                 }
