@@ -8,10 +8,10 @@
 
 <!-- We define timelines in routes.js.-->
 
-<md-card ng-repeat="timeline in $ctrl.timelines | orderBy:timeline.created_at:true" >
+<md-card class="timelineCard" ng-repeat="timeline in $ctrl.timelines | orderBy:timeline.created_at:true" ng-click="$ctrl.view(timeline)">
     <md-card-title>
 
-        <div class="image" layout="row" layout-align="center center" ng-click="$ctrl.view(timeline)" style="max-width:20%;height:auto;" layout-padding>
+        <div class="image" layout="row" layout-align="center center" style="max-width:20%;height:auto;" layout-padding>
             <img src="./../../images/Timeline.PNG" class="md-media-md">
         </div>
 
@@ -22,7 +22,7 @@
              <span class="md-subhead" layout-align="start start">Description: {{timeline.description}}</span>
         </md-card-title-text>
 
-        <md-card-title-text layout-align="center end" >
+        <md-card-title-text layout-align="center end" ng-click="$event.stopPropagation()">
              <md-card-actions layout="row" layout-align="end center">
                  <md-button class="md-icon-button" aria-label="Edit Item"  ng-click="$ctrl.edit(timeline)" ng-hide="$ctrl.showSwitch()">
                      <md-icon>
