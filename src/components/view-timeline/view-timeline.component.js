@@ -124,46 +124,6 @@ class ViewTimelineComponentController{
         }
     }
 
-    /*privacy(priv, timeline){
-
-        if (this.UserService.isAuthenticated()) {
-            if (priv) {
-
-
-                var alert = this.$mdDialog.alert()
-                    .title('You just made your timeline public!')
-                    .textContent('Share this url to show your timeline to friends:')
-                    .ok('ok')
-
-
-
-                this.$mdDialog
-                    .show(alert)
-                    .finally(function () {
-                        alert = undefined;
-                    })
-
-                timeline.privacySetting = true;
-
-            } else {
-                timeline.privacySetting = false;
-            }
-            this.TimelinesService.update(timeline);
-        } else {
-            this.$state.go('login',{});
-        }
-    }*/
-
-
-    /*DialogController() {
-    this.hide = function() {
-        this.$mdDialog.hide();
-    };
-    this.cancel = function() {
-        this.$mdDialog.cancel();
-    };
-}*/
-
     showDialog(priv, timeline) {
         let _id = timeline['_id'];
         //Get url from url bar and split any routes
