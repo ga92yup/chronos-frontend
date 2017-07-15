@@ -11,7 +11,7 @@
 <md-card ng-repeat="timeline in $ctrl.timelines | orderBy:timeline.created_at:true" >
     <md-card-title>
 
-        <div class="image" layout="row" layout-align="center center" style="max-width:20%;height:auto;" layout-padding>
+        <div class="image" layout="row" layout-align="center center" ng-click="$ctrl.view(timeline)" style="max-width:20%;height:auto;" layout-padding>
             <img src="./../../images/Timeline.PNG" class="md-media-md">
         </div>
 
@@ -43,10 +43,10 @@
     </md-card-title>
 
 
-    <div style="visibility: hidden">
+    <!--<div style="visibility: hidden">
         <div class="md-dialog-container" id="myDialog">
             <md-dialog layout="fix" layout-padding></md-dialog>
         </div>
-    </div>
+    </div>-->
 
 </md-card>
