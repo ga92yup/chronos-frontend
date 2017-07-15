@@ -1,5 +1,5 @@
 <section layout="column" layout-align="center center">
-    <h2>{{ $ctrl.getHeadline() }}</h2>
+    <h2 class="timeHead">{{ $ctrl.getHeadline() }}</h2>
     <div layout="row" style="width: 100%">
     <md-button flex class="md-raised landing md-accent" ng-click="$ctrl.newTimeline()">Create a new timeline</md-button>
     </div>
@@ -8,7 +8,7 @@
 
 <!-- We define timelines in routes.js.-->
 
-<md-card class="timelineCard" ng-repeat="timeline in $ctrl.timelines | orderBy:timeline.created_at:true" ng-click="$ctrl.view(timeline)">
+<md-card class="timelineCard" ng-repeat="timeline in $ctrl.timelines | orderBy: timeline.created_at:true" ng-click="$ctrl.view(timeline)">
     <md-card-title>
 
         <div class="image" layout="row" layout-align="center center" layout-padding>
@@ -16,7 +16,11 @@
         </div>
 
         <md-card-title-text layout-align="center start" layout-padding>
-             <span class="md-headline" layout-align="start start">{{timeline.name}}</span>
+             <span class="md-headline" layout-align="start start">{{timeline.name}}
+                <div class="views"><md-icon><ng-md-icon icon="visibility"></ng-md-icon></md-icon>
+                    {{timeline.views}}
+                </div>
+             </span>
              <span class="md-subhead" layout-align="start start">Created by: {{timeline.uname}}</span>
              <span class="md-subhead" layout-align="start start">Creation Date: {{$ctrl.dateFormat(timeline.created_at)}}</span>
              <span class="md-subhead description" layout-align="start start">Description: {{timeline.description}}</span>

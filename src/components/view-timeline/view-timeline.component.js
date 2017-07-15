@@ -91,14 +91,14 @@ class ViewTimelineComponentController{
         if (this.$state.params.queryType === "public") {
 
             if (this.$state.params.queryContent === "all") {
-                headline = "Here are all public timelines!"
+                headline = "Explore all public timelines!"
             }
             else {
-                headline = "Here are all the timelines to your topic: " + this.$state.params.queryContent;
+                headline = "Explore all public timelines to your topic: " + this.$state.params.queryContent;
             }
         }
         else {
-            headline = "Here are all of your timelines!";
+            headline = "Have a look at all the timelines you created!";
         }
         return headline
     }

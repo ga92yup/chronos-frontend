@@ -18,3 +18,15 @@
 .md-subhead.description {
     overflow: auto;
 }
+
+.views {
+    margin-left: 1em;
+    font-size: medium;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+h2.timeHead {
+    text-align: center;
+    color: #666666;
+}
