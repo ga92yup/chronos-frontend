@@ -116,6 +116,7 @@ class ViewTimelineCreateComponentController{
     }
 
     clearEvent(){
+        this.event.id= "";
         this.event.title = "";
         this.event.text = "";
         this.event.image = "";
@@ -135,6 +136,7 @@ class ViewTimelineCreateComponentController{
        let selectedEvents = this.timeline.getSelection();
        if (selectedEvents.length == 1 ){
                 this.editEventPressed = true;
+                this.event.id = selectedEvents[0];
                 let item = this.items.get(selectedEvents[0]);
 
                 this.event.parseTemplate(item.content);
@@ -158,8 +160,7 @@ class ViewTimelineCreateComponentController{
     }
 
     saveEvent() {
-        let eventsList = this.timeline.getSelection();
-        let eventId = eventsList[0];
+        let eventId = this.event.id;
         let eventToAdd = this.manipulateEvent(eventId);
         this.items.remove(eventId);
         this.items.add(eventToAdd);
