@@ -14,6 +14,19 @@ md-nav-bar.md-default-theme .md-button._md-nav-button.md-unselected, md-nav-bar 
 app-header > md-toolbar, app-header > md-toolbar > .md-toolbar-tools{
     min-height: 50px;
     height: 50px;
+    color: darkslategray;
+}
+
+.brand{
+    height: 60%;
+    transform: translateX(-50%);
+    left: 50%;
+    position: absolute;
+}
+
+.right {
+    right: 0%;
+    position: absolute;
 }
 
 md-nav-bar.md-default-theme md-nav-ink-bar, md-nav-bar md-nav-ink-bar {

@@ -21,20 +21,28 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                exclude: /(node_modules)/,
-                loader: 'babel', // 'babel-loader' is also a legal name to reference
+                exclude: /(node_modules,libs)/,
+                loader: 'babel-loader', // 'babel-loader' is also a legal name to reference
                 query: {
                     presets: ['es2015']
                 }
             },
             {
                 test: /\.html$/,
-                loader: 'html'
+                loader: 'html-loader'
             },
             // Extract css files
             {
+                test: /\.(jpe?g|gif|png|svg)$/i,
+                loader: "file-loader?name=./images/[name].[ext]"
+            },
+
+            {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+                loader: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: "css-loader"
+                })
             }
         ]
     },
