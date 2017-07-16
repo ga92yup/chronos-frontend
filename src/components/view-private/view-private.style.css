@@ -1,0 +1,9 @@
+h2.errorMsg {
+    text-align: center;
+    color: #666666;
+}
+
+.errorImg {
+    display: block;
+    margin: 0 auto;
+}
