@@ -6,6 +6,7 @@ import ViewTimelineEditComponent from './../components/view-timeline-edit/view-t
 import ViewTimelineCreateComponent from './../components/view-timeline-create/view-timeline-create.component';
 import LoginComponent from './../components/view-login/view-login.component';
 import RegisterComponent from './../components/view-register/view-register.component';
+import PrivateComponent from './../components/view-private/view-private.component';
 
 import TimelinesService from './../services/timelines/timelines.service';
 
@@ -70,6 +71,10 @@ export default function config($stateProvider, $urlRouterProvider, $locationProv
             component: ViewTimelineComponent.name,
         })
         */
+        .state('private', {
+            url: '/private',
+            component: PrivateComponent.name,
+        })
         .state('login', {
             url: '/login',
             component: LoginComponent.name,
