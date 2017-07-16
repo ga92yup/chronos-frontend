@@ -239,7 +239,7 @@ class ViewTimelineCreateComponentController{
         //      this.dataModel.description = this.timeline.description;
 
         this.dataModel['created_at'] = this.currentTime();
-        this.dataModel['uname'] = user['username']
+        this.dataModel['uname'] = user['username'];
         this.dataModel['user'] = user['_id'];
         if(this.timelineModel===undefined)
             this.TimelinesService.create(this.dataModel).then(data => {
@@ -283,12 +283,17 @@ class ViewTimelineCreateComponentController{
     concatenateDate(choice) {
         var date = "";
         if (choice === "end") {
-            if(this.endYear != undefined && this.endYear != "")
-                     date = this.endYear;
-            if (this.endMonth != undefined && this.endMonth != "") {
-                date = date + "-" + this.endMonth;
-                if (this.endDay != undefined && this.endDay != "") {
-                    date = date + "-" + this.endDay;
+            if(this.endYear != undefined && this.endYear != "") {
+                date = this.endYear;
+                if (this.endMonth != undefined && this.endMonth != "") {
+                    date = date + "-" + this.endMonth;
+                    if (this.endDay != undefined && this.endDay != "") {
+                        date = date + "-" + this.endDay;
+                    } else {
+                        date = date + "-01";
+                    }
+                } else {
+                    date = date + "-01-01";
                 }
             }
         } else if (choice === "start") {
@@ -297,7 +302,11 @@ class ViewTimelineCreateComponentController{
                 date = date + "-" + this.startMonth;
                 if (this.startDay != undefined && this.startDay != "") {
                     date = date + "-" + this.startDay;
+                } else {
+                    date = date + "-01";
                 }
+            } else {
+                date = date + "-01-01";
             }
         }
         return date;
